@@ -3,10 +3,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/assets/*": ["assets/*"],
-      "@/components/*": ["src/components/*"],
-      "@/constants/*": ["src/constants/*"],
-      "@/routes/*": ["src/routes/*"]
+      "@src/*": ["src/*"],
+      "@assets/*": ["assets/*"],
+      "@screens/*": ["src/screens/*"]
     }
   }
 }
