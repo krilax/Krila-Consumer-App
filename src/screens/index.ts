@@ -1,4 +1,4 @@
-import OnboardScreen from "./onboardScreens/OnboardScreen"
+import OnboardScreen from "./onboard/OnboardScreen"
 import SplashScreen from "./splash/SplashScreen"
 
 export { OnboardScreen, SplashScreen }
