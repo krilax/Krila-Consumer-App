@@ -1,32 +1,118 @@
-import {useHp} from 'constants/reusable';
-import {Flex, Text, View} from 'native-base';
+import {
+  MobileOSType,
+  WINDOW_HEIGHT,
+  WINDOW_WIDTH,
+  isMobile,
+  isTablet,
+  useHp,
+} from 'constants/reusable';
+import {Box, Flex, Text, View} from 'native-base';
 import React from 'react';
 import {StyleSheet} from 'react-native';
+import TravelContent from './contentViews/TravelContent';
+import LinearGradient from 'react-native-linear-gradient';
+import MaskedView from '@react-native-masked-view/masked-view';
+import {RFPercentage} from 'react-native-responsive-fontsize';
+// import TextGradient from '@furkankaya/react-native-linear-text-gradient';
 
-function TravelReimaginedScreen({color, metadata, detail, title}: any) {
+interface TravelReimaginedScreenProps {
+  metadata: any;
+  detail: string;
+  title: string;
+}
+
+const GradientText = (props: any) => {
+  return (
+    <MaskedView maskElement={<Text {...props} />}>
+      <LinearGradient
+        colors={['#050683', '#0709C5']}
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 0}}>
+        <Text {...props} style={[props.style, {opacity: 0}]} />
+      </LinearGradient>
+    </MaskedView>
+  );
+};
+
+function TravelReimaginedScreen({
+  metadata,
+  detail,
+  title,
+}: TravelReimaginedScreenProps) {
   return (
     <Flex flex={1} justifyContent={'flex-start'}>
-      <View style={styles.redView} padding={30}>
+      <View style={styles.backView} padding={30}>
         <Text>This stays at the back</Text>
       </View>
-      <View style={[styles.overlay, {height: useHp(65)}]} padding={30}>
-        <Text>This stays at the front</Text>
-      </View>
+      <Flex
+        style={[
+          styles.overlay,
+          {height: WINDOW_HEIGHT, justifyContent: 'flex-start', padding: 30},
+        ]}>
+        <TravelContent />
+
+        <Box w="full" mt={!isMobile ? 70 : 30}>
+          <Box>
+            <GradientText
+              style={{
+                fontFamily: 'Spartan-Regular',
+                fontWeight: 'bold',
+                fontSize:
+                  MobileOSType === 'android' && isTablet
+                    ? RFPercentage(4.6)
+                    : RFPercentage(3),
+                lineHeight: 55,
+                textTransform: 'uppercase',
+              }}>
+              {title}
+            </GradientText>
+            {/* <TextGradient
+              style={{
+                fontFamily: 'Spartan-Regular',
+                fontWeight: 'bold',
+                fontSize:
+                  MobileOSType === 'android' && isTablet
+                    ? RFPercentage(4)
+                    : RFPercentage(3),
+                lineHeight: 50,
+                textTransform: 'uppercase',
+              }}
+              // locations={[0, 1]}
+              colors={['#050683', '#0709C5']}
+              start={{x: 0, y: 0}}
+              end={{x: 1, y: 0}}
+              text="Travel"
+            /> */}
+          </Box>
+
+          <Box width={WINDOW_WIDTH * 0.63} mt={'11px'}>
+            <Text
+              fontFamily={'Poppins-Regular'}
+              fontSize={
+                MobileOSType === 'android' && isTablet ? RFPercentage(1.6) : 10
+              }
+              lineHeight={isTablet ? '32' : '16'}
+              color={'secondary.1'}
+              fontWeight={'400'}>
+              {detail}
+            </Text>
+          </Box>
+        </Box>
+      </Flex>
     </Flex>
   );
 }
 
 const styles = StyleSheet.create({
-  redView: {
+  backView: {
     flex: 1,
-    backgroundColor: 'red',
+    backgroundColor: 'white',
   },
   overlay: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     justifyContent: 'center',
     alignItems: 'center',
   },

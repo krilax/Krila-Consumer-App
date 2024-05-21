@@ -1,4 +1,4 @@
-
+import {extendTheme} from 'native-base';
 
 const COLORS = {
   primary: '#03045E',
@@ -8,17 +8,10 @@ const COLORS = {
   white: '#ffff',
 
   whiteGray: '#F3F2F7',
-  textColor: "#425166",
+  textColor: '#425166',
 
-  borderColor: "#D8DDE2",
-  tertiary: "#D9D9D9"
-};
-
-const FONT = {
-  regular: "Poppins-Regular",
-  medium: "Poppins-Medium",
-  semiBold: "Poppins-SemiBold",
-  bold: "Poppins-Bold",
+  borderColor: '#D8DDE2',
+  tertiary: '#D9D9D9',
 };
 
 const SIZES = {
@@ -30,5 +23,19 @@ const SIZES = {
   xxLarge: 32,
 };
 
+export {COLORS, SIZES};
 
-export { COLORS, FONT, SIZES };
+export const nativeBaseTheme = extendTheme({
+  colors: {
+    primary: {
+      1: '#03045E',
+      2: '#FFE53C',
+    },
+    secondary: {
+      1: '#7D8093',
+    },
+  },
+  config: {
+    initialColorMode: 'dark',
+  },
+});

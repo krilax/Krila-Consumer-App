@@ -3,7 +3,7 @@
   "data": [
     {
       "path": "assets/fonts/Poppins/OFL.txt",
-      "sha1": "9f27955a401cc9ea5ba3503027a4ea502c87e70c"
+      "sha1": "17e863ac77798273c2e2427d03d4e356c996b2fa"
     },
     {
       "path": "assets/fonts/Poppins/Poppins-Black.ttf",
@@ -76,6 +76,42 @@
     {
       "path": "assets/fonts/Poppins/Poppins-ThinItalic.ttf",
       "sha1": "fb8fccca21550e71135f92bbaf8a2e8a12c90465"
+    },
+    {
+      "path": "assets/fonts/Spartan/Spartan-Black.ttf",
+      "sha1": "092a49b11db0f0588e0352740afa46ba301af1ce"
+    },
+    {
+      "path": "assets/fonts/Spartan/Spartan-Bold.ttf",
+      "sha1": "ef66359bce31b2c5b1b05a975e4e880539fccb64"
+    },
+    {
+      "path": "assets/fonts/Spartan/Spartan-ExtraBold.ttf",
+      "sha1": "ee29e6514c39254b2ea50d0c222774b6e69009d7"
+    },
+    {
+      "path": "assets/fonts/Spartan/Spartan-ExtraLight.ttf",
+      "sha1": "9487b01f4582eff8904c843676fc9b5db358474c"
+    },
+    {
+      "path": "assets/fonts/Spartan/Spartan-Light.ttf",
+      "sha1": "773333e61abd545201caf0d1394c653327df2a70"
+    },
+    {
+      "path": "assets/fonts/Spartan/Spartan-Medium.ttf",
+      "sha1": "d046214aacf7d745ac89ec1b53f03e36132571db"
+    },
+    {
+      "path": "assets/fonts/Spartan/Spartan-Regular.ttf",
+      "sha1": "e78a38f1d034520fbd837a1d60348a3aa3474a1a"
+    },
+    {
+      "path": "assets/fonts/Spartan/Spartan-SemiBold.ttf",
+      "sha1": "fc1468ef994e240a081786576024428e898566ec"
+    },
+    {
+      "path": "assets/fonts/Spartan/Spartan-Thin.ttf",
+      "sha1": "283b9ff698b4314f48cc737df77abe0422f50e1d"
     }
   ]
 }

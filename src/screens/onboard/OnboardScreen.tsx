@@ -1,7 +1,7 @@
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '@src/routes';
-import {Text, View} from 'native-base';
+import {Box, Button, Text, View} from 'native-base';
 import {Dimensions, StyleSheet} from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -34,9 +34,9 @@ const onboardData: OnboardDataInterface[] = [
     metadata: {
       img: '',
     },
-    title: 'Travel \n Reimagined',
+    title: 'Travel \nReimagined',
     detail:
-      'Krila streamlines your travel planning with cutting-edge technology. Secure and effortless bookings, powered by Web3.',
+      'Krila streamlines your travel planning with \ncutting-edge technology. Secure and \neffortless bookings, powered by Web3.',
     color: 'red',
     Screen: TravelReimaginedScreen,
   },
@@ -44,9 +44,9 @@ const onboardData: OnboardDataInterface[] = [
     metadata: {
       list: [],
     },
-    title: 'TURN EVERY TRIP \n INTO A REWARD',
+    title: 'TURN EVERY TRIP \nINTO A REWARD',
     detail:
-      'Earn rewards with every flight, hotel, and activity you book.  Use your rewards for discounts, exclusive experiences, and more!',
+      'Earn rewards with every flight, hotel, and activity you \nbook.  Use your rewards for discounts, exclusive experiences, and more!',
     color: 'yellow',
     Screen: TravelReimaginedScreen,
   },
@@ -54,7 +54,7 @@ const onboardData: OnboardDataInterface[] = [
     metadata: {
       list: [''],
     },
-    title: 'EXPLORE YOUR  \n WORLD WITH KRILA',
+    title: 'EXPLORE YOUR  \nWORLD WITH KRILA',
     detail:
       'Explore the world with ease. Search for flights, discover unique hotels, and book unforgettable activities - all within Krila.',
     color: 'blue',
@@ -129,6 +129,10 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
           </Animated.View>
         </Animated.View>
       </GestureDetector>
+
+      <Box w="full" bg="red.100" zIndex={1} position={'absolute'} bottom={10}>
+        <Button>Clicke me</Button>
+      </Box>
     </View>
   );
 };

@@ -9,13 +9,15 @@ import {RootStackParamList} from '@src/routes';
 //components
 import {OnboardScreen, SplashScreen} from '@src/screens';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {nativeBaseTheme} from '@constants/theme';
+// @constants
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App() {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
-      <NativeBaseProvider>
+      <NativeBaseProvider isSSR={false} theme={nativeBaseTheme}>
         <NavigationContainer>
           <SafeAreaProvider>
             <Stack.Navigator
