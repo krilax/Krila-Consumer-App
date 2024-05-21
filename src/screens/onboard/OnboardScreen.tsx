@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '@src/routes';
 import {Box, Button, Text, View} from 'native-base';
-import {Dimensions, StyleSheet} from 'react-native';
+import {ActivityIndicator, Dimensions, StyleSheet} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -12,7 +12,26 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
-import TravelReimaginedScreen from './components/TravelReimaginedScreen';
+
+// import TravelReimaginedScreen from './components/TravelReimaginedScreen';
+// import FeaturesScreen from './components/FeaturesScreen';
+// import FeatureDetail1 from './components/contentViews/FeatureDetail1';
+// import FeatureDetail2 from './components/contentViews/FeatureDetail2';
+// import FeatureDetail3 from './components/contentViews/FeatureDetail3';
+
+const TravelReimaginedScreen = React.lazy(
+  () => import('./components/TravelReimaginedScreen'),
+);
+const FeaturesScreen = React.lazy(() => import('./components/FeaturesScreen'));
+const FeatureDetail1 = React.lazy(
+  () => import('./components/contentViews/FeatureDetail1'),
+);
+const FeatureDetail2 = React.lazy(
+  () => import('./components/contentViews/FeatureDetail2'),
+);
+const FeatureDetail3 = React.lazy(
+  () => import('./components/contentViews/FeatureDetail3'),
+);
 
 type SplashScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -42,13 +61,13 @@ const onboardData: OnboardDataInterface[] = [
   },
   {
     metadata: {
-      list: [],
+      list: [<FeatureDetail1 />, <FeatureDetail2 />, <FeatureDetail3 />],
     },
     title: 'TURN EVERY TRIP \nINTO A REWARD',
     detail:
       'Earn rewards with every flight, hotel, and activity you \nbook.  Use your rewards for discounts, exclusive experiences, and more!',
     color: 'yellow',
-    Screen: TravelReimaginedScreen,
+    Screen: FeaturesScreen,
   },
   {
     metadata: {
@@ -115,25 +134,27 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
     .runOnJS(true);
 
   return (
-    <View style={styles.container}>
-      <GestureDetector {...{gesture}}>
-        <Animated.View style={StyleSheet.absoluteFill}>
-          <Animated.View style={[styles.slides, animatedStyles]}>
-            {onboardData.map(
-              ({color, metadata, detail, title, Screen}, index) => (
-                <Animated.View style={[styles.slide]}>
-                  <Screen {...{index, color, metadata, detail, title}} />
-                </Animated.View>
-              ),
-            )}
+    <Suspense fallback={<ActivityIndicator size="large" color="#" />}>
+      <View style={styles.container}>
+        <GestureDetector {...{gesture}}>
+          <Animated.View style={StyleSheet.absoluteFill}>
+            <Animated.View style={[styles.slides, animatedStyles]}>
+              {onboardData.map(
+                ({color, metadata, detail, title, Screen}, index) => (
+                  <Animated.View style={[styles.slide]} key={index}>
+                    <Screen {...{index, color, metadata, detail, title}} />
+                  </Animated.View>
+                ),
+              )}
+            </Animated.View>
           </Animated.View>
-        </Animated.View>
-      </GestureDetector>
+        </GestureDetector>
 
-      <Box w="full" bg="red.100" zIndex={1} position={'absolute'} bottom={10}>
-        <Button>Clicke me</Button>
-      </Box>
-    </View>
+        <Box w="full" bg="red.100" zIndex={1} position={'absolute'} bottom={10}>
+          <Button>Clicke me</Button>
+        </Box>
+      </View>
+    </Suspense>
   );
 };
 
