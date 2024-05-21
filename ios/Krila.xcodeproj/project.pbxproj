@@ -32,7 +32,16 @@
 		9349953D446F4502975FED61 /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFBFDF148BA645658E15DA7A /* Poppins-SemiBoldItalic.ttf */; };
 		4264009D20FF480D8C42098C /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B43D59AE471E42E294759B7A /* Poppins-Thin.ttf */; };
 		800DBC286BB04AB9BB6A081E /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A878F890555E465C88D40A43 /* Poppins-ThinItalic.ttf */; };
-		4650E4D25EC2424AA00CA9CC /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = F12914B9420445A197035297 /* OFL.txt */; };
+		E083180333C740E594E747C7 /* Spartan-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04FFC8128BA24CB4A1449470 /* Spartan-Black.ttf */; };
+		DB79337ECC694BEDBA7326DD /* Spartan-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79F0E87B7BB742C4814CF9B6 /* Spartan-Bold.ttf */; };
+		94DED1E27E1143579B082C74 /* Spartan-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BADD081C6408490897D74B16 /* Spartan-ExtraBold.ttf */; };
+		6BBAE9D421814D0DA451552B /* Spartan-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E5A46C49BD640548AF6D280 /* Spartan-ExtraLight.ttf */; };
+		2B8FCBCC2DA1436594811F80 /* Spartan-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 960EE5632F244300B3A7CF1D /* Spartan-Light.ttf */; };
+		7BE98A8DD28D447EA9491ABB /* Spartan-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A95834150A14DE5976E4D58 /* Spartan-Medium.ttf */; };
+		0E9399044FD6439CB8568412 /* Spartan-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02FC3D31AF9B41B8B879A44C /* Spartan-Regular.ttf */; };
+		9BECC3543E4D446FA5987503 /* Spartan-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E121371C9BAA42E9AE97CA41 /* Spartan-SemiBold.ttf */; };
+		C7EF26D1B21A481C898DBEE0 /* Spartan-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA350D10490C400CA1E833A7 /* Spartan-Thin.ttf */; };
+		D1C5CA4D67BF4FBA9454A395 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 398C1AE570FD4B1686C8BE4A /* OFL.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +90,16 @@
 		FFBFDF148BA645658E15DA7A /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "Poppins-SemiBoldItalic.ttf"; path = "../assets/fonts/Poppins/Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		B43D59AE471E42E294759B7A /* Poppins-Thin.ttf */ = {isa = PBXFileReference; name = "Poppins-Thin.ttf"; path = "../assets/fonts/Poppins/Poppins-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		A878F890555E465C88D40A43 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; name = "Poppins-ThinItalic.ttf"; path = "../assets/fonts/Poppins/Poppins-ThinItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		F12914B9420445A197035297 /* OFL.txt */ = {isa = PBXFileReference; name = "OFL.txt"; path = "../assets/fonts/Poppins/OFL.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		04FFC8128BA24CB4A1449470 /* Spartan-Black.ttf */ = {isa = PBXFileReference; name = "Spartan-Black.ttf"; path = "../assets/fonts/Spartan/Spartan-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		79F0E87B7BB742C4814CF9B6 /* Spartan-Bold.ttf */ = {isa = PBXFileReference; name = "Spartan-Bold.ttf"; path = "../assets/fonts/Spartan/Spartan-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BADD081C6408490897D74B16 /* Spartan-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Spartan-ExtraBold.ttf"; path = "../assets/fonts/Spartan/Spartan-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9E5A46C49BD640548AF6D280 /* Spartan-ExtraLight.ttf */ = {isa = PBXFileReference; name = "Spartan-ExtraLight.ttf"; path = "../assets/fonts/Spartan/Spartan-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		960EE5632F244300B3A7CF1D /* Spartan-Light.ttf */ = {isa = PBXFileReference; name = "Spartan-Light.ttf"; path = "../assets/fonts/Spartan/Spartan-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4A95834150A14DE5976E4D58 /* Spartan-Medium.ttf */ = {isa = PBXFileReference; name = "Spartan-Medium.ttf"; path = "../assets/fonts/Spartan/Spartan-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		02FC3D31AF9B41B8B879A44C /* Spartan-Regular.ttf */ = {isa = PBXFileReference; name = "Spartan-Regular.ttf"; path = "../assets/fonts/Spartan/Spartan-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E121371C9BAA42E9AE97CA41 /* Spartan-SemiBold.ttf */ = {isa = PBXFileReference; name = "Spartan-SemiBold.ttf"; path = "../assets/fonts/Spartan/Spartan-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CA350D10490C400CA1E833A7 /* Spartan-Thin.ttf */ = {isa = PBXFileReference; name = "Spartan-Thin.ttf"; path = "../assets/fonts/Spartan/Spartan-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		398C1AE570FD4B1686C8BE4A /* OFL.txt */ = {isa = PBXFileReference; name = "OFL.txt"; path = "../assets/fonts/Poppins/OFL.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,7 +226,16 @@
 				FFBFDF148BA645658E15DA7A /* Poppins-SemiBoldItalic.ttf */,
 				B43D59AE471E42E294759B7A /* Poppins-Thin.ttf */,
 				A878F890555E465C88D40A43 /* Poppins-ThinItalic.ttf */,
-				F12914B9420445A197035297 /* OFL.txt */,
+				04FFC8128BA24CB4A1449470 /* Spartan-Black.ttf */,
+				79F0E87B7BB742C4814CF9B6 /* Spartan-Bold.ttf */,
+				BADD081C6408490897D74B16 /* Spartan-ExtraBold.ttf */,
+				9E5A46C49BD640548AF6D280 /* Spartan-ExtraLight.ttf */,
+				960EE5632F244300B3A7CF1D /* Spartan-Light.ttf */,
+				4A95834150A14DE5976E4D58 /* Spartan-Medium.ttf */,
+				02FC3D31AF9B41B8B879A44C /* Spartan-Regular.ttf */,
+				E121371C9BAA42E9AE97CA41 /* Spartan-SemiBold.ttf */,
+				CA350D10490C400CA1E833A7 /* Spartan-Thin.ttf */,
+				398C1AE570FD4B1686C8BE4A /* OFL.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -327,7 +354,16 @@
 				9349953D446F4502975FED61 /* Poppins-SemiBoldItalic.ttf in Resources */,
 				4264009D20FF480D8C42098C /* Poppins-Thin.ttf in Resources */,
 				800DBC286BB04AB9BB6A081E /* Poppins-ThinItalic.ttf in Resources */,
-				4650E4D25EC2424AA00CA9CC /* OFL.txt in Resources */,
+				E083180333C740E594E747C7 /* Spartan-Black.ttf in Resources */,
+				DB79337ECC694BEDBA7326DD /* Spartan-Bold.ttf in Resources */,
+				94DED1E27E1143579B082C74 /* Spartan-ExtraBold.ttf in Resources */,
+				6BBAE9D421814D0DA451552B /* Spartan-ExtraLight.ttf in Resources */,
+				2B8FCBCC2DA1436594811F80 /* Spartan-Light.ttf in Resources */,
+				7BE98A8DD28D447EA9491ABB /* Spartan-Medium.ttf in Resources */,
+				0E9399044FD6439CB8568412 /* Spartan-Regular.ttf in Resources */,
+				9BECC3543E4D446FA5987503 /* Spartan-SemiBold.ttf in Resources */,
+				C7EF26D1B21A481C898DBEE0 /* Spartan-Thin.ttf in Resources */,
+				D1C5CA4D67BF4FBA9454A395 /* OFL.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
