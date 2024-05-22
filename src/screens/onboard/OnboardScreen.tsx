@@ -13,12 +13,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 
-// import TravelReimaginedScreen from './components/TravelReimaginedScreen';
-// import FeaturesScreen from './components/FeaturesScreen';
-// import FeatureDetail1 from './components/contentViews/FeatureDetail1';
-// import FeatureDetail2 from './components/contentViews/FeatureDetail2';
-// import FeatureDetail3 from './components/contentViews/FeatureDetail3';
-
 const TravelReimaginedScreen = React.lazy(
   () => import('./components/TravelReimaginedScreen'),
 );
@@ -32,6 +26,8 @@ const FeatureDetail2 = React.lazy(
 const FeatureDetail3 = React.lazy(
   () => import('./components/contentViews/FeatureDetail3'),
 );
+
+const ExploreScreen = React.lazy(() => import('./components/ExploreScreen'));
 
 type SplashScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -77,7 +73,7 @@ const onboardData: OnboardDataInterface[] = [
     detail:
       'Explore the world with ease. Search for flights, discover unique hotels, and book unforgettable activities - all within Krila.',
     color: 'blue',
-    Screen: TravelReimaginedScreen,
+    Screen: ExploreScreen,
   },
 ];
 

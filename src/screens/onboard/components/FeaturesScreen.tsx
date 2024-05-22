@@ -45,30 +45,13 @@ function FeaturesScreen({metadata, title, detail}: FeaturesScreenProps) {
                   fontWeight: 'bold',
                   fontSize:
                     MobileOSType === 'android' && isTablet
-                      ? RFPercentage(4.6)
-                      : RFPercentage(3),
+                      ? RFPercentage(4.2)
+                      : RFPercentage(2),
                   lineHeight: 55,
                   textTransform: 'uppercase',
                 }}>
                 {title}
               </GradientText>
-              {/* <TextGradient
-              style={{
-                fontFamily: 'Spartan-Regular',
-                fontWeight: 'bold',
-                fontSize:
-                  MobileOSType === 'android' && isTablet
-                    ? RFPercentage(4)
-                    : RFPercentage(3),
-                lineHeight: 50,
-                textTransform: 'uppercase',
-              }}
-              // locations={[0, 1]}
-              colors={['#050683', '#0709C5']}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 0}}
-              text="Travel"
-            /> */}
             </Box>
 
             <Box width={WINDOW_WIDTH * 0.63} mt={'11px'}>

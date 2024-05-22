@@ -53,8 +53,8 @@ function TravelReimaginedScreen({detail, title}: TravelReimaginedScreenProps) {
                 fontWeight: 'bold',
                 fontSize:
                   MobileOSType === 'android' && isTablet
-                    ? RFPercentage(4.6)
-                    : RFPercentage(3),
+                    ? RFPercentage(4.2)
+                    : RFPercentage(2),
                 lineHeight: 55,
                 textTransform: 'uppercase',
               }}>
