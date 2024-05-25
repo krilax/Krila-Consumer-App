@@ -5,11 +5,14 @@ import {
   isMobile,
   isTablet,
 } from '@constants/reusable';
-import {Box, Flex, Text, View} from 'native-base';
+import {Box, Flex, Text} from 'native-base';
 import {StyleSheet} from 'react-native';
 import {GradientText} from './TravelReimaginedScreen';
 import {RFPercentage} from 'react-native-responsive-fontsize';
 import ExploreContent from './contentViews/ExploreContent';
+import {useEffect} from 'react';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamList} from '@src/routes';
 
 interface ExploreScreenProps {
   metadata: any;
@@ -18,6 +21,8 @@ interface ExploreScreenProps {
 }
 
 function ExploreScreen({metadata, title, detail}: ExploreScreenProps) {
+  useEffect(() => {}, []);
+
   return (
     <Flex>
       <Flex flex={1} justifyContent={'flex-start'}>

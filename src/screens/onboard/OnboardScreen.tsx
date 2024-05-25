@@ -12,6 +12,7 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
+import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@constants/reusable';
 
 const TravelReimaginedScreen = React.lazy(
   () => import('./components/TravelReimaginedScreen'),
@@ -41,8 +42,6 @@ interface OnboardDataInterface {
   color: string;
   Screen: React.FC<any>;
 }
-
-const {width, height} = Dimensions.get('window');
 
 const onboardData: OnboardDataInterface[] = [
   {
@@ -88,7 +87,7 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
     transform: [{translateX: translationX.value}],
   }));
 
-  const maxTranslateX = width * (onboardData.length - 1);
+  const maxTranslateX = WINDOW_WIDTH * (onboardData.length - 1);
 
   const gesture = Gesture.Pan()
     .minDistance(1)
@@ -107,11 +106,11 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
     })
     .onEnd(() => {
       const clampedX = clamp(translationX.value, -maxTranslateX, 0);
-      const newIndex = Math.round(-clampedX / width);
+      const newIndex = Math.round(-clampedX / WINDOW_WIDTH);
       index.value = clamp(newIndex, 0, onboardData.length - 1);
 
       translationX.value = withTiming(
-        -index.value * width,
+        -index.value * WINDOW_WIDTH,
         {
           duration: 200,
           easing: Easing.linear,
@@ -138,7 +137,16 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
               {onboardData.map(
                 ({color, metadata, detail, title, Screen}, index) => (
                   <Animated.View style={[styles.slide]} key={index}>
-                    <Screen {...{index, color, metadata, detail, title}} />
+                    <Screen
+                      {...{
+                        index,
+                        color,
+                        metadata,
+                        detail,
+                        title,
+                        ...navigation,
+                      }}
+                    />
                   </Animated.View>
                 ),
               )}
@@ -160,17 +168,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   slides: {
-    width: width * onboardData.length,
-    height,
+    width: WINDOW_WIDTH * onboardData.length,
+    height: WINDOW_HEIGHT,
     flexDirection: 'row',
   },
   slide: {
-    width,
-    height,
+    width: WINDOW_WIDTH,
+    height: WINDOW_HEIGHT,
   },
   image: {
     ...StyleSheet.absoluteFillObject,
-    width: undefined,
+    width: WINDOW_WIDTH,
     height: undefined,
   },
 });

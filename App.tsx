@@ -5,12 +5,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NativeBaseProvider} from 'native-base';
 import {RootStackParamList} from '@src/routes';
-
-//components
-import {OnboardScreen, SplashScreen} from '@src/screens';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {nativeBaseTheme} from '@constants/theme';
-// @constants
+
+//components
+import {OnboardScreen, SignupScreen, SplashScreen} from '@src/screens';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -21,10 +20,11 @@ function App() {
         <NavigationContainer>
           <SafeAreaProvider>
             <Stack.Navigator
-              initialRouteName="SplashScreen"
+              initialRouteName="SignupScreen"
               screenOptions={{headerShown: false}}>
               <Stack.Screen name="SplashScreen" component={SplashScreen} />
               <Stack.Screen name="OnboardScreen" component={OnboardScreen} />
+              <Stack.Screen name="SignupScreen" component={SignupScreen} />
             </Stack.Navigator>
           </SafeAreaProvider>
         </NavigationContainer>
