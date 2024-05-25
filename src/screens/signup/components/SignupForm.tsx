@@ -21,12 +21,9 @@ import {
 import {background} from 'native-base/lib/typescript/theme/styled-system';
 import React, {useEffect, useRef, useState} from 'react';
 import {RFPercentage} from 'react-native-responsive-fontsize';
+import AuthLayover from './AuthLayover';
 
-interface SignupFormInterface {
-  onSwitch: (step: string) => void;
-}
-
-function SignupForm({onSwitch}: SignupFormInterface) {
+function SignupForm() {
   const svg = useSVG(require('@assets/images/app/TopRectangle.svg'));
 
   const canvasRef: any = useRef(null);
@@ -51,61 +48,11 @@ function SignupForm({onSwitch}: SignupFormInterface) {
 
   return (
     <View flex={'1'} bg={'white'} px={{md: '59px'}}>
-      <Box
-        borderRadius={'25px'}
-        overflow={'hidden'}
-        h={WINDOW_HEIGHT * 0.2368}
-        bg="red.100"
-        w="full"
-        mt={{
-          md: '65',
-          base: 10,
-        }}
-        ref={canvasRef}
-        onLayout={() => {
-          if (canvasRef.current) {
-            canvasRef.current.measure(
-              (
-                x: number,
-                y: number,
-                width: number,
-                height: number,
-                pageX: number,
-                pageY: number,
-              ) => {
-                setCanvasSize({width, height});
-              },
-            );
-          }
-        }}>
-        <Flex flex={1} justifyContent={'flex-start'}>
-          <Flex h={WINDOW_HEIGHT * 0.2368}>
-            <Canvas style={{flex: 1}}>
-              <Fill color={'#101178'} />
-            </Canvas>
-          </Flex>
-          <Flex
-            flex={'1'}
-            position={'absolute'}
-            top={'0'}
-            bottom={'0'}
-            left={'0'}
-            right={'0'}
-            justifyContent={'center'}
-            alignItems={'center'}>
-            <Text
-              fontFamily={'Spartan-Bold'}
-              fontSize={{md: RFPercentage(3.3)}}
-              mb={29}
-              textTransform={'capitalize'}>
-              Sign up
-            </Text>
-            <Text fontSize={{md: RFPercentage(2)}}>
-              Sign up to start exploring the world today!
-            </Text>
-          </Flex>
-        </Flex>
-      </Box>
+      <AuthLayover
+        canvasRef={canvasRef}
+        setCanvasSize={setCanvasSize}
+        title="Sign Up"
+      />
       <Flex my={{md: '30px'}} justifyContent={'center'} alignItems={'center'}>
         <Text color={'primary.1'} fontWeight={'extraBlack'}>
           Scrolls

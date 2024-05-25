@@ -1,26 +1,26 @@
-import {HStack} from 'native-base';
+import {Box, HStack} from 'native-base';
 import React from 'react';
 import Animated from 'react-native-reanimated';
+import AppleIcon from './AppleIcon';
+import FacebookIcon from './FacebookIcon';
+import GoogleIcon from './GoogleIcon';
+import PhoneIcon from './PhoneIcon';
 
 function SocialLoginButton() {
   const socials = [
-    {name: 'ios'},
-    {name: 'meta'},
-    {name: 'google'},
-    {name: 'phone'},
+    {name: 'apple', Icon: AppleIcon},
+    {name: 'facebook', Icon: FacebookIcon},
+    {name: 'google', Icon: GoogleIcon},
+    {name: 'phone', Icon: PhoneIcon},
   ];
 
   return (
     <Animated.View>
       <HStack space={'40px'} justifyContent={'center'}>
-        {socials.map((socialAction, index) => (
-          <Animated.View
-            key={index}
-            style={{
-              width: 52,
-              height: 52,
-              backgroundColor: 'red',
-            }}></Animated.View>
+        {socials.map(({Icon}, index) => (
+          <Box key={index} style={{transform: 'scale(0.8)'}}>
+            <Icon />
+          </Box>
         ))}
       </HStack>
     </Animated.View>

@@ -22,7 +22,7 @@ function SignupScreen() {
   const Screens = [SignupForm, SignupPinForm];
 
   const animatedStyles = useAnimatedStyle(() => ({
-    transform: [{translateX: translationX.value}],
+    transform: [{translateX: WINDOW_WIDTH * -1}],
   }));
 
   const gesture = Gesture.Pan()
@@ -71,7 +71,7 @@ function SignupScreen() {
           <Animated.View style={[styles.slides]}>
             {Screens.map((Screen, index) => (
               <Animated.View key={index} style={[styles.slide, animatedStyles]}>
-                <Screen onSwitch={onSwitch} />
+                <Screen />
               </Animated.View>
             ))}
           </Animated.View>
