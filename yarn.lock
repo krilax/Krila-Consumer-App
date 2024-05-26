@@ -8484,10 +8484,22 @@ react-native-linear-gradient@^2.8.3:
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.8.3.tgz#9a116649f86d74747304ee13db325e20b21e564f"
   integrity sha512-KflAXZcEg54PXkLyflaSZQ3PJp4uC4whM7nT/Uot9m0e/qxFV3p6uor1983D1YOBJbJN7rrWdqIjq0T42jOJyA==
 
+react-native-otp-entry@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/react-native-otp-entry/-/react-native-otp-entry-1.6.1.tgz#b860c9551bb5795b06688af812caf1ca3affa6da"
+  integrity sha512-a6nJu9lnezUyCsUU/HEJzmw+Sk/hX7WtqU1vW825DhPuAdHv1GcO28xOf69oIYEnkUAKyxpelA2u1k6hyScPcA==
+
 react-native-otp-inputs@^7.4.0:
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/react-native-otp-inputs/-/react-native-otp-inputs-7.4.0.tgz#ea1badabdf231faee5bcb5231034911bbba49aed"
   integrity sha512-+phHrlcQQ63VuOrHaOZze7LP9WmzUGxGMlQx2A/jhPhYkCi/5hXDjxNcWyPXCy/RFRoLX+70HNpGqTgo0mDg7Q==
+
+react-native-otp-textinput@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-otp-textinput/-/react-native-otp-textinput-1.1.5.tgz#63401cac2c63b26230af1b3179952a524bb5214b"
+  integrity sha512-zV5aq5gyU54SPn5WGC8el0P1RdOEb0FiuPg9O+yBhwieDy2/ov16830KCHPG0ZNN5DErTPtzwLbrXQUdrt7tNA==
+  dependencies:
+    react "^18.2.0"
 
 react-native-pager-view@^6.2.3:
   version "6.2.3"
@@ -8651,6 +8663,13 @@ react@18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
+  dependencies:
+    loose-envify "^1.1.0"
+
+react@^18.2.0:
+  version "18.3.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-18.3.1.tgz#49ab892009c53933625bd16b2533fc754cab2891"
+  integrity sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==
   dependencies:
     loose-envify "^1.1.0"
 

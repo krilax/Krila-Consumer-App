@@ -5,11 +5,17 @@ import React from 'react';
 
 interface AuthLayoverProps {
   canvasRef: any;
-  setCanvasSize: ({width, height}: {width: number; height: number}) => void;
+  setCanvasSize?: ({width, height}: {width: number; height: number}) => void;
   title: string;
+  detail: string;
 }
 
-function AuthLayover({canvasRef, setCanvasSize, title}: AuthLayoverProps) {
+function AuthLayover({
+  canvasRef,
+  setCanvasSize,
+  title,
+  detail,
+}: AuthLayoverProps) {
   return (
     <Box
       borderRadius={'25px'}
@@ -33,7 +39,7 @@ function AuthLayover({canvasRef, setCanvasSize, title}: AuthLayoverProps) {
               pageX: number,
               pageY: number,
             ) => {
-              setCanvasSize({width, height});
+              if (setCanvasSize) setCanvasSize({width, height});
             },
           );
         }
@@ -60,8 +66,11 @@ function AuthLayover({canvasRef, setCanvasSize, title}: AuthLayoverProps) {
             textTransform={'capitalize'}>
             {title}
           </Text>
-          <Text fontSize={{md: '16px'}}>
-            Sign up to start exploring the world today!
+          <Text
+            fontFamily={'Poppins-Regular'}
+            fontSize={{md: '16px'}}
+            color={'white'}>
+            {detail}
           </Text>
         </Flex>
       </Flex>

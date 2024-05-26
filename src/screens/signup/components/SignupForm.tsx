@@ -52,6 +52,7 @@ function SignupForm() {
         canvasRef={canvasRef}
         setCanvasSize={setCanvasSize}
         title="Sign Up"
+        detail="Sign up to strt expoloring the world today!"
       />
       <Flex my={{md: '30px'}} justifyContent={'center'} alignItems={'center'}>
         <Text color={'primary.1'} fontWeight={'extraBlack'}>
