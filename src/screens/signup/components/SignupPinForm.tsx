@@ -2,7 +2,6 @@ import {Box, Flex, Stack, Text, VStack, View} from 'native-base';
 import React, {useEffect, useRef, useState} from 'react';
 import AuthLayover from './AuthLayover';
 import {GradientButton} from '@src/components';
-// import {OtpInput} from 'react-native-otp-entry';
 import OTPTextInput from 'react-native-otp-textinput';
 import {WINDOW_WIDTH} from '@constants/reusable';
 import {COLORS} from '@constants/theme';
