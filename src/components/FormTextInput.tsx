@@ -67,7 +67,6 @@ function FormTextInput({formTitle, placeholder}: FormTextInputProps) {
               borderWidth={'0.5'}
               borderColor={'#C4C4C4'}
               backgroundColor={'white'}
-              // InputLeftElement={null}
             />
           </InputGroup>
         )}
