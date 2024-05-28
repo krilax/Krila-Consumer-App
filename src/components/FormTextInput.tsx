@@ -6,11 +6,12 @@ import {RFPercentage} from 'react-native-responsive-fontsize';
 import MaterialIcons from '@react-native-vector-icons/material-icons';
 
 interface FormTextInputProps {
-  formTitle: string;
+  formTitle?: string;
   placeholder: string;
+  width: string;
 }
 
-function FormTextInput({formTitle, placeholder}: FormTextInputProps) {
+function FormTextInput({formTitle, placeholder, width}: FormTextInputProps) {
   const {
     control,
     handleSubmit,
@@ -22,14 +23,16 @@ function FormTextInput({formTitle, placeholder}: FormTextInputProps) {
 
   return (
     <Box w="full">
-      <Text
-        color={'secondary.1'}
-        fontSize={'15px'}
-        fontWeight={'normal'}
-        fontFamily={'Spartan-Regular'}
-        mb={'2'}>
-        {formTitle}
-      </Text>
+      {formTitle && (
+        <Text
+          color={'secondary.1'}
+          fontSize={'15px'}
+          fontWeight={'normal'}
+          fontFamily={'Spartan-Regular'}
+          mb={'2'}>
+          {formTitle}
+        </Text>
+      )}
       <Controller
         control={control}
         rules={{
@@ -42,7 +45,7 @@ function FormTextInput({formTitle, placeholder}: FormTextInputProps) {
         render={({field: {onChange, onBlur, value}}) => (
           <InputGroup>
             <Input
-              w="100%"
+              w={width ? width : '0%'}
               onFocus={() => setIsEmailInputFocused(true)}
               onBlur={e => {
                 onBlur();

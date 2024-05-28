@@ -8,7 +8,7 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import SignupForm from './components/SignupForm';
-import SignupPinForm from './components/SignupPinForm';
+import SignupPinForm from '../Authentication/OTPin';
 
 function SignupScreen() {
   const onSwitch = useCallback((step: string) => {}, []);

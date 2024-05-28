@@ -24,7 +24,6 @@ const SplashScreen: React.FC<SplashScreenProps> = ({navigation}) => {
   const dst = rect(0, 0, width, height);
 
   useEffect(() => {
-    console.log('to navigate');
     setTimeout(() => {
       navigation.navigate('OnboardScreen');
     }, 500);

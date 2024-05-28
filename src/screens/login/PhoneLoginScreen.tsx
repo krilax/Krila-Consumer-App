@@ -1,68 +1,61 @@
-import {Box, Flex, Stack, Text, VStack, View} from 'native-base';
-import React, {useEffect, useRef, useState} from 'react';
-import AuthLayover from '../signup/components/AuthLayover';
-import {
-  CustomButton,
-  Divider,
-  FormTextInput,
-  GradientButton,
-} from '@src/components';
+import React from 'react';
+import {View} from 'native-base';
+import {StyleSheet} from 'react-native';
+import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@constants/reusable';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+} from 'react-native-reanimated';
+import Phone from './components/Phone';
+import OTPin from '../Authentication/OTPin';
 
 function PhoneLoginScreen() {
-  const canvasRef: any = useRef(null);
-  const [canvasSize, setCanvasSize] = useState({width: 0, height: 0});
+  const translationX = useSharedValue(0);
 
-  useEffect(() => {
-    if (canvasRef.current) {
-      canvasRef.current.measure(
-        (
-          x: number,
-          y: number,
-          width: number,
-          height: number,
-          pageX: number,
-          pageY: number,
-        ) => {
-          setCanvasSize({width, height});
-        },
-      );
-    }
-  }, [canvasRef.current]);
+  const animatedStyles = useAnimatedStyle(() => ({
+    transform: [{translateX: translationX.value}],
+  }));
+
+  const Screens = [Phone, OTPin];
 
   return (
-    <View flex={'1'} bg={'white'} px={{md: '59px'}}>
-      <AuthLayover
-        canvasRef={canvasRef}
-        setCanvasSize={setCanvasSize}
-        title="Login"
-        detail="Enter Phone Number"
-      />
-
-      <Box w="full" mt={{md: '62px'}} w={{md: '346px'}} mx={{md: 'auto'}}>
-        <Text
-          color={'secondary.1'}
-          fontFamily={'Poppins-Medium'}
-          textAlign={'center'}>
-          An OTP will be sent to your mobile number Provide your mobile number
-          below.
-        </Text>
-      </Box>
-
-      <Stack w="full" px={{md: '34px'}} mt={{md: '33px'}}>
-        <Box mb="22px">
-          <FormTextInput formTitle="New password" placeholder="Placeholder" />
-        </Box>
-      </Stack>
-
-      <VStack px={{md: '34px'}} space={{md: '31px'}} mt={{md: '223px'}}>
-        <GradientButton
-          onPress={() => null}
-          title="Verify"
-          colors={['#03045E', '#050792', '#0608C4']}
-        />
-      </VStack>
+    <View style={styles.container}>
+      <Animated.View style={StyleSheet.absoluteFill}>
+        <Animated.View style={[styles.slides]}>
+          {Screens.map((Screen, index) => (
+            <Animated.View key={index} style={[styles.slide, animatedStyles]}>
+              <Screen
+                message="A 6 digit code was sent to your email address"
+                user="+234 ********** 3565"
+                authType="phone"
+              />
+            </Animated.View>
+          ))}
+        </Animated.View>
+      </Animated.View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'white',
+  },
+  slides: {
+    width: WINDOW_WIDTH * 2,
+    height: WINDOW_HEIGHT,
+    flexDirection: 'row',
+  },
+  slide: {
+    width: WINDOW_WIDTH,
+    height: WINDOW_HEIGHT,
+  },
+  image: {
+    ...StyleSheet.absoluteFillObject,
+    width: undefined,
+    height: undefined,
+  },
+});
 
 export default React.memo(PhoneLoginScreen);

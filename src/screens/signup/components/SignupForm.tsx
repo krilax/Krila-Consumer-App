@@ -1,5 +1,3 @@
-import {WINDOW_HEIGHT, isTablet} from '@constants/reusable';
-import {Canvas, Fill, useSVG} from '@shopify/react-native-skia';
 import {
   CustomButton,
   Divider,
@@ -9,7 +7,6 @@ import {
 import SocialLoginButton from '@src/components/Auth/SocialLoginButton';
 import {
   Box,
-  Button,
   Checkbox,
   Flex,
   HStack,
@@ -18,14 +15,10 @@ import {
   VStack,
   View,
 } from 'native-base';
-import {background} from 'native-base/lib/typescript/theme/styled-system';
 import React, {useEffect, useRef, useState} from 'react';
-import {RFPercentage} from 'react-native-responsive-fontsize';
 import AuthLayover from './AuthLayover';
 
 function SignupForm() {
-  const svg = useSVG(require('@assets/images/app/TopRectangle.svg'));
-
   const canvasRef: any = useRef(null);
   const [canvasSize, setCanvasSize] = useState({width: 0, height: 0});
 

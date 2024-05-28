@@ -1,12 +1,18 @@
 import {Box, Flex, Stack, Text, VStack, View} from 'native-base';
 import React, {useEffect, useRef, useState} from 'react';
-import AuthLayover from './AuthLayover';
+import AuthLayover from '../signup/components/AuthLayover';
 import {GradientButton} from '@src/components';
 import OTPTextInput from 'react-native-otp-textinput';
 import {WINDOW_WIDTH} from '@constants/reusable';
 import {COLORS} from '@constants/theme';
 
-function SignupPinForm() {
+interface OTPinInterface {
+  message: string;
+  user: string;
+  authType: 'phone' | 'email';
+}
+
+function OTPin({message, user, authType}: OTPinInterface) {
   const canvasRef: any = useRef(null);
   const flexRef = useRef<any>(null);
   const [inputWidth, setInputWidth] = useState(0);
@@ -37,8 +43,7 @@ function SignupPinForm() {
               color={'secondary.1'}
               textAlign={'center'}
               fontFamily={'Poppins-Medium'}>
-              A 4 digit code was sent to your email address{' '}
-              <Text fontWeight={'bold'}>(sammy@gmail.com)</Text> . Enter in the
+              {message} <Text fontWeight={'bold'}>({user})</Text> . Enter in the
               field below to verify your email address.
             </Text>
           </Flex>
@@ -93,7 +98,7 @@ function SignupPinForm() {
           <VStack px={{md: '34px'}} space={{md: '31px'}} mt={{md: '97px'}}>
             <GradientButton
               onPress={() => null}
-              title="Continue"
+              title={authType === 'email' ? 'Continue' : 'Verify'}
               colors={['#03045E', '#050792', '#0608C4']}
             />
           </VStack>
@@ -103,4 +108,4 @@ function SignupPinForm() {
   );
 }
 
-export default SignupPinForm;
+export default OTPin;

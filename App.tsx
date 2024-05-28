@@ -26,7 +26,7 @@ function App() {
         <NavigationContainer>
           <SafeAreaProvider>
             <Stack.Navigator
-              initialRouteName="PhoneLoginScreen"
+              initialRouteName="SplashScreen"
               screenOptions={{headerShown: false}}>
               <Stack.Screen name="SplashScreen" component={SplashScreen} />
               <Stack.Screen name="OnboardScreen" component={OnboardScreen} />

@@ -1,7 +1,7 @@
 import {WINDOW_HEIGHT} from '@constants/reusable';
-import {Canvas, Fill} from '@shopify/react-native-skia';
-import {Box, Flex, Text} from 'native-base';
-import React from 'react';
+import {Canvas, Fill, Group, useImage} from '@shopify/react-native-skia';
+import {Box, Flex, Image, Text} from 'native-base';
+import React, {useEffect, useState} from 'react';
 
 interface AuthLayoverProps {
   canvasRef: any;
@@ -16,39 +16,46 @@ function AuthLayover({
   title,
   detail,
 }: AuthLayoverProps) {
+  const percent = 0.2368;
+  const [dimensions, setDimensions] = useState({width: 0, height: 0});
+
+  useEffect(() => {
+    if (canvasRef.current) {
+      canvasRef.current.measure(
+        (
+          x: number,
+          y: number,
+          width: number,
+          height: number,
+          pageX: number,
+          pageY: number,
+        ) => {
+          setDimensions({width, height});
+          if (setCanvasSize) setCanvasSize({width, height});
+        },
+      );
+    }
+  }, [canvasRef]);
+
   return (
     <Box
       borderRadius={'25px'}
       overflow={'hidden'}
-      h={WINDOW_HEIGHT * 0.2368}
+      h={WINDOW_HEIGHT * percent}
       bg="red.100"
       w="full"
       mt={{
         md: '65',
         base: 10,
       }}
-      ref={canvasRef}
-      onLayout={() => {
-        if (canvasRef.current) {
-          canvasRef.current.measure(
-            (
-              x: number,
-              y: number,
-              width: number,
-              height: number,
-              pageX: number,
-              pageY: number,
-            ) => {
-              if (setCanvasSize) setCanvasSize({width, height});
-            },
-          );
-        }
-      }}>
+      ref={canvasRef}>
       <Flex flex={1} justifyContent={'flex-start'}>
-        <Flex h={WINDOW_HEIGHT * 0.2368}>
-          <Canvas style={{flex: 1}}>
-            <Fill color={'#101178'} />
-          </Canvas>
+        <Flex h={WINDOW_HEIGHT * percent}>
+          <Image
+            source={require('@assets/images/app/AuthCover.png')}
+            height={'100%'}
+            width={'100%'}
+          />
         </Flex>
         <Flex
           flex={'1'}
