@@ -1,23 +1,14 @@
 import React, {Suspense, useEffect} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '@src/routes';
-import {Box, Button, Flex, HStack, Text, View} from 'native-base';
-import {
-  ActivityIndicator,
-  Dimensions,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import {Box, Flex, HStack, Text, View} from 'native-base';
+import {ActivityIndicator, StyleSheet, TouchableOpacity} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
   clamp,
-  ReduceMotion,
   Easing,
-  runOnJS,
-  useDerivedValue,
-  useAnimatedReaction,
   withSpring,
 } from 'react-native-reanimated';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';

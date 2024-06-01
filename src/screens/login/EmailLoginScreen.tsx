@@ -1,16 +1,16 @@
 import {Box, Flex, HStack, Stack, Text, VStack, View} from 'native-base';
 import React, {useEffect, useRef, useState} from 'react';
-import AuthLayover from '../signup/components/AuthLayover';
 import {
   CustomButton,
   Divider,
   FormTextInput,
   GradientButton,
 } from '@src/components';
-import SocialLoginButton from '@src/components/Auth/SocialLoginButton';
 import {TouchableOpacity} from 'react-native';
 import {RootStackParamList} from '@src/routes';
+import AuthLayover from '../signup/components/AuthLayover';
 import {StackNavigationProp} from '@react-navigation/stack';
+import SocialLoginButton from '@src/components/Auth/SocialLoginButton';
 
 interface EmailLoginScreenProps {
   navigation: StackNavigationProp<RootStackParamList>;

@@ -1,5 +1,5 @@
-import {Box, Flex, Stack, Text, VStack, View} from 'native-base';
-import React, {useEffect, useRef, useState} from 'react';
+import {Flex, Stack, Text, VStack, View} from 'native-base';
+import React, {useRef, useState} from 'react';
 import AuthLayover from '../signup/components/AuthLayover';
 import {GradientButton} from '@src/components';
 import OTPTextInput from 'react-native-otp-textinput';
