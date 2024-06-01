@@ -1,4 +1,4 @@
-import {Box, Flex, Stack, Text, VStack, View} from 'native-base';
+import {Box, Flex, HStack, Stack, Text, VStack, View} from 'native-base';
 import React, {useEffect, useRef, useState} from 'react';
 import AuthLayover from '../signup/components/AuthLayover';
 import {
@@ -8,10 +8,21 @@ import {
   GradientButton,
 } from '@src/components';
 import SocialLoginButton from '@src/components/Auth/SocialLoginButton';
+import {TouchableOpacity} from 'react-native';
+import {RootStackParamList} from '@src/routes';
+import {StackNavigationProp} from '@react-navigation/stack';
 
-function EmailLoginScreen() {
+interface EmailLoginScreenProps {
+  navigation: StackNavigationProp<RootStackParamList>;
+}
+
+function EmailLoginScreen({navigation}: EmailLoginScreenProps) {
   const canvasRef: any = useRef(null);
   const [canvasSize, setCanvasSize] = useState({width: 0, height: 0});
+
+  const onNavigate = (route: keyof RootStackParamList) => {
+    navigation.navigate(route);
+  };
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -62,12 +73,14 @@ function EmailLoginScreen() {
         justifyContent={'flex-end'}
         alignItems={'flex-end'}
         px={{md: '34px'}}>
-        <Text
-          color={'primary.1'}
-          fontFamily={'Poppins-Medium'}
-          fontSize={{md: '15px'}}>
-          Forgot password?
-        </Text>
+        <TouchableOpacity onPress={() => onNavigate('ResetPasswordScreen')}>
+          <Text
+            color={'primary.1'}
+            fontFamily={'Poppins-Medium'}
+            fontSize={{md: '15px'}}>
+            Forgot password?
+          </Text>
+        </TouchableOpacity>
       </Flex>
 
       <VStack px={{md: '34px'}} space={{md: '31px'}} mt={{md: '167px'}}>
@@ -95,15 +108,16 @@ function EmailLoginScreen() {
 
       <SocialLoginButton />
 
-      <Flex justifyContent={'center'} alignItems={'center'} mt={{md: '28px'}}>
-        <Text
-          color={'primary.1'}
-          fontFamily={'Poppins-Regular'}
-          fontSize={'14px'}>
+      <HStack justifyContent="center" alignItems="center" mt={{md: '28px'}}>
+        <Text color="primary.1" fontFamily="Poppins-Regular" fontSize="14px">
           Don't have an account?{' '}
-          <Text fontFamily={'Poppins-SemiBold'}>Signup</Text>{' '}
         </Text>
-      </Flex>
+        <TouchableOpacity onPress={() => onNavigate('SignupScreen')}>
+          <Text fontFamily="Poppins-SemiBold" color={'primary.1'}>
+            Signup
+          </Text>
+        </TouchableOpacity>
+      </HStack>
     </View>
   );
 }

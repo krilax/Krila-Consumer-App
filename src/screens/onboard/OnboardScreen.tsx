@@ -22,6 +22,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@constants/reusable';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TravelReimaginedScreen = React.lazy(
   () => import('./components/TravelReimaginedScreen'),
@@ -180,6 +181,15 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
     navigation.navigate(route);
   };
 
+  const markOnboardingComplete = async () => {
+    try {
+      await AsyncStorage.setItem('onboardingCompleted', 'true');
+      onNavigate('SignupScreen');
+    } catch (error) {
+      console.error('Error setting onboarding completion status:', error);
+    }
+  };
+
   useEffect(() => {
     const intervalId = setInterval(autoSwipe, AUTO_SWITCH_INTERVAL);
 
@@ -246,7 +256,7 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
               bottom={'0'}
               justifyContent={'flex-end'}
               alignItems={'flex-end'}>
-              <TouchableOpacity onPress={() => onNavigate('SignupScreen')}>
+              <TouchableOpacity onPress={markOnboardingComplete}>
                 <Text
                   color={'black'}
                   fontFamily={'Poppins-SemiBold'}

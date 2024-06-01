@@ -13,6 +13,8 @@ import ExploreContent from './contentViews/ExploreContent';
 import {useEffect} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '@src/routes';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 interface ExploreScreenProps {
   metadata: any;
@@ -21,8 +23,6 @@ interface ExploreScreenProps {
 }
 
 function ExploreScreen({metadata, title, detail}: ExploreScreenProps) {
-  useEffect(() => {}, []);
-
   return (
     <Flex>
       <Flex flex={1} justifyContent={'flex-start'}>

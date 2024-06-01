@@ -41,11 +41,19 @@ function ResetPasswordScreen() {
 
       <Stack w="full" px={{md: '34px'}} mt={{md: '59px'}}>
         <Box mb="22px">
-          <FormTextInput formTitle="New password" placeholder="Placeholder" />
+          <FormTextInput
+            width="100%"
+            formTitle="New password"
+            placeholder="Placeholder"
+          />
         </Box>
 
         <Box mb="22px">
-          <FormTextInput formTitle="Password" placeholder="Placeholder" />
+          <FormTextInput
+            width="100%"
+            formTitle="Password"
+            placeholder="Placeholder"
+          />
         </Box>
       </Stack>
 
