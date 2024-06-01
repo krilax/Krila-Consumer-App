@@ -17,10 +17,21 @@ import {
 } from 'native-base';
 import React, {useEffect, useRef, useState} from 'react';
 import AuthLayover from './AuthLayover';
+import {RootStackParamList} from '@src/routes';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {TouchableOpacity} from 'react-native';
 
-function SignupForm() {
+interface SignupFormProps {
+  navigation: StackNavigationProp<RootStackParamList>;
+}
+
+function SignupForm({navigation}: SignupFormProps) {
   const canvasRef: any = useRef(null);
   const [canvasSize, setCanvasSize] = useState({width: 0, height: 0});
+
+  const onNavigate = (route: keyof RootStackParamList) => {
+    navigation.navigate(route);
+  };
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -48,19 +59,24 @@ function SignupForm() {
         detail="Sign up to strt expoloring the world today!"
       />
       <Flex my={{md: '30px'}} justifyContent={'center'} alignItems={'center'}>
-        <Text color={'primary.1'} fontWeight={'extraBlack'}>
+        {/* <Text color={'primary.1'} fontWeight={'extraBlack'}>
           Scrolls
-        </Text>
+        </Text> */}
       </Flex>
       <Stack w="full" px={{md: '34px'}}>
         <Box mb="22px">
-          <FormTextInput formTitle="Name" placeholder="Your name here" />
+          <FormTextInput
+            formTitle="Name"
+            placeholder="Your name here"
+            width="100%"
+          />
         </Box>
 
         <Box mb="22px">
           <FormTextInput
             formTitle="Email Address"
             placeholder="Your email here"
+            width="100%"
           />
         </Box>
 
@@ -68,6 +84,7 @@ function SignupForm() {
           <FormTextInput
             formTitle="Password"
             placeholder="Your password here"
+            width="100%"
           />
         </Box>
       </Stack>
@@ -118,15 +135,16 @@ function SignupForm() {
 
       <SocialLoginButton />
 
-      <Flex justifyContent={'center'} alignItems={'center'} mt={{md: '28px'}}>
-        <Text
-          color={'primary.1'}
-          fontFamily={'Poppins-Regular'}
-          fontSize={'14px'}>
+      <HStack justifyContent="center" alignItems="center" mt={{md: '28px'}}>
+        <Text color="primary.1" fontFamily="Poppins-Regular" fontSize="14px">
           Already have an account?{' '}
-          <Text fontFamily={'Poppins-SemiBold'}>Login</Text>{' '}
         </Text>
-      </Flex>
+        <TouchableOpacity onPress={() => onNavigate('EmailLoginScreen')}>
+          <Text fontFamily="Poppins-SemiBold" color={'primary.1'}>
+            Login
+          </Text>
+        </TouchableOpacity>
+      </HStack>
     </View>
   );
 }

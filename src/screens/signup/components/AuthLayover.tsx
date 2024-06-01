@@ -55,6 +55,7 @@ function AuthLayover({
             source={require('@assets/images/app/AuthCover.png')}
             height={'100%'}
             width={'100%'}
+            alt="Krila"
           />
         </Flex>
         <Flex

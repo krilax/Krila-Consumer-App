@@ -134,6 +134,12 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
       isGestureActive.value = false;
     })
     .runOnJS(true);
+  const autoSwipe = () => {
+    if (!isGestureActive.value && shouldAutoSwitch.value) {
+      const nextIndex = (index.value + 1) % onboardData.length;
+      navigateToIndex(nextIndex);
+    }
+  };
 
   const navigateToIndex = (newIndex: number) => {
     shouldAutoSwitch.value = false;
@@ -170,11 +176,8 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
     })),
   );
 
-  const autoSwipe = () => {
-    if (!isGestureActive.value && shouldAutoSwitch.value) {
-      const nextIndex = (index.value + 1) % onboardData.length;
-      navigateToIndex(nextIndex);
-    }
+  const onNavigate = (route: keyof RootStackParamList) => {
+    navigation.navigate(route);
   };
 
   useEffect(() => {
@@ -243,12 +246,14 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
               bottom={'0'}
               justifyContent={'flex-end'}
               alignItems={'flex-end'}>
-              <Text
-                color={'black'}
-                fontFamily={'Poppins-SemiBold'}
-                fontSize={{md: '20px'}}>
-                Skip
-              </Text>
+              <TouchableOpacity onPress={() => onNavigate('SignupScreen')}>
+                <Text
+                  color={'black'}
+                  fontFamily={'Poppins-SemiBold'}
+                  fontSize={{md: '20px'}}>
+                  Skip
+                </Text>
+              </TouchableOpacity>
             </Flex>
           </HStack>
         </Box>

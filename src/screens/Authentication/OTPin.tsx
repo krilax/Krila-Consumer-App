@@ -5,14 +5,17 @@ import {GradientButton} from '@src/components';
 import OTPTextInput from 'react-native-otp-textinput';
 import {WINDOW_WIDTH} from '@constants/reusable';
 import {COLORS} from '@constants/theme';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from '@src/routes';
 
 interface OTPinInterface {
   message: string;
   user: string;
-  authType: 'phone' | 'email';
+  authType?: 'phone' | 'email';
+  navigation: StackNavigationProp<RootStackParamList>;
 }
 
-function OTPin({message, user, authType}: OTPinInterface) {
+function OTPin({message, user, authType, navigation}: OTPinInterface) {
   const canvasRef: any = useRef(null);
   const flexRef = useRef<any>(null);
   const [inputWidth, setInputWidth] = useState(0);

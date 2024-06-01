@@ -9,8 +9,17 @@ import Animated, {
 } from 'react-native-reanimated';
 import SignupForm from './components/SignupForm';
 import SignupPinForm from '../Authentication/OTPin';
+import {RootStackParamList} from '@src/routes';
+import {StackNavigationProp} from '@react-navigation/stack';
 
-function SignupScreen() {
+interface SignupScreenProps {
+  message: string;
+  user: string;
+  authType: 'phone' | 'email';
+  navigation: StackNavigationProp<RootStackParamList>;
+}
+
+function SignupScreen({navigation}: SignupScreenProps) {
   const onSwitch = useCallback((step: string) => {}, []);
 
   const index = useSharedValue(0);
@@ -29,7 +38,12 @@ function SignupScreen() {
         <Animated.View style={[styles.slides]}>
           {Screens.map((Screen, index) => (
             <Animated.View key={index} style={[styles.slide, animatedStyles]}>
-              <Screen />
+              <Screen
+                message={''}
+                user={''}
+                authType={'phone'}
+                navigation={navigation}
+              />
             </Animated.View>
           ))}
         </Animated.View>

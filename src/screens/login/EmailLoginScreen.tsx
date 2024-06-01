@@ -41,13 +41,18 @@ function EmailLoginScreen() {
 
       <Stack w="full" px={{md: '34px'}} mt={{md: '59px'}}>
         <Box mb="22px">
-          <FormTextInput formTitle="Email" placeholder="Your email here" />
+          <FormTextInput
+            formTitle="Email"
+            placeholder="Your email here"
+            width="100%"
+          />
         </Box>
 
         <Box mb="22px">
           <FormTextInput
             formTitle="Password"
             placeholder="Your password here"
+            width="100%"
           />
         </Box>
       </Stack>
