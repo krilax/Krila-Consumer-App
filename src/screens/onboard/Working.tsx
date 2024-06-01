@@ -18,7 +18,6 @@ import Animated, {
   runOnJS,
   useDerivedValue,
   useAnimatedReaction,
-  withSpring,
 } from 'react-native-reanimated';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@constants/reusable';
@@ -89,14 +88,54 @@ const AUTO_SWITCH_INTERVAL = 10000;
 
 const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
   const index = useSharedValue(0);
-  const isGestureActive = useSharedValue(false);
-  const shouldAutoSwitch = useSharedValue(true);
+  const velocityX = useSharedValue(0);
   const translationX = useSharedValue(0);
   const prevTranslationX = useSharedValue(0);
-  const screensOpacity = onboardData.map(() =>
-    useSharedValue(index.value === 0 ? 1 : 1),
+  const isGestureActive = useSharedValue(false);
+  const shouldAutoSwitch = useSharedValue(true);
+
+  // useEffect(() => {
+  //   translationX.value = -index.value * WINDOW_WIDTH;
+  //   prevTranslationX.value = translationX.value;
+  // }, []);
+  useEffect(() => {
+    if (!isGestureActive.value) {
+      translationX.value = withTiming(-index.value * WINDOW_WIDTH, {
+        duration: 200,
+        easing: Easing.linear,
+      });
+      prevTranslationX.value = -index.value * WINDOW_WIDTH;
+    }
+  }, [index.value]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      runOnJS(() => {
+        if (!isGestureActive.value) {
+          index.value = (index.value + 1) % onboardData.length;
+        }
+      })();
+    }, AUTO_SWITCH_INTERVAL);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useAnimatedReaction(
+    () => index.value,
+    currentIndex => {
+      if (!isGestureActive.value) {
+        translationX.value = withTiming(-currentIndex * WINDOW_WIDTH, {
+          duration: 200,
+          easing: Easing.linear,
+        });
+        prevTranslationX.value = -currentIndex * WINDOW_WIDTH;
+      }
+    },
   );
-  const screensZIndex = onboardData.map(() => useSharedValue(0));
+
+  const animatedStyles = useAnimatedStyle(() => ({
+    transform: [{translateX: translationX.value}],
+  }));
 
   const maxTranslateX = WINDOW_WIDTH * (onboardData.length - 1);
 
@@ -104,7 +143,6 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
     .minDistance(1)
     .onStart(() => {
       prevTranslationX.value = translationX.value;
-      isGestureActive.value = true;
       isGestureActive.value = true;
       shouldAutoSwitch.value = false;
     })
@@ -115,25 +153,49 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
         0,
       );
       translationX.value = clampedTranslationX;
+      velocityX.value = event.velocityX;
     })
     .onEnd(() => {
-      isGestureActive.value = false;
-      shouldAutoSwitch.value = true;
-
-      const newTranslationX =
-        Math.round(translationX.value / WINDOW_WIDTH) * WINDOW_WIDTH;
-      translationX.value = withTiming(newTranslationX, {
-        duration: 200,
-        easing: Easing.linear,
-      });
-
-      const newIndex = -newTranslationX / WINDOW_WIDTH;
+      const clampedX = clamp(translationX.value, -maxTranslateX, 0);
+      const newIndex = Math.round(-clampedX / WINDOW_WIDTH);
       index.value = clamp(newIndex, 0, onboardData.length - 1);
+
+      translationX.value = withTiming(
+        -index.value * WINDOW_WIDTH,
+        {
+          duration: 200,
+          easing: Easing.linear,
+          reduceMotion: ReduceMotion.System,
+        },
+        () => {
+          index.value = newIndex;
+          prevTranslationX.value = translationX.value;
+        },
+      );
+      isGestureActive.value = false;
+      setTimeout(() => {
+        shouldAutoSwitch.value = true;
+      }, AUTO_SWITCH_INTERVAL);
     })
     .onFinalize(() => {
       isGestureActive.value = false;
     })
     .runOnJS(true);
+
+  // const navigateToIndex = (newIndex: number) => {
+  //   translationX.value = withTiming(
+  //     -newIndex * WINDOW_WIDTH,
+  //     {
+  //       duration: 200,
+  //       easing: Easing.linear,
+  //       reduceMotion: ReduceMotion.System,
+  //     },
+  //     () => {
+  //       prevTranslationX.value = translationX.value;
+  //     },
+  //   );
+  //   index.value = clamp(newIndex, 0, onboardData.length - 1);
+  // };
 
   const navigateToIndex = (newIndex: number) => {
     shouldAutoSwitch.value = false;
@@ -143,71 +205,27 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
     }, AUTO_SWITCH_INTERVAL);
   };
 
-  const animatedStylesArray = onboardData.map((_, idx) =>
-    useAnimatedStyle(() => ({
-      opacity: withTiming(idx === index.value ? screensOpacity[idx].value : 0, {
-        duration: 200,
-        easing: Easing.linear,
-      }),
-      zIndex: withTiming(screensZIndex[idx].value, {
-        duration: 100,
-        easing: Easing.linear,
-      }),
-    })),
-  );
-
-  const animatedCircleStylesArray = onboardData.map((_, idx) =>
-    useAnimatedStyle(() => ({
-      backgroundColor: index.value === idx ? '#03045E' : '#D9D9D9',
-      transform: [
-        {
-          scale: withSpring(index.value === idx ? 1.2 : 1, {
-            damping: 10,
-            stiffness: 100,
-          }),
-        },
-      ],
-    })),
-  );
-
-  const autoSwipe = () => {
-    if (!isGestureActive.value && shouldAutoSwitch.value) {
-      const nextIndex = (index.value + 1) % onboardData.length;
-      navigateToIndex(nextIndex);
-    }
-  };
-
-  useEffect(() => {
-    const intervalId = setInterval(autoSwipe, AUTO_SWITCH_INTERVAL);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
   return (
     <Suspense fallback={<ActivityIndicator size="large" color="#" />}>
       <View style={styles.container}>
         <GestureDetector {...{gesture}}>
           <Animated.View style={StyleSheet.absoluteFill}>
-            <Animated.View style={[styles.slides]}>
+            <Animated.View style={[styles.slides, animatedStyles]}>
               {onboardData.map(
-                ({color, metadata, detail, title, Screen}, idx) => {
-                  return (
-                    <Animated.View
-                      style={[styles.slide, animatedStylesArray[idx]]}
-                      key={idx}>
-                      <Screen
-                        {...{
-                          index: idx,
-                          color,
-                          metadata,
-                          detail,
-                          title,
-                          ...navigation,
-                        }}
-                      />
-                    </Animated.View>
-                  );
-                },
+                ({color, metadata, detail, title, Screen}, index) => (
+                  <Animated.View style={[styles.slide]} key={index}>
+                    <Screen
+                      {...{
+                        index,
+                        color,
+                        metadata,
+                        detail,
+                        title,
+                        ...navigation,
+                      }}
+                    />
+                  </Animated.View>
+                ),
               )}
             </Animated.View>
           </Animated.View>
@@ -225,13 +243,16 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
               alignItems={'center'}
               flexDirection={'row'}>
               {onboardData.map((_, idx) => {
+                const circleStyle = useAnimatedStyle(() => ({
+                  backgroundColor: index.value === idx ? '#03045E' : '#D9D9D9',
+                  transform: [{scale: index.value === idx ? 1.2 : 1}],
+                }));
+
                 return (
                   <TouchableOpacity
                     key={idx}
                     onPress={() => navigateToIndex(idx)}>
-                    <Animated.View
-                      style={[styles.circle, animatedCircleStylesArray[idx]]}
-                    />
+                    <Animated.View style={[styles.circle, circleStyle]} />
                   </TouchableOpacity>
                 );
               })}
@@ -263,6 +284,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   slides: {
+    // width: WINDOW_WIDTH * onboardData.length,
     width: WINDOW_WIDTH,
     height: WINDOW_HEIGHT,
     flexDirection: 'row',
