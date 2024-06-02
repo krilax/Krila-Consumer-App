@@ -7,7 +7,7 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import Phone from './components/Phone';
-import OTPin from '../Authentication/OTPin';
+import OTPin from '../authentication/OTPin';
 
 function PhoneLoginScreen() {
   const translationX = useSharedValue(0);

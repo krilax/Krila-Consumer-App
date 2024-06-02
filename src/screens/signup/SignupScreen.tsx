@@ -8,7 +8,7 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import SignupForm from './components/SignupForm';
-import SignupPinForm from '../Authentication/OTPin';
+import SignupPinForm from '../authentication/OTPin';
 import {RootStackParamList} from '@src/routes';
 import {StackNavigationProp} from '@react-navigation/stack';
 

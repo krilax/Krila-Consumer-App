@@ -1,4 +1,4 @@
-import OTPin from './Authentication/OTPin';
+import OTPin from './authentication/OTPin';
 import EmailLoginScreen from './login/EmailLoginScreen';
 import ResetPasswordScreen from './login/ResetPasswordScreen';
 import OnboardScreen from './onboard/OnboardScreen';
