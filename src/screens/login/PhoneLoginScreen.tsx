@@ -1,36 +1,22 @@
-import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@constants/reusable';
+import React from 'react';
 import {View} from 'native-base';
-import React, {useCallback} from 'react';
 import {StyleSheet} from 'react-native';
-import {Gesture, GestureDetector} from 'react-native-gesture-handler';
+import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@constants/reusable';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
-import SignupForm from './components/SignupForm';
-import SignupPinForm from '../authentication/OTPin';
-import {RootStackParamList} from '@src/routes';
-import {StackNavigationProp} from '@react-navigation/stack';
+import Phone from './components/Phone';
+import OTPin from '../authentication/OTPin';
 
-interface SignupScreenProps {
-  message: string;
-  user: string;
-  authType: 'phone' | 'email';
-  navigation: StackNavigationProp<RootStackParamList>;
-}
-
-function SignupScreen({navigation}: SignupScreenProps) {
-  const onSwitch = useCallback((step: string) => {}, []);
-
-  const index = useSharedValue(0);
-  const velocityX = useSharedValue(0);
+function PhoneLoginScreen() {
   const translationX = useSharedValue(0);
-
-  const Screens = [SignupForm, SignupPinForm];
 
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{translateX: translationX.value}],
   }));
+
+  const Screens = [Phone, OTPin];
 
   return (
     <View style={styles.container}>
@@ -39,10 +25,9 @@ function SignupScreen({navigation}: SignupScreenProps) {
           {Screens.map((Screen, index) => (
             <Animated.View key={index} style={[styles.slide, animatedStyles]}>
               <Screen
-                message={''}
-                user={''}
-                authType={'phone'}
-                navigation={navigation}
+                message="A 6 digit code was sent to your email address"
+                user="+234 ********** 3565"
+                authType="phone"
               />
             </Animated.View>
           ))}
@@ -73,4 +58,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(SignupScreen);
+export default React.memo(PhoneLoginScreen);

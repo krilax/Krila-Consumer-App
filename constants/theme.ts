@@ -26,6 +26,13 @@ const SIZES = {
 export {COLORS, SIZES};
 
 export const nativeBaseTheme = extendTheme({
+  breakpoints: {
+    base: 0,
+    sm: 480,
+    md: 768,
+    lg: 992,
+    xl: 1280,
+  },
   colors: {
     primary: {
       1: '#03045E',
@@ -34,6 +41,7 @@ export const nativeBaseTheme = extendTheme({
     secondary: {
       1: '#7D8093',
     },
+    customGreen: '#00FF00',
   },
   config: {
     initialColorMode: 'dark',

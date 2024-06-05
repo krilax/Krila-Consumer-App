@@ -4,16 +4,14 @@ import {
   WINDOW_WIDTH,
   isMobile,
   isTablet,
-  useHp,
 } from 'constants/reusable';
-import {Box, Flex, Text, View} from 'native-base';
 import React from 'react';
 import {StyleSheet} from 'react-native';
+import {Box, Flex, Text, View} from 'native-base';
 import TravelContent from './contentViews/TravelContent';
 import LinearGradient from 'react-native-linear-gradient';
 import MaskedView from '@react-native-masked-view/masked-view';
 import {RFPercentage} from 'react-native-responsive-fontsize';
-// import TextGradient from '@furkankaya/react-native-linear-text-gradient';
 
 interface TravelReimaginedScreenProps {
   metadata: any;
@@ -21,7 +19,7 @@ interface TravelReimaginedScreenProps {
   title: string;
 }
 
-const GradientText = (props: any) => {
+export function GradientText(props: any) {
   return (
     <MaskedView maskElement={<Text {...props} />}>
       <LinearGradient
@@ -32,13 +30,9 @@ const GradientText = (props: any) => {
       </LinearGradient>
     </MaskedView>
   );
-};
+}
 
-function TravelReimaginedScreen({
-  metadata,
-  detail,
-  title,
-}: TravelReimaginedScreenProps) {
+function TravelReimaginedScreen({detail, title}: TravelReimaginedScreenProps) {
   return (
     <Flex flex={1} justifyContent={'flex-start'}>
       <View style={styles.backView} padding={30}>
@@ -59,8 +53,8 @@ function TravelReimaginedScreen({
                 fontWeight: 'bold',
                 fontSize:
                   MobileOSType === 'android' && isTablet
-                    ? RFPercentage(4.6)
-                    : RFPercentage(3),
+                    ? RFPercentage(4.2)
+                    : RFPercentage(2),
                 lineHeight: 55,
                 textTransform: 'uppercase',
               }}>

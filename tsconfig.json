@@ -6,7 +6,11 @@
       "@src/*": ["src/*"],
       "@assets/*": ["assets/*"],
       "@screens/*": ["src/screens/*"],
-      "@constants/*": ["constants/*"]
-    }
+      "@constants/*": ["constants/*"],
+      "@components/*": ["src/components"]
+    },
+    "module": "esnext",
+    "target": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"]
   }
 }

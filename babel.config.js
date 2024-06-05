@@ -20,6 +20,7 @@ module.exports = {
           '@assets': './assets',
           '@constants': './constants',
           '@screens': './src/screens',
+          '@components': './src/components',
         },
         root: ['.'],
       },
