@@ -11,7 +11,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {GluestackUIStyledProvider} from '@gluestack-ui/themed';
 import {config} from '@gluestack-ui/config';
 import PhoneLoginScreen from '@src/screens/login/PhoneLoginScreen';
-import {SearchInputScreen, SearchResultScreen} from '@src/screens/booking';
+import {
+  CardPaymentScreen,
+  SearchInputScreen,
+  SearchResultScreen,
+} from '@src/screens/booking';
 import {
   EmailLoginScreen,
   OnboardScreen,
@@ -54,9 +58,7 @@ function App() {
             <SafeAreaProvider>
               <Stack.Navigator
                 initialRouteName={
-                  !isOnboardingCompleted
-                    ? 'SplashScreen'
-                    : 'BookingDetailsScreen'
+                  !isOnboardingCompleted ? 'SplashScreen' : 'CardPaymentScreen'
                 }
                 screenOptions={{headerShown: false}}>
                 <Stack.Screen name="SplashScreen" component={SplashScreen} />
@@ -85,6 +87,10 @@ function App() {
                 <Stack.Screen
                   name="BookingDetailsScreen"
                   component={BookingDetailsScreen}
+                />
+                <Stack.Screen
+                  name="CardPaymentScreen"
+                  component={CardPaymentScreen}
                 />
               </Stack.Navigator>
             </SafeAreaProvider>

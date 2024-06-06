@@ -9,18 +9,23 @@ import KrilaLogoIcon from '@assets/images/app/krila.svg';
 import TripIcon from '@assets/images/app/trip_icon.svg';
 
 function BookingDetailsScreen() {
+  const numbersArray = Array.from({length: 1000}, (_, index) => index + 1);
+
   return (
     <Flex flex={'1'}>
       <ScrollView
+        background={'red.100'}
         px={{md: '57px'}}
-        pt={{md: '51px'}}
-        paddingBottom={'91px'}
+        mb={'1px'}
         borderWidth={'1px'}>
         <Box
           h={{md: '166px'}}
           w={'full'}
           bg={'black'}
-          borderRadius={'2xl'}></Box>
+          borderRadius={'2xl'}
+          mt={{md: '51px'}}
+        />
+
         <Box
           mt={{md: '45px'}}
           pb={{md: '56px'}}
@@ -45,6 +50,7 @@ function BookingDetailsScreen() {
               }}
               height={{md: '36px'}}
               width={{md: '36px'}}
+              borderWidth={'0'}
             />
             <Text
               color={'secondary.1'}
@@ -53,7 +59,6 @@ function BookingDetailsScreen() {
               Qatar Airways
             </Text>
           </HStack>
-
           <Box
             backgroundColor={'primary.1'}
             py={{md: '34px'}}
@@ -117,7 +122,6 @@ function BookingDetailsScreen() {
               </VStack>
             </HStack>
           </Box>
-
           <Box
             mt={{md: '24px'}}
             pt={{md: '25px'}}
@@ -213,9 +217,6 @@ function BookingDetailsScreen() {
                 <Text color={'primary.1'} fontSize={'12px'}>
                   $1,0004.67
                 </Text>
-                {/* <Text color={'primary.1'} fontSize={'20px'}>
-                  KC 6,000
-                </Text> */}
               </HStack>
               <HStack justifyContent={'space-between'} alignItems={'center'}>
                 <Text
@@ -227,9 +228,6 @@ function BookingDetailsScreen() {
                 <Text color={'primary.1'} fontSize={'12px'}>
                   $1,0004.67
                 </Text>
-                {/* <Text color={'primary.1'} fontSize={'20px'}>
-                  KC 6,000
-                </Text> */}
               </HStack>
               <HStack justifyContent={'space-between'} alignItems={'center'}>
                 <Text
@@ -244,14 +242,11 @@ function BookingDetailsScreen() {
                   fontFamily={'Spartan-Bold'}>
                   $1,0004.67
                 </Text>
-                {/* <Text color={'primary.1'} fontSize={'20px'}>
-                  KC 6,000
-                </Text> */}
               </HStack>
             </VStack>
           </HStack>
         </Box>
-        <Box mt={{md: '36px'}}>
+        <Box mt={{md: '36px'}} mb={{md: '51px'}}>
           <GradientButton
             title="Search Flights"
             colors={['#03045E', '#0608C4']}

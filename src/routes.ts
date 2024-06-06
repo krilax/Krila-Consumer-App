@@ -12,4 +12,5 @@ export type RootStackParamList = {
   SearchInputScreen: undefined;
   SearchResultScreen: undefined;
   BookingDetailsScreen: undefined;
+  CardPaymentScreen: undefined;
 };
