@@ -7,7 +7,7 @@ import {
   FormTextInput,
   GradientButton,
 } from '@src/components';
-import SocialLoginButton from '@src/components/Auth/SocialLoginButton';
+import SocialLoginButton from '@src/components/auth/SocialLoginButton';
 
 function ResetPasswordScreen() {
   const canvasRef: any = useRef(null);

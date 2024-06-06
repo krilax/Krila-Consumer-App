@@ -8,7 +8,10 @@ import {RootStackParamList} from '@src/routes';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {nativeBaseTheme} from '@constants/theme';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import {GluestackUIStyledProvider} from '@gluestack-ui/themed';
+import {config} from '@gluestack-ui/config';
+import PhoneLoginScreen from '@src/screens/login/PhoneLoginScreen';
+import {SearchInputScreen, SearchResultScreen} from '@src/screens/booking';
 import {
   EmailLoginScreen,
   OnboardScreen,
@@ -16,7 +19,8 @@ import {
   SignupScreen,
   SplashScreen,
 } from '@src/screens';
-import PhoneLoginScreen from '@src/screens/login/PhoneLoginScreen';
+import {GluestackUIProvider} from '@gluestack-ui/themed';
+import BookingDetailsScreen from '@src/screens/booking/BookingDetailScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -43,35 +47,51 @@ function App() {
   }, []);
 
   return (
-    <GestureHandlerRootView style={{flex: 1}}>
-      <NativeBaseProvider isSSR={false} theme={nativeBaseTheme}>
-        <NavigationContainer>
-          <SafeAreaProvider>
-            <Stack.Navigator
-              initialRouteName={
-                !isOnboardingCompleted ? 'SplashScreen' : 'EmailLoginScreen'
-              }
-              screenOptions={{headerShown: false}}>
-              <Stack.Screen name="SplashScreen" component={SplashScreen} />
-              <Stack.Screen name="SignupScreen" component={SignupScreen} />
-              <Stack.Screen name="OnboardScreen" component={OnboardScreen} />
-              <Stack.Screen
-                name="EmailLoginScreen"
-                component={EmailLoginScreen}
-              />
-              <Stack.Screen
-                name="ResetPasswordScreen"
-                component={ResetPasswordScreen}
-              />
-              <Stack.Screen
-                name="PhoneLoginScreen"
-                component={PhoneLoginScreen}
-              />
-            </Stack.Navigator>
-          </SafeAreaProvider>
-        </NavigationContainer>
-      </NativeBaseProvider>
-    </GestureHandlerRootView>
+    <GluestackUIProvider config={config}>
+      <GestureHandlerRootView style={{flex: 1}}>
+        <NativeBaseProvider isSSR={false} theme={nativeBaseTheme}>
+          <NavigationContainer>
+            <SafeAreaProvider>
+              <Stack.Navigator
+                initialRouteName={
+                  !isOnboardingCompleted
+                    ? 'SplashScreen'
+                    : 'BookingDetailsScreen'
+                }
+                screenOptions={{headerShown: false}}>
+                <Stack.Screen name="SplashScreen" component={SplashScreen} />
+                <Stack.Screen name="SignupScreen" component={SignupScreen} />
+                <Stack.Screen name="OnboardScreen" component={OnboardScreen} />
+                <Stack.Screen
+                  name="EmailLoginScreen"
+                  component={EmailLoginScreen}
+                />
+                <Stack.Screen
+                  name="ResetPasswordScreen"
+                  component={ResetPasswordScreen}
+                />
+                <Stack.Screen
+                  name="PhoneLoginScreen"
+                  component={PhoneLoginScreen}
+                />
+                <Stack.Screen
+                  name="SearchInputScreen"
+                  component={SearchInputScreen}
+                />
+                <Stack.Screen
+                  name="SearchResultScreen"
+                  component={SearchResultScreen}
+                />
+                <Stack.Screen
+                  name="BookingDetailsScreen"
+                  component={BookingDetailsScreen}
+                />
+              </Stack.Navigator>
+            </SafeAreaProvider>
+          </NavigationContainer>
+        </NativeBaseProvider>
+      </GestureHandlerRootView>
+    </GluestackUIProvider>
   );
 }
 

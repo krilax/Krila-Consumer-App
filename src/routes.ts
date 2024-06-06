@@ -9,4 +9,7 @@ export type RootStackParamList = {
   OTPScreen: undefined;
   HomeShowScreen: undefined;
   HomeScreen: undefined;
+  SearchInputScreen: undefined;
+  SearchResultScreen: undefined;
+  BookingDetailsScreen: undefined;
 };
