@@ -1,6 +1,22 @@
 import {WINDOW_WIDTH} from '@constants/reusable';
-import {FormTextInput, GradientButton} from '@src/components';
-import {Avatar, Box, Flex, HStack, ScrollView, Text, VStack} from 'native-base';
+import {
+  CheckIcon,
+  CheckboxIcon,
+  CheckboxIndicator,
+  CheckboxLabel,
+} from '@gluestack-ui/themed';
+import {FormTextInput, GradientButton, TabBar} from '@src/components';
+import {
+  Avatar,
+  Box,
+  Checkbox,
+  Flex,
+  HStack,
+  Input,
+  ScrollView,
+  Text,
+  VStack,
+} from 'native-base';
 import React, {useState} from 'react';
 import {Pressable} from 'react-native';
 
@@ -75,13 +91,97 @@ function CardPaymentScreen() {
             ))}
           </HStack>
 
-          <VStack w={'full'}>
-            <FormTextInput
-              formTitle="Card Number"
-              placeholder={'xxxx xxxx xxxx xxxx'}
-              width={'100%'}
-            />
-          </VStack>
+          {!selectedTab ? (
+            <VStack w={'full'} space={{md: '23px'}}>
+              <FormTextInput
+                formTitle="Card Number"
+                placeholder={'xxxx xxxx xxxx xxxx'}
+                width={'100%'}
+              />
+
+              <FormTextInput
+                formTitle="Card Name"
+                placeholder={'Your fullname'}
+                width={'100%'}
+              />
+
+              <HStack
+                justifyContent={'space-between'}
+                alignItems={'center'}
+                space={'41px'}>
+                <Box flex={'1'}>
+                  <FormTextInput
+                    formTitle="Expiration Date"
+                    placeholder="Placeholder"
+                    width="100%"
+                  />
+                </Box>
+
+                <Box flex={'1'}>
+                  <HStack space={'27px'} alignItems={'center'}>
+                    <Box flex={'1'}>
+                      <FormTextInput
+                        formTitle="CVV"
+                        placeholder="123"
+                        width="100%"
+                      />
+                    </Box>
+                    <Box flex={'1'}>
+                      <FormTextInput
+                        formTitle="PIN"
+                        placeholder="****"
+                        width="100%"
+                      />
+                    </Box>
+                  </HStack>
+                </Box>
+              </HStack>
+
+              <Checkbox
+                value="test"
+                isChecked={false}
+                accessibilityLabel="Check this box">
+                <Text
+                  fontSize="lg"
+                  ml={2}
+                  fontFamily={'Poppins-Regular'}
+                  fontStyle={'16px'}
+                  color={'primary.1'}>
+                  Add card to account
+                </Text>
+              </Checkbox>
+            </VStack>
+          ) : (
+            <VStack w={'full'}></VStack>
+          )}
+
+          <HStack
+            w={'full'}
+            justifyContent={'flex-end'}
+            alignItems={'center'}
+            mt={{md: '139px'}}
+            space={{md: '71px'}}>
+            <Text
+              color={'primary.1'}
+              fontFamily={'Poppins-Medium'}
+              fontSize={'18px'}>
+              TOTAL
+            </Text>
+            <Text
+              color="primary.1"
+              fontSize={'16px'}
+              fontFamily={'Poppins-Regular'}>
+              $ 1,045.84
+            </Text>
+            <HStack alignItems={'center'} space={'7px'}>
+              <Text color={'primary.1'} fontSize={'12px'}>
+                KC
+              </Text>
+              <Text color={'primary.1'} fontSize={{md: '20px'}}>
+                6,680
+              </Text>
+            </HStack>
+          </HStack>
         </Box>
 
         <Box mt={{md: '36px'}} mb={{md: '51px'}}>
@@ -92,6 +192,7 @@ function CardPaymentScreen() {
           />
         </Box>
       </ScrollView>
+      <TabBar />
     </Flex>
   );
 }
