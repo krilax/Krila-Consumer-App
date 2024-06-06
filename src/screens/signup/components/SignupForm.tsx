@@ -4,7 +4,7 @@ import {
   FormTextInput,
   GradientButton,
 } from '@src/components';
-import SocialLoginButton from '@src/components/Auth/SocialLoginButton';
+import SocialLoginButton from '@src/components/auth/SocialLoginButton';
 import {
   Box,
   Checkbox,

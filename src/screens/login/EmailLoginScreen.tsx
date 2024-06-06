@@ -10,7 +10,7 @@ import {TouchableOpacity} from 'react-native';
 import {RootStackParamList} from '@src/routes';
 import AuthLayover from '../signup/components/AuthLayover';
 import {StackNavigationProp} from '@react-navigation/stack';
-import SocialLoginButton from '@src/components/Auth/SocialLoginButton';
+import SocialLoginButton from '@src/components/auth/SocialLoginButton';
 
 interface EmailLoginScreenProps {
   navigation: StackNavigationProp<RootStackParamList>;
