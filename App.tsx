@@ -8,14 +8,14 @@ import {RootStackParamList} from '@src/routes';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {config, nativeBaseTheme} from '@constants/theme';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {GluestackUIStyledProvider} from '@gluestack-ui/themed';
 import PhoneLoginScreen from '@src/screens/login/PhoneLoginScreen';
 import {
-  BoardingPassScreen,
+  BoardingPassengerScreen,
   CardPaymentScreen,
   SearchInputScreen,
   SearchResultScreen,
-} from '@src/screens/booking';
+  SelectSeatScreen,
+} from '@src/screens/booking/flight';
 import {
   EmailLoginScreen,
   OnboardScreen,
@@ -24,7 +24,7 @@ import {
   SplashScreen,
 } from '@src/screens';
 import {GluestackUIProvider} from '@gluestack-ui/themed';
-import BookingDetailsScreen from '@src/screens/booking/BookingDetailScreen';
+import BookingDetailsScreen from '@src/screens/booking/flight/BookingDetailScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -58,7 +58,7 @@ function App() {
             <SafeAreaProvider>
               <Stack.Navigator
                 initialRouteName={
-                  !isOnboardingCompleted ? 'SplashScreen' : 'CardPaymentScreen'
+                  !isOnboardingCompleted ? 'SplashScreen' : 'SearchResultScreen'
                 }
                 screenOptions={{headerShown: false}}>
                 <Stack.Screen name="SplashScreen" component={SplashScreen} />
@@ -94,9 +94,12 @@ function App() {
                 />
                 <Stack.Screen
                   name="BoardingPassScreen"
-                  component={BoardingPassScreen}
+                  component={BoardingPassengerScreen}
                 />
-                {/* <Stack.Screen /> */}
+                <Stack.Screen
+                  name="SelectSeatScreen"
+                  component={SelectSeatScreen}
+                />
               </Stack.Navigator>
             </SafeAreaProvider>
           </NavigationContainer>

@@ -4,6 +4,7 @@ import Divider from './Divider';
 import FormTextInput from './FormTextInput';
 import GradientButton from './GradientButton';
 import LoadingScreen from './LoadingScreen';
+import MiniHeader from './MiniHeader';
 import TabBar from './TabBar';
 
 export {
@@ -14,4 +15,5 @@ export {
   LoadingScreen,
   SearchAdSpot,
   TabBar,
+  MiniHeader,
 };
