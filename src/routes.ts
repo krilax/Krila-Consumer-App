@@ -13,4 +13,5 @@ export type RootStackParamList = {
   SearchResultScreen: undefined;
   BookingDetailsScreen: undefined;
   CardPaymentScreen: undefined;
+  BoardingPassScreen: undefined;
 };

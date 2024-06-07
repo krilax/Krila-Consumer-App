@@ -6,12 +6,12 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NativeBaseProvider} from 'native-base';
 import {RootStackParamList} from '@src/routes';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {nativeBaseTheme} from '@constants/theme';
+import {config, nativeBaseTheme} from '@constants/theme';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {GluestackUIStyledProvider} from '@gluestack-ui/themed';
-import {config} from '@gluestack-ui/config';
 import PhoneLoginScreen from '@src/screens/login/PhoneLoginScreen';
 import {
+  BoardingPassScreen,
   CardPaymentScreen,
   SearchInputScreen,
   SearchResultScreen,
@@ -92,6 +92,11 @@ function App() {
                   name="CardPaymentScreen"
                   component={CardPaymentScreen}
                 />
+                <Stack.Screen
+                  name="BoardingPassScreen"
+                  component={BoardingPassScreen}
+                />
+                {/* <Stack.Screen /> */}
               </Stack.Navigator>
             </SafeAreaProvider>
           </NavigationContainer>

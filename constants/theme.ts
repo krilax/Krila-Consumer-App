@@ -1,4 +1,6 @@
+import {createConfig} from '@gluestack-style/react';
 import {extendTheme} from 'native-base';
+import {config as defaultConfig} from '@gluestack-ui/config';
 
 const COLORS = {
   primary: '#03045E',
@@ -45,5 +47,16 @@ export const nativeBaseTheme = extendTheme({
   },
   config: {
     initialColorMode: 'dark',
+  },
+});
+
+export const config = createConfig({
+  ...defaultConfig,
+  tokens: {
+    ...defaultConfig.tokens,
+    fontSizes: {
+      ...defaultConfig.tokens.fontSizes,
+      newFontSize: 90,
+    },
   },
 });
