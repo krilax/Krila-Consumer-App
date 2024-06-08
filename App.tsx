@@ -18,6 +18,7 @@ import {
 } from '@src/screens/booking/flight';
 import {
   EmailLoginScreen,
+  FlightSmartSearchResultScreen,
   OnboardScreen,
   ResetPasswordScreen,
   SignupScreen,
@@ -58,7 +59,9 @@ function App() {
             <SafeAreaProvider>
               <Stack.Navigator
                 initialRouteName={
-                  !isOnboardingCompleted ? 'SplashScreen' : 'SearchResultScreen'
+                  !isOnboardingCompleted
+                    ? 'SplashScreen'
+                    : 'FlightSmartSearchResultScreen'
                 }
                 screenOptions={{headerShown: false}}>
                 <Stack.Screen name="SplashScreen" component={SplashScreen} />
@@ -99,6 +102,10 @@ function App() {
                 <Stack.Screen
                   name="SelectSeatScreen"
                   component={SelectSeatScreen}
+                />
+                <Stack.Screen
+                  name="FlightSmartSearchResultScreen"
+                  component={FlightSmartSearchResultScreen}
                 />
               </Stack.Navigator>
             </SafeAreaProvider>

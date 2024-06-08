@@ -1,4 +1,5 @@
 import OTPin from './authentication/OTPin';
+import FlightSmartSearchResultScreen from './booking/flight/smart_search/FlightSmartSearchResult';
 import EmailLoginScreen from './login/EmailLoginScreen';
 import ResetPasswordScreen from './login/ResetPasswordScreen';
 import OnboardScreen from './onboard/OnboardScreen';
@@ -12,4 +13,5 @@ export {
   SignupScreen,
   EmailLoginScreen,
   ResetPasswordScreen,
+  FlightSmartSearchResultScreen,
 };

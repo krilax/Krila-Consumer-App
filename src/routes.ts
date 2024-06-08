@@ -16,4 +16,5 @@ export type RootStackParamList = {
   BoardingPassScreen: undefined;
   BookingUserInfoScreen: undefined;
   SelectSeatScreen: undefined;
+  FlightSmartSearchResultScreen: undefined;
 };

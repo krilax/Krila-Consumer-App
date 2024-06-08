@@ -1,0 +1,11 @@
+<svg width="156" height="19" viewBox="0 0 156 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="9" cy="9.1499" r="9" fill="#D9D9D9" fill-opacity="0.1"/>
+<circle cx="8.99986" cy="9.15001" r="6.42857" fill="#D9D9D9" fill-opacity="0.25"/>
+<circle cx="9.00021" cy="9.14987" r="3.85714" fill="#03045E"/>
+<circle cx="147" cy="9.1499" r="9" fill="#D9D9D9" fill-opacity="0.1"/>
+<circle cx="147" cy="9.15001" r="6.42857" fill="#D9D9D9" fill-opacity="0.25"/>
+<circle cx="147" cy="9.14987" r="3.85714" fill="#D9D9D9"/>
+<line x1="22.5" y1="8.6499" x2="66.5" y2="8.6499" stroke="#D9D9D9" stroke-linecap="round" stroke-dasharray="5 3"/>
+<line x1="89.5" y1="8.6499" x2="133.5" y2="8.6499" stroke="#D9D9D9" stroke-linecap="round" stroke-dasharray="5 3"/>
+<path d="M87 8.5501C87 9.2701 86.37 9.9001 85.65 9.9001H80.7L76.2 17.1001H74.4L76.65 9.9001H71.7L70.35 11.7001H69L69.9 8.5501L69 5.4001H70.35L71.7 7.2001H76.65L74.4 9.72748e-05H76.2L80.7 7.2001H85.65C86.37 7.2001 87 7.8301 87 8.5501Z" fill="#03045E"/>
+</svg>
