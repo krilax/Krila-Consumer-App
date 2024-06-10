@@ -8,11 +8,17 @@ import LinearGradient from 'react-native-linear-gradient';
 interface GradientButtonProps extends TouchableOpacityProps {
   title: string;
   colors: string[];
+  textColor?: string;
   onPress: () => any;
   style?: ViewStyle;
 }
 
-const GradientButton = ({onPress, title, colors}: GradientButtonProps) => {
+const GradientButton = ({
+  onPress,
+  title,
+  colors,
+  textColor,
+}: GradientButtonProps) => {
   return (
     <TouchableOpacity onPress={onPress} style={{borderRadius: 10}}>
       <LinearGradient
@@ -27,8 +33,8 @@ const GradientButton = ({onPress, title, colors}: GradientButtonProps) => {
           },
         ]}>
         <Text
-          style={{color: 'white', fontWeight: 'bold'}}
-          fontFamily={'Poppins-Regular'}
+          color={textColor ? textColor : 'white'}
+          fontFamily={'Poppins-Bold'}
           fontSize={{md: '14px'}}
           fontWeight={'bold'}>
           {title}

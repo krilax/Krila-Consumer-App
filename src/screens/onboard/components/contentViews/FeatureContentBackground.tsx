@@ -20,6 +20,7 @@ import Animated, {
 import {StyleSheet} from 'react-native';
 import {WINDOW_HEIGHT, WINDOW_WIDTH, useHp} from '@constants/reusable';
 import Svg, {Path as SvgPath} from 'react-native-svg';
+import {Text} from 'native-base';
 
 const AnimatedPath = Animated.createAnimatedComponent(SvgPath);
 
@@ -75,9 +76,9 @@ function FeatureContentBackground() {
   return (
     <Animated.View style={styles.container}>
       <Animated.View style={[styles.box]}>
-        <Canvas style={{flex: 1, transform: [{scale: 1}]}}>
+        {/* <Canvas style={{flex: 1, transform: [{scale: 1}]}}>
           <Path path={pathString} color="rgba(242, 242, 242, 0.46)" />
-        </Canvas>
+        </Canvas> */}
       </Animated.View>
     </Animated.View>
   );

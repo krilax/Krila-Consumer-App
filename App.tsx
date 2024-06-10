@@ -26,6 +26,7 @@ import {
 } from '@src/screens';
 import {GluestackUIProvider} from '@gluestack-ui/themed';
 import BookingDetailsScreen from '@src/screens/booking/flight/BookingDetailScreen';
+import FlightPassengerInfoScreen from '@src/screens/booking/flight/FlightPassengerInfoScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -59,15 +60,14 @@ function App() {
             <SafeAreaProvider>
               <Stack.Navigator
                 initialRouteName={
-                  !isOnboardingCompleted
-                    ? 'SplashScreen'
-                    : 'FlightSmartSearchResultScreen'
+                  isOnboardingCompleted ? 'SplashScreen' : 'OnboardScreen'
                 }
                 screenOptions={{headerShown: false}}>
                 <Stack.Screen name="SplashScreen" component={SplashScreen} />
-                <Stack.Screen name="SignupScreen" component={SignupScreen} />
                 <Stack.Screen name="OnboardScreen" component={OnboardScreen} />
-                <Stack.Screen
+                {/*   
+             <Stack.Screen name="SignupScreen" component={SignupScreen} />
+                  <Stack.Screen
                   name="EmailLoginScreen"
                   component={EmailLoginScreen}
                 />
@@ -107,6 +107,10 @@ function App() {
                   name="FlightSmartSearchResultScreen"
                   component={FlightSmartSearchResultScreen}
                 />
+                <Stack.Screen
+                  name="FlightPassengerInfoScreen"
+                  component={FlightPassengerInfoScreen}
+                /> */}
               </Stack.Navigator>
             </SafeAreaProvider>
           </NavigationContainer>

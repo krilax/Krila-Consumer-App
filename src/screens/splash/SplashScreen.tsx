@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View} from 'native-base';
+import {Flex, Text, View} from 'native-base';
 import {
   Canvas,
   ImageSVG,
@@ -8,9 +8,10 @@ import {
   rect,
 } from '@shopify/react-native-skia';
 import {Dimensions} from 'react-native';
-import splashKrilaSvg from '@assets/svg/splashScreen';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '@src/routes';
+import {useDeviceType} from '@src/components/hooks';
+import KrilaLogo from '@assets/images/app/Krila_Logo.svg';
 
 type SplashScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -20,8 +21,9 @@ type SplashScreenProps = NativeStackScreenProps<
 const {width, height} = Dimensions.get('window');
 
 const SplashScreen: React.FC<SplashScreenProps> = ({navigation}) => {
-  const src = rect(0, 0, splashKrilaSvg.width(), splashKrilaSvg.height());
-  const dst = rect(0, 0, width, height);
+  const deviceType = useDeviceType();
+  // const src = rect(0, 0, splashKrilaSvg.width(), splashKrilaSvg.height());
+  // const dst = rect(0, 0, width, height);
 
   useEffect(() => {
     setTimeout(() => {
@@ -29,20 +31,19 @@ const SplashScreen: React.FC<SplashScreenProps> = ({navigation}) => {
     }, 500);
   }, []);
 
+  console.log(deviceType);
+
   return (
-    <View flex={1}>
-      <Canvas style={{flex: 1}}>
-        <Group transform={fitbox('fill', src, dst)}>
-          <ImageSVG
-            svg={splashKrilaSvg}
-            x={0}
-            y={0}
-            width={834}
-            height={1194}
-          />
-        </Group>
-      </Canvas>
-    </View>
+    <Flex
+      flex={1}
+      bg={'primary.1'}
+      justifyContent={'center'}
+      alignItems={'center'}>
+      {/* <KrilaLogo /> */}
+      <Text color={'white'} fontSize={'7xl'}>
+        Krila
+      </Text>
+    </Flex>
   );
 };
 

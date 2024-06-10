@@ -12,6 +12,7 @@ import TravelContent from './contentViews/TravelContent';
 import LinearGradient from 'react-native-linear-gradient';
 import MaskedView from '@react-native-masked-view/masked-view';
 import {RFPercentage} from 'react-native-responsive-fontsize';
+import {useDeviceType} from '@src/components/hooks';
 
 interface TravelReimaginedScreenProps {
   metadata: any;
@@ -33,9 +34,13 @@ export function GradientText(props: any) {
 }
 
 function TravelReimaginedScreen({detail, title}: TravelReimaginedScreenProps) {
+  const deviceType = useDeviceType();
+
   return (
     <Flex flex={1} justifyContent={'flex-start'}>
-      <View style={styles.backView} padding={30}>
+      <View
+        style={styles.backView}
+        padding={deviceType === 'tablet' ? '30px' : '27px'}>
         <Text>This stays at the back</Text>
       </View>
       <Flex
@@ -49,43 +54,25 @@ function TravelReimaginedScreen({detail, title}: TravelReimaginedScreenProps) {
           <Box>
             <GradientText
               style={{
-                fontFamily: 'Spartan-Regular',
+                fontSize: deviceType === 'mobile' ? 28 : 48,
+                lineHeight: deviceType === 'mobile' ? 30 : 55,
                 fontWeight: 'bold',
-                fontSize:
-                  MobileOSType === 'android' && isTablet
-                    ? RFPercentage(4.2)
-                    : RFPercentage(2),
-                lineHeight: 55,
                 textTransform: 'uppercase',
+                fontFamily: 'Spartan-Regular',
               }}>
               {title}
             </GradientText>
-            {/* <TextGradient
-              style={{
-                fontFamily: 'Spartan-Regular',
-                fontWeight: 'bold',
-                fontSize:
-                  MobileOSType === 'android' && isTablet
-                    ? RFPercentage(4)
-                    : RFPercentage(3),
-                lineHeight: 50,
-                textTransform: 'uppercase',
-              }}
-              // locations={[0, 1]}
-              colors={['#050683', '#0709C5']}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 0}}
-              text="Travel"
-            /> */}
           </Box>
 
-          <Box width={WINDOW_WIDTH * 0.63} mt={'11px'}>
+          <Box
+            width={
+              deviceType === 'tablet' ? WINDOW_WIDTH * 0.63 : WINDOW_WIDTH * 0.9
+            }
+            mt={'11px'}>
             <Text
               fontFamily={'Poppins-Regular'}
-              fontSize={
-                MobileOSType === 'android' && isTablet ? RFPercentage(1.6) : 10
-              }
-              lineHeight={isTablet ? '32' : '16'}
+              fontSize={{base: '14px', md: '16px'}}
+              lineHeight={{md: '32px', base: '24px'}}
               color={'secondary.1'}
               fontWeight={'400'}>
               {detail}

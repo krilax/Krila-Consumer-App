@@ -1,17 +1,11 @@
-import {
-  MobileOSType,
-  WINDOW_HEIGHT,
-  WINDOW_WIDTH,
-  isMobile,
-  isTablet,
-} from '@constants/reusable';
+import {WINDOW_HEIGHT, WINDOW_WIDTH, isMobile} from '@constants/reusable';
 import {Box, Flex, Text, View} from 'native-base';
 import {StyleSheet} from 'react-native';
 import FeatureContent from './contentViews/FeatureContent';
 import Animated from 'react-native-reanimated';
 import FeatureContentBackground from './contentViews/FeatureContentBackground';
-import {RFPercentage} from 'react-native-responsive-fontsize';
 import {GradientText} from './TravelReimaginedScreen';
+import {useDeviceType} from '@src/components/hooks';
 
 interface FeaturesScreenProps {
   metadata: any;
@@ -20,6 +14,8 @@ interface FeaturesScreenProps {
 }
 
 function FeaturesScreen({metadata, title, detail}: FeaturesScreenProps) {
+  const deviceType = useDeviceType();
+
   return (
     <Animated.View style={{flex: 1}}>
       <Flex flex={1}>
@@ -32,9 +28,9 @@ function FeaturesScreen({metadata, title, detail}: FeaturesScreenProps) {
             {
               height: WINDOW_HEIGHT,
               justifyContent: 'flex-start',
-              padding: 65,
             },
-          ]}>
+          ]}
+          padding={{md: '65px', base: '27px'}}>
           <FeatureContent {...{title, detail, metadata}} />
 
           <Box w="full" mt={!isMobile ? 42 : 30}>
@@ -43,26 +39,25 @@ function FeaturesScreen({metadata, title, detail}: FeaturesScreenProps) {
                 style={{
                   fontFamily: 'Spartan-Regular',
                   fontWeight: 'bold',
-                  fontSize:
-                    MobileOSType === 'android' && isTablet
-                      ? RFPercentage(4.2)
-                      : RFPercentage(2),
-                  lineHeight: 55,
+                  fontSize: deviceType === 'mobile' ? 28 : 48,
+                  lineHeight: deviceType === 'mobile' ? 30 : 55,
                   textTransform: 'uppercase',
                 }}>
                 {title}
               </GradientText>
             </Box>
 
-            <Box width={WINDOW_WIDTH * 0.63} mt={'11px'}>
+            <Box
+              width={
+                deviceType === 'tablet'
+                  ? WINDOW_WIDTH * 0.63
+                  : WINDOW_WIDTH * 0.9
+              }
+              mt={'11px'}>
               <Text
                 fontFamily={'Poppins-Regular'}
-                fontSize={
-                  MobileOSType === 'android' && isTablet
-                    ? RFPercentage(1.6)
-                    : 10
-                }
-                lineHeight={isTablet ? '32' : '16'}
+                fontSize={{base: '14px', md: '16px'}}
+                lineHeight={{md: '32px', base: '24px'}}
                 color={'secondary.1'}
                 fontWeight={'400'}>
                 {detail}

@@ -2,7 +2,7 @@ import React, {Suspense, useEffect} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '@src/routes';
 import {Box, Flex, HStack, Text, View} from 'native-base';
-import {ActivityIndicator, StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -14,21 +14,12 @@ import Animated, {
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@constants/reusable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {LoadingScreen} from '@src/components';
 
 const TravelReimaginedScreen = React.lazy(
   () => import('./components/TravelReimaginedScreen'),
 );
 const FeaturesScreen = React.lazy(() => import('./components/FeaturesScreen'));
-const FeatureDetail1 = React.lazy(
-  () => import('./components/contentViews/FeatureDetail1'),
-);
-const FeatureDetail2 = React.lazy(
-  () => import('./components/contentViews/FeatureDetail2'),
-);
-const FeatureDetail3 = React.lazy(
-  () => import('./components/contentViews/FeatureDetail3'),
-);
-
 const ExploreScreen = React.lazy(() => import('./components/ExploreScreen'));
 
 type SplashScreenProps = NativeStackScreenProps<
@@ -57,7 +48,7 @@ const onboardData: OnboardDataInterface[] = [
   },
   {
     metadata: {
-      list: [<FeatureDetail1 />, <FeatureDetail2 />, <FeatureDetail3 />],
+      list: [],
     },
     title: 'TURN EVERY TRIP \nINTO A REWARD',
     detail:
@@ -78,9 +69,8 @@ const onboardData: OnboardDataInterface[] = [
 ];
 
 const AUTO_SWITCH_INTERVAL = 10000;
-
 const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
-  const index = useSharedValue(0);
+  const index = useSharedValue(1);
   const isGestureActive = useSharedValue(false);
   const shouldAutoSwitch = useSharedValue(true);
   const translationX = useSharedValue(0);
@@ -188,7 +178,7 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
   }, []);
 
   return (
-    <Suspense fallback={<ActivityIndicator size="large" color="#" />}>
+    <Suspense fallback={<LoadingScreen />}>
       <View style={styles.container}>
         <GestureDetector {...{gesture}}>
           <Animated.View style={StyleSheet.absoluteFill}>
@@ -217,7 +207,12 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
           </Animated.View>
         </GestureDetector>
 
-        <Box w="full" zIndex={1} position={'absolute'} bottom={10}>
+        <Box
+          w="full"
+          zIndex={1}
+          position={'absolute'}
+          bottom={10}
+          px={{base: '27px', md: '30px'}}>
           <HStack
             w="full"
             justifyContent={'flex-end'}
@@ -251,7 +246,7 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
                 <Text
                   color={'black'}
                   fontFamily={'Poppins-SemiBold'}
-                  fontSize={{md: '20px'}}>
+                  fontSize={{md: '20px', base: '14px'}}>
                   Skip
                 </Text>
               </TouchableOpacity>

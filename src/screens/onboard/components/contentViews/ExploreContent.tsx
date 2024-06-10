@@ -1,7 +1,7 @@
-import {WINDOW_HEIGHT, WINDOW_WIDTH, isTablet} from '@constants/reusable';
+import {WINDOW_HEIGHT} from '@constants/reusable';
 import {Canvas, Group, Image, Skia, useImage} from '@shopify/react-native-skia';
 import {Box} from 'native-base';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {StyleSheet} from 'react-native';
 
 function ExploreContent() {
@@ -46,8 +46,14 @@ function ExploreContent() {
   const image4 = useImage(require('@assets/images/exploreImages/1.png'));
 
   return (
-    <Box height={WINDOW_HEIGHT * 0.81} padding={isTablet ? 47 : 30}>
+    <Box
+      height={{
+        md: WINDOW_HEIGHT * 0.81,
+        base: WINDOW_HEIGHT * 0.6,
+      }}
+      padding={{md: '47px', base: '22px'}}>
       <Box
+        mt={{base: '120px', md: '0px'}}
         flex={'1'}
         w="full"
         ref={canvasRef}
