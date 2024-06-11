@@ -1,5 +1,6 @@
 import {WINDOW_HEIGHT} from '@constants/reusable';
 import {Canvas, Fill, Group, useImage} from '@shopify/react-native-skia';
+import {useDeviceType} from '@src/components/hooks';
 import {Box, Flex, Image, Text} from 'native-base';
 import React, {useEffect, useState} from 'react';
 
@@ -17,6 +18,7 @@ function AuthLayover({
   detail,
 }: AuthLayoverProps) {
   const percent = 0.2368;
+  const deviceType = useDeviceType();
   const [dimensions, setDimensions] = useState({width: 0, height: 0});
 
   useEffect(() => {
@@ -41,8 +43,8 @@ function AuthLayover({
     <Box
       borderRadius={'25px'}
       overflow={'hidden'}
-      h={WINDOW_HEIGHT * percent}
-      bg="red.100"
+      // h={WINDOW_HEIGHT * percent}
+      h={{md: WINDOW_HEIGHT * percent, base: WINDOW_HEIGHT * 0.18}}
       w="full"
       mt={{
         md: '65',
@@ -50,12 +52,15 @@ function AuthLayover({
       }}
       ref={canvasRef}>
       <Flex flex={1} justifyContent={'flex-start'}>
-        <Flex h={WINDOW_HEIGHT * percent}>
+        <Flex h={'full'}>
           <Image
             source={require('@assets/images/app/AuthCover.png')}
             height={'100%'}
             width={'100%'}
             alt="Krila"
+            style={{
+              objectFit: 'fill',
+            }}
           />
         </Flex>
         <Flex
@@ -68,15 +73,15 @@ function AuthLayover({
           justifyContent={'center'}
           alignItems={'center'}>
           <Text
+            mb={{base: '10px', md: '29px'}}
+            fontSize={{md: '40px', base: '20px'}}
             fontFamily={'Spartan-Bold'}
-            fontSize={{md: '40px'}}
-            mb={29}
             textTransform={'capitalize'}>
             {title}
           </Text>
           <Text
             fontFamily={'Poppins-Regular'}
-            fontSize={{md: '16px'}}
+            fontSize={{md: '16px', base: '10px'}}
             color={'white'}>
             {detail}
           </Text>

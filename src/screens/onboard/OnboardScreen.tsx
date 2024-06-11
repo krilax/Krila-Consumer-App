@@ -79,7 +79,6 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
     useSharedValue(index.value === 0 ? 1 : 1),
   );
   const screensZIndex = onboardData.map(() => useSharedValue(0));
-
   const maxTranslateX = WINDOW_WIDTH * (onboardData.length - 1);
 
   const gesture = Gesture.Pan()
@@ -116,6 +115,7 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
       isGestureActive.value = false;
     })
     .runOnJS(true);
+
   const autoSwipe = () => {
     if (!isGestureActive.value && shouldAutoSwitch.value) {
       const nextIndex = (index.value + 1) % onboardData.length;
