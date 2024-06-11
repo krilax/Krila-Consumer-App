@@ -48,15 +48,11 @@ function FeaturesScreen({metadata, title, detail}: FeaturesScreenProps) {
             </Box>
 
             <Box
-              width={
-                deviceType === 'tablet'
-                  ? WINDOW_WIDTH * 0.63
-                  : WINDOW_WIDTH * 0.9
-              }
+              width={deviceType === 'tablet' ? WINDOW_WIDTH * 0.63 : '100%'}
               mt={'11px'}>
               <Text
                 fontFamily={'Poppins-Regular'}
-                fontSize={{base: '14px', md: '16px'}}
+                fontSize={{base: '12.5px', md: '16px'}}
                 lineHeight={{md: '32px', base: '24px'}}
                 color={'secondary.1'}
                 fontWeight={'400'}>

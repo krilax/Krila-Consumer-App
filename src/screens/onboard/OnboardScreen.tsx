@@ -173,7 +173,6 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
 
   useEffect(() => {
     const intervalId = setInterval(autoSwipe, AUTO_SWITCH_INTERVAL);
-
     return () => clearInterval(intervalId);
   }, []);
 
@@ -223,7 +222,7 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
               justifyContent={'center'}
               alignItems={'center'}
               flexDirection={'row'}>
-              {onboardData.map((_, idx) => {
+              {/* {onboardData.map((_, idx) => {
                 return (
                   <TouchableOpacity
                     key={idx}
@@ -233,7 +232,7 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
                     />
                   </TouchableOpacity>
                 );
-              })}
+              })} */}
             </Flex>
             <Flex
               width={WINDOW_WIDTH * 0.2}

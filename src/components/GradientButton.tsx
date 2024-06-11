@@ -40,8 +40,7 @@ const GradientButton = ({
           <Text
             color={textColor ? textColor : 'white'}
             fontFamily={'Poppins-Medium'}
-            fontSize={{md: '14px', base: '10px'}}
-            fontWeight={'bold'}>
+            fontSize={{md: '14px', base: '10px'}}>
             {title}
           </Text>
         </Flex>

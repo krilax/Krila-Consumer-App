@@ -1,5 +1,6 @@
 import {WINDOW_HEIGHT} from '@constants/reusable';
 import {Canvas, Group, Image, Skia, useImage} from '@shopify/react-native-skia';
+import {useDeviceType} from '@src/components/hooks';
 import {Box} from 'native-base';
 import React, {useRef, useState} from 'react';
 import {StyleSheet} from 'react-native';
@@ -7,10 +8,11 @@ import {StyleSheet} from 'react-native';
 function ExploreContent() {
   const canvasRef: any = useRef(null);
   const [canvasSize, setCanvasSize] = useState({width: 0, height: 0});
+  const deviceType = useDeviceType();
 
   //first circle
   const firstCirclePath = Skia.Path.Make();
-  const radius = canvasSize.width / 2.5;
+  const radius = canvasSize.width / (deviceType === 'mobile' ? 2 : 2.5);
   const circleX = canvasSize.width / 2;
   const circleY = canvasSize.height / 2;
   firstCirclePath.addCircle(circleX, circleY, radius);
@@ -18,7 +20,7 @@ function ExploreContent() {
 
   //second circle
   const secondCirclePath = Skia.Path.Make();
-  const radius2 = canvasSize.width / 4.2;
+  const radius2 = canvasSize.width / (deviceType === 'mobile' ? 4 : 4.2);
   const circleX2 = canvasSize.width - radius2;
   const circleY2 = canvasSize.height - canvasSize.height / 4.3;
   secondCirclePath.addCircle(circleX2, circleY2, radius2);
@@ -26,7 +28,7 @@ function ExploreContent() {
 
   //third circle
   const thirdCircle = Skia.Path.Make();
-  const radius3 = canvasSize.width / 5.4;
+  const radius3 = canvasSize.width / (deviceType === 'mobile' ? 5 : 5.4);
   const circleX3 = radius3;
   const circleY3 = canvasSize.height - canvasSize.height / 4;
   thirdCircle.addCircle(circleX3, circleY3, radius3);
@@ -34,9 +36,9 @@ function ExploreContent() {
 
   //fourth circle
   const fourthCirclePath = Skia.Path.Make();
-  const radius4 = canvasSize.width / 4.2;
+  const radius4 = canvasSize.width / (deviceType === 'mobile' ? 4 : 4.2);
   const circleX4 = radius4;
-  const circleY4 = radius4;
+  const circleY4 = radius4 + 2;
   fourthCirclePath.addCircle(circleX4, circleY4, radius4);
   const circlePath4 = fourthCirclePath.toSVGString();
 
@@ -49,11 +51,10 @@ function ExploreContent() {
     <Box
       height={{
         md: WINDOW_HEIGHT * 0.81,
-        base: WINDOW_HEIGHT * 0.6,
+        base: WINDOW_HEIGHT * 0.8,
       }}
       padding={{md: '47px', base: '22px'}}>
       <Box
-        mt={{base: '120px', md: '0px'}}
         flex={'1'}
         w="full"
         ref={canvasRef}

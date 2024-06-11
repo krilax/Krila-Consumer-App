@@ -11,6 +11,7 @@ import {RootStackParamList} from '@src/routes';
 import AuthLayover from '../signup/components/AuthLayover';
 import {StackNavigationProp} from '@react-navigation/stack';
 import SocialLoginButton from '@src/components/auth/SocialLoginButton';
+import {responsiveMargin} from '@src/helpers/responsiveUtils';
 
 interface EmailLoginScreenProps {
   navigation: StackNavigationProp<RootStackParamList>;
@@ -86,7 +87,7 @@ function EmailLoginScreen({navigation}: EmailLoginScreenProps) {
       <VStack
         px={{md: '34px'}}
         space={{md: '31px', base: '21px'}}
-        mt={{md: '167px', base: '131px'}}>
+        mt={{md: '167px', base: responsiveMargin(50)}}>
         <GradientButton
           onPress={() => null}
           title="Get Started"
@@ -105,7 +106,9 @@ function EmailLoginScreen({navigation}: EmailLoginScreenProps) {
         />
       </VStack>
 
-      <Box my={{md: '20px', base: '40px'}} px={{md: '34px', base: '0px'}}>
+      <Box
+        my={{md: '20px', base: responsiveMargin(20)}}
+        px={{md: '34px', base: '0px'}}>
         <Divider />
       </Box>
 
@@ -114,7 +117,7 @@ function EmailLoginScreen({navigation}: EmailLoginScreenProps) {
       <HStack
         justifyContent="center"
         alignItems="center"
-        mt={{md: '28px', base: '35px'}}>
+        mt={{md: '28px', base: responsiveMargin(17)}}>
         <Text
           color="primary.1"
           fontFamily="Poppins-Regular"

@@ -2,7 +2,6 @@ import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@constants/reusable';
 import {View} from 'native-base';
 import React, {useCallback} from 'react';
 import {StyleSheet} from 'react-native';
-import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -24,8 +23,7 @@ function SignupScreen({navigation}: SignupScreenProps) {
 
   const index = useSharedValue(0);
   const velocityX = useSharedValue(0);
-  const translationX = useSharedValue(-WINDOW_WIDTH);
-  // SignupPinForm
+  const translationX = useSharedValue(0);
   const Screens = [SignupForm, SignupPinForm];
 
   const animatedStyles = useAnimatedStyle(() => ({

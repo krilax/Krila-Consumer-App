@@ -4,6 +4,8 @@ import {GradientText} from '../TravelReimaginedScreen';
 import {RFPercentage} from 'react-native-responsive-fontsize';
 import {MobileOSType, isTablet} from '@constants/reusable';
 import {useDeviceType} from '@src/components/hooks';
+import FeatureImageTwo from '@assets/images/featuresImages/2.svg';
+import {responsiveFontSize} from '@src/helpers/utlils';
 
 function FeatureDetail2() {
   const deviceType = useDeviceType();
@@ -13,8 +15,9 @@ function FeatureDetail2() {
       <HStack w="full" flexDirection={'row-reverse'}>
         <Box
           width={deviceType === 'tablet' ? 267 : 134}
-          bg={'blue.100'}
-          h={{base: '101px', md: '202px'}}></Box>
+          h={{base: '101px', md: '202px'}}>
+          <FeatureImageTwo height={'100%'} width={'100%'} />
+        </Box>
         <Flex
           flex={1}
           mr={MobileOSType === 'android' && isTablet ? 39.9 : 22}
@@ -25,7 +28,6 @@ function FeatureDetail2() {
             <GradientText
               style={{
                 fontFamily: 'Spartan-Bold',
-                fontWeight: 'bold',
                 fontSize: deviceType === 'tablet' ? 32 : 14,
                 lineHeight: deviceType === 'tablet' ? 55 : 20,
                 textTransform: 'uppercase',
@@ -39,10 +41,9 @@ function FeatureDetail2() {
             mt={{base: '8px'}}>
             <Text
               fontFamily={'Poppins-Regular'}
-              fontSize={{md: RFPercentage(1.8), base: '14px'}}
+              fontSize={{md: RFPercentage(1.8), base: responsiveFontSize(11)}}
               lineHeight={deviceType === 'tablet' ? 32 : 16}
-              color={'secondary.1'}
-              fontWeight={'400'}>
+              color={'secondary.1'}>
               {`Automatically earn rewards\nwith every booking`}
             </Text>
           </Flex>

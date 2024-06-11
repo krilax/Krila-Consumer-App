@@ -35,7 +35,6 @@ function ExploreScreen({metadata, title, detail}: ExploreScreenProps) {
               <GradientText
                 style={{
                   fontFamily: 'Spartan-Regular',
-                  fontWeight: 'bold',
                   fontSize: deviceType === 'mobile' ? 28 : 48,
                   lineHeight: deviceType === 'mobile' ? 30 : 55,
                   textTransform: 'uppercase',
@@ -49,10 +48,9 @@ function ExploreScreen({metadata, title, detail}: ExploreScreenProps) {
               mt={'11px'}>
               <Text
                 fontFamily={'Poppins-Regular'}
-                fontSize={{base: '14px', md: '16px'}}
+                fontSize={{base: '12.5px', md: '16px'}}
                 lineHeight={{md: '32px', base: '24px'}}
-                color={'secondary.1'}
-                fontWeight={'400'}>
+                color={'secondary.1'}>
                 {detail}
               </Text>
             </Box>

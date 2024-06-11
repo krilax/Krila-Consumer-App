@@ -19,12 +19,12 @@ function SocialLoginButton() {
 
   return (
     <Animated.View>
-      <HStack space={{md: '40px', base: '27px'}} justifyContent={'center'}>
+      <HStack space={{md: '40px', base: '7px'}} justifyContent={'center'}>
         {socials.map(({Icon}, index) => (
           <Box
             key={index}
             style={{
-              transform: deviceType === 'tablet' ? 'scale(0.8)' : 'scale(0.5)',
+              transform: deviceType === 'tablet' ? 'scale(0.8)' : 'scale(0.4)',
             }}>
             <Icon />
           </Box>

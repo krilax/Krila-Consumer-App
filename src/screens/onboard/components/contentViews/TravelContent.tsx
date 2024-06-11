@@ -2,6 +2,7 @@ import {Box, Image} from 'native-base';
 import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {WINDOW_HEIGHT, isTablet, useHp} from 'constants/reusable';
+import {RFPercentage} from 'react-native-responsive-fontsize';
 
 function TravelContent() {
   const canvasRef: any = useRef(null);

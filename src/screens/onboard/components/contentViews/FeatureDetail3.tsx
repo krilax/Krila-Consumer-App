@@ -4,6 +4,12 @@ import {GradientText} from '../TravelReimaginedScreen';
 import {RFPercentage} from 'react-native-responsive-fontsize';
 import {MobileOSType, isTablet} from '@constants/reusable';
 import {useDeviceType} from '@src/components/hooks';
+import FeatureImageThree from '@assets/images/featuresImages/3.svg';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import {responsiveFontSize} from '@src/helpers/utlils';
 
 function FeatureDetail3() {
   const deviceType = useDeviceType();
@@ -13,9 +19,11 @@ function FeatureDetail3() {
       <HStack w="full" mb={'100px'} flexDirection={'row'} alignItems={'center'}>
         <Box
           width={deviceType === 'tablet' ? 267 : 134}
-          bg={'blue.100'}
-          h={{base: '101px', md: '202px'}}></Box>
+          h={{base: '101px', md: '202px'}}>
+          <FeatureImageThree height={'100%'} width={'100%'} />
+        </Box>
         <Flex
+          flex={'1'}
           ml={MobileOSType === 'android' && isTablet ? 39.9 : 22}
           justifyContent={'flex-start'}
           flexDirection={'column'}>
@@ -23,8 +31,6 @@ function FeatureDetail3() {
             <GradientText
               style={{
                 fontFamily: 'Spartan-Bold',
-                fontWeight: 'bold',
-
                 fontSize: deviceType === 'tablet' ? 32 : 14,
                 lineHeight: deviceType === 'tablet' ? 55 : 20,
                 textTransform: 'uppercase',
@@ -35,11 +41,10 @@ function FeatureDetail3() {
           <Box>
             <Text
               fontFamily={'Poppins-Regular'}
-              fontSize={{md: RFPercentage(1.8), base: '14px'}}
+              fontSize={{md: RFPercentage(1.8), base: responsiveFontSize(11)}}
               lineHeight={deviceType === 'tablet' ? 32 : 16}
               mt={{base: '8px'}}
-              color={'secondary.1'}
-              fontWeight={'400'}>
+              color={'secondary.1'}>
               {`Use you rewards for exclusize\ndeals, upgrades and more!`}
             </Text>
           </Box>

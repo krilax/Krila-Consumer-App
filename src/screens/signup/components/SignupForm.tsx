@@ -101,7 +101,6 @@ function SignupForm({navigation}: SignupFormProps) {
           <Text
             fontFamily={'Poppins-Regular'}
             ml={2}
-            fontWeight={'600'}
             color={'#7D8093'}
             fontSize={{md: '12px', base: '8px'}}
             my={{md: '36px', base: '21px'}}>
@@ -132,7 +131,7 @@ function SignupForm({navigation}: SignupFormProps) {
         />
       </VStack>
 
-      <Box my={'20px'} px={{md: '34px'}}>
+      <Box my={{md: '20px', base: '15px'}} px={{md: '34px'}}>
         <Divider />
       </Box>
 
@@ -141,7 +140,7 @@ function SignupForm({navigation}: SignupFormProps) {
       <HStack
         justifyContent="center"
         alignItems="center"
-        mt={{md: '28px', base: '35px'}}>
+        mt={{md: '28px', base: '10px'}}>
         <Text color="primary.1" fontFamily="Poppins-Regular" fontSize="14px">
           Already have an account?{' '}
         </Text>

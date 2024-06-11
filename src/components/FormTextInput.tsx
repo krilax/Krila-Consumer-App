@@ -27,7 +27,6 @@ function FormTextInput({formTitle, placeholder, width}: FormTextInputProps) {
         <Text
           color={'secondary.1'}
           fontSize={{md: '15px', base: '10px'}}
-          fontWeight={'normal'}
           fontFamily={'Spartan-Regular'}
           mb={'2'}>
           {formTitle}

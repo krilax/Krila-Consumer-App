@@ -33,11 +33,7 @@ function MiniHeader({title, description}: MiniHeaderProps) {
         justifyContent="center"
         alignItems="center"
         p="4">
-        <Text
-          color="white"
-          fontSize={{md: '40'}}
-          fontWeight="bold"
-          fontFamily={'Spartan-Bold'}>
+        <Text color="white" fontSize={{md: '40'}} fontFamily={'Spartan-Bold'}>
           {title}
         </Text>
         <Text

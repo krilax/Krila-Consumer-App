@@ -43,8 +43,7 @@ function AuthLayover({
     <Box
       borderRadius={'25px'}
       overflow={'hidden'}
-      // h={WINDOW_HEIGHT * percent}
-      h={{md: WINDOW_HEIGHT * percent, base: WINDOW_HEIGHT * 0.18}}
+      h={{md: WINDOW_HEIGHT * percent, base: WINDOW_HEIGHT * 0.16}}
       w="full"
       mt={{
         md: '65',

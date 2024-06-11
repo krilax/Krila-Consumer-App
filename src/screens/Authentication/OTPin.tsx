@@ -42,9 +42,7 @@ function OTPin({message, user, authType, navigation}: OTPinInterface) {
           justifyContent={'center'}
           alignItems={'center'}
           display={'none'}>
-          <Text color={'primary.1'} fontWeight={'extraBlack'}>
-            Scrolls
-          </Text>
+          <Text color={'primary.1'}>Scrolls</Text>
         </Flex>
         <Stack w="full" px={{md: '34px'}} mt={{base: '40px'}}>
           <Flex
@@ -58,8 +56,8 @@ function OTPin({message, user, authType, navigation}: OTPinInterface) {
               textAlign={'center'}
               fontFamily={'Poppins-Medium'}
               fontSize={{base: '10px', md: '15px'}}>
-              {message} <Text fontWeight={'bold'}>({user})</Text> . Enter in the
-              field below to verify your email address.
+              {message} <Text>({user})</Text> . Enter in the field below to
+              verify your email address.
             </Text>
           </Flex>
           <Flex

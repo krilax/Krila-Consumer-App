@@ -13,6 +13,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import MaskedView from '@react-native-masked-view/masked-view';
 import {RFPercentage} from 'react-native-responsive-fontsize';
 import {useDeviceType} from '@src/components/hooks';
+import {responsiveFontSize} from '@src/helpers/utlils';
 
 interface TravelReimaginedScreenProps {
   metadata: any;
@@ -50,13 +51,12 @@ function TravelReimaginedScreen({detail, title}: TravelReimaginedScreenProps) {
         ]}>
         <TravelContent />
 
-        <Box w="full" mt={!isMobile ? 70 : 30}>
+        <Box w="full" mt={{md: '70px', base: '29px'}}>
           <Box>
             <GradientText
               style={{
                 fontSize: deviceType === 'mobile' ? 28 : 48,
                 lineHeight: deviceType === 'mobile' ? 30 : 55,
-                fontWeight: 'bold',
                 textTransform: 'uppercase',
                 fontFamily: 'Spartan-Regular',
               }}>
@@ -71,10 +71,9 @@ function TravelReimaginedScreen({detail, title}: TravelReimaginedScreenProps) {
             mt={'11px'}>
             <Text
               fontFamily={'Poppins-Regular'}
-              fontSize={{base: '14px', md: '16px'}}
+              fontSize={{base: responsiveFontSize(11), md: '16px'}}
               lineHeight={{md: '32px', base: '24px'}}
-              color={'secondary.1'}
-              fontWeight={'400'}>
+              color={'secondary.1'}>
               {detail}
             </Text>
           </Box>
