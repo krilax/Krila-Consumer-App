@@ -60,25 +60,25 @@ function App() {
             <SafeAreaProvider>
               <Stack.Navigator
                 initialRouteName={
-                  !isOnboardingCompleted ? 'SplashScreen' : 'SignupScreen'
+                  !isOnboardingCompleted ? 'SplashScreen' : 'PhoneLoginScreen'
                 }
                 screenOptions={{headerShown: false}}>
                 <Stack.Screen name="SplashScreen" component={SplashScreen} />
                 <Stack.Screen name="OnboardScreen" component={OnboardScreen} />
                 <Stack.Screen name="SignupScreen" component={SignupScreen} />
-                {/* <Stack.Screen
+                <Stack.Screen
                   name="EmailLoginScreen"
                   component={EmailLoginScreen}
                 />
                 <Stack.Screen
                   name="ResetPasswordScreen"
                   component={ResetPasswordScreen}
-                /> */}
-                {/*  <Stack.Screen
+                />
+                <Stack.Screen
                   name="PhoneLoginScreen"
                   component={PhoneLoginScreen}
                 />
-                <Stack.Screen
+                {/*   <Stack.Screen
                   name="SearchInputScreen"
                   component={SearchInputScreen}
                 />

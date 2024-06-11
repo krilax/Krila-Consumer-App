@@ -13,7 +13,7 @@ interface OTPinInterface {
   message: string;
   user: string;
   authType?: 'phone' | 'email';
-  navigation: StackNavigationProp<RootStackParamList>;
+  navigation?: StackNavigationProp<RootStackParamList>;
 }
 
 function OTPin({message, user, authType, navigation}: OTPinInterface) {

@@ -10,7 +10,7 @@ import Phone from './components/Phone';
 import OTPin from '../authentication/OTPin';
 
 function PhoneLoginScreen() {
-  const translationX = useSharedValue(0);
+  const translationX = useSharedValue(-WINDOW_WIDTH);
 
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{translateX: translationX.value}],
