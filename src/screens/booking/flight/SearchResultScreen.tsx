@@ -12,8 +12,12 @@ import {
 } from 'native-base';
 import React from 'react';
 import TripIcon from '@assets/images/app/trip_icon_w.svg';
+import {useDeviceType} from '@src/components/hooks';
+import {Box as MBox} from '@react-native-material/core';
 
 function SearchResultScreen() {
+  const deviceType = useDeviceType();
+
   const flightSearchResults = [
     {
       routeInfo: {
@@ -63,25 +67,31 @@ function SearchResultScreen() {
   }));
 
   return (
-    <Flex flex={'1'} px={{md: '57px'}} mb={'1px'}>
-      <MiniHeader
-        title={'Search Flights'}
-        description={'Let’s start your trip'}
-      />
+    <Flex
+      flex={'1'}
+      px={{md: '57px', base: '27px'}}
+      mb={'1px'}
+      justifyContent={'flex-start'}>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}>
+        <MiniHeader
+          title={'Search Flights'}
+          description={'Let’s start your trip'}
+        />
 
-      <ScrollView>
         {duplicatedFlightSearchResults.map(({routeInfo}, index) => (
           <Box
             key={index}
-            py={{md: '37px'}}
+            py={{md: '37px', base: '26px'}}
             pb={{md: '20px'}}
-            minH={'257px'}
-            px={{md: '30px'}}
+            minH={{md: '257px', base: '177px'}}
+            px={{md: '30px', base: '18px'}}
             background={'white'}
             mt={{md: '31px'}}
             borderColor={'#E6E8E9'}
-            borderRadius={{md: '25px'}}
-            mb={{md: '30px'}}>
+            borderRadius={{md: '25px', base: '10px'}}
+            mb={{md: '30px', base: '13px'}}>
             <HStack
               w={'full'}
               alignItems={'center'}
@@ -90,22 +100,25 @@ function SearchResultScreen() {
                 <Text
                   color={'primary.1'}
                   fontFamily={'Spartan-Medium'}
-                  fontSize={{md: '20px'}}>
+                  fontSize={{md: '20px', base: '14px'}}>
                   {routeInfo.departure.airportCode}
                 </Text>
                 <Text
                   color={'primary.1'}
-                  fontSize={{md: '12px'}}
+                  fontSize={{md: '12px', base: '8px'}}
                   fontFamily={'Poppins-Regular'}>
                   {routeInfo.departure.airportName}
                 </Text>
               </VStack>
               <VStack justifyContent={'center'} alignItems={'center'}>
-                <TripIcon />
+                <Box
+                  style={{transform: deviceType === 'tablet' ? '0.9' : '0.7'}}>
+                  {/* <TripIcon /> */}
+                </Box>
                 <Text
                   mt={{md: '6px'}}
                   color={'primary.1'}
-                  fontSize={{md: '12px'}}
+                  fontSize={{md: '12px', base: '9px'}}
                   fontFamily={'Poppins-Medium'}>
                   23:00 hours
                 </Text>
@@ -114,23 +127,25 @@ function SearchResultScreen() {
                 <Text
                   color={'primary.1'}
                   fontFamily={'Spartan-Medium'}
-                  fontSize={{md: '20px'}}>
+                  fontSize={{md: '20px', base: '14px'}}>
                   {routeInfo.departure.airportCode}
                 </Text>
                 <Text
                   color={'primary.1'}
-                  fontSize={{md: '12px'}}
+                  fontSize={{md: '12px', base: '7px'}}
                   fontFamily={'Poppins-Regular'}>
                   {routeInfo.departure.airportName}
                 </Text>
               </VStack>
             </HStack>
-            <HStack mt={{md: '26px'}} justifyContent={'space-between'}>
+            <HStack
+              mt={{md: '26px', base: '10px'}}
+              justifyContent={'space-between'}>
               <VStack>
                 <Text
                   color={'primary.1'}
                   fontFamily={'Poppins-Medium'}
-                  fontSize={'16px'}>
+                  fontSize={{md: '16px', base: '12px'}}>
                   8:00AM
                 </Text>
                 <Text
@@ -145,7 +160,7 @@ function SearchResultScreen() {
                 <Text
                   color={'primary.1'}
                   fontFamily={'Poppins-Medium'}
-                  fontSize={'16px'}>
+                  fontSize={{md: '16px', base: '12px'}}>
                   8:00AM
                 </Text>
                 <Text
@@ -156,31 +171,40 @@ function SearchResultScreen() {
                 </Text>
               </VStack>
             </HStack>
-            <Divider mt={{md: '17px'}} />
-            <HStack mt={{md: '26px'}} justifyContent={'space-between'}>
+            <Divider mt={{md: '17px', base: '23px'}} background={'#d9d9d9'} />
+            <HStack
+              mt={{md: '26px', base: '10px'}}
+              justifyContent={'space-between'}>
               <Box>
-                <HStack alignItems={'center'} space={'2'}>
+                <HStack alignItems={'center'} space={{md: '2', base: '0'}}>
                   <Avatar
                     source={{
                       uri: 'https://dwglogo.com/wp-content/uploads/2016/03/Arabian-oryx_Qatar-Airways.png',
                     }}
-                    size={'md'}
+                    size={deviceType === 'tablet' ? 'md' : 'sm'}
                     background={'white'}
                   />
                   <VStack>
                     <Box>
-                      <Text color={'secondary.2'} fontFamily={'Poppins-Medium'}>
+                      <Text
+                        color={'secondary.2'}
+                        fontFamily={'Poppins-Medium'}
+                        fontSize={{base: '10px', md: '14px'}}>
                         Qatar Airways
                       </Text>
-                      <Text color={'secondary.1'}>1 Stop</Text>
+                      <Text
+                        color={'secondary.1'}
+                        fontSize={{md: '12px', base: '10px'}}>
+                        1 Stop
+                      </Text>
                     </Box>
                   </VStack>
                 </HStack>
               </Box>
               <HStack space={'6px'} alignItems={'center'}>
-                <HStack alignItems={'center'} space={'1'}>
+                {/* <HStack alignItems={'center'}>
                   <Avatar
-                    size={'md'}
+                    size={deviceType === 'tablet' ? 'md' : 'sm'}
                     source={require('@assets/images/app/krila_logo_icon.png')}
                     padding={'0'}
                     background={'white'}
@@ -188,14 +212,14 @@ function SearchResultScreen() {
                   />
                   <Text
                     color={'primary.1'}
-                    fontSize={{md: '15px'}}
+                    fontSize={{md: '15px', base: '10px'}}
                     fontFamily={'Poppins-Regular'}>
                     500,000
                   </Text>
-                </HStack>
+                </HStack> */}
                 <Text
                   color={'primary.1'}
-                  fontSize={{md: '20px'}}
+                  fontSize={{md: '20px', base: '16px'}}
                   fontFamily={'Spartan-SemiBold'}>
                   $2,057.75
                 </Text>

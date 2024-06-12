@@ -9,10 +9,10 @@ interface MiniHeaderProps {
 function MiniHeader({title, description}: MiniHeaderProps) {
   return (
     <Box
-      h={{md: '166px'}}
+      h={{md: '166px', base: '92px'}}
       w="full"
       borderRadius="2xl"
-      mt={{md: '51px'}}
+      my={{base: '27px'}}
       overflow="hidden"
       position="relative">
       <Image
@@ -21,8 +21,8 @@ function MiniHeader({title, description}: MiniHeaderProps) {
         height="100%"
         width="100%"
         borderRadius="2xl"
+        style={{objectFit: 'fill'}}
       />
-
       <Flex
         position="absolute"
         top="0"
@@ -33,12 +33,15 @@ function MiniHeader({title, description}: MiniHeaderProps) {
         justifyContent="center"
         alignItems="center"
         p="4">
-        <Text color="white" fontSize={{md: '40'}} fontFamily={'Spartan-Bold'}>
+        <Text
+          color="white"
+          fontSize={{md: '40', base: '10px'}}
+          fontFamily={'Spartan-Bold'}>
           {title}
         </Text>
         <Text
           color="white"
-          fontSize={{md: '16px'}}
+          fontSize={{md: '16px', base: '10px'}}
           fontFamily={'Poppins-Regular'}>
           {description}
         </Text>

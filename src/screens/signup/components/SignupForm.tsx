@@ -141,11 +141,17 @@ function SignupForm({navigation}: SignupFormProps) {
         justifyContent="center"
         alignItems="center"
         mt={{md: '28px', base: '10px'}}>
-        <Text color="primary.1" fontFamily="Poppins-Regular" fontSize="14px">
+        <Text
+          color="primary.1"
+          fontFamily="Poppins-Regular"
+          fontSize={{base: '10px', md: '14px'}}>
           Already have an account?{' '}
         </Text>
         <TouchableOpacity onPress={() => onNavigate('EmailLoginScreen')}>
-          <Text fontFamily="Poppins-SemiBold" color={'primary.1'}>
+          <Text
+            fontFamily="Poppins-SemiBold"
+            color={'primary.1'}
+            fontSize={{base: '10px', md: '14px'}}>
             Login
           </Text>
         </TouchableOpacity>

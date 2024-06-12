@@ -60,7 +60,9 @@ function App() {
             <SafeAreaProvider>
               <Stack.Navigator
                 initialRouteName={
-                  !isOnboardingCompleted ? 'SplashScreen' : 'PhoneLoginScreen'
+                  !isOnboardingCompleted
+                    ? 'SplashScreen'
+                    : 'BookingDetailsScreen'
                 }
                 screenOptions={{headerShown: false}}>
                 <Stack.Screen name="SplashScreen" component={SplashScreen} />
@@ -78,7 +80,7 @@ function App() {
                   name="PhoneLoginScreen"
                   component={PhoneLoginScreen}
                 />
-                {/*   <Stack.Screen
+                <Stack.Screen
                   name="SearchInputScreen"
                   component={SearchInputScreen}
                 />
@@ -90,7 +92,7 @@ function App() {
                   name="BookingDetailsScreen"
                   component={BookingDetailsScreen}
                 />
-                <Stack.Screen
+                {/*     <Stack.Screen
                   name="CardPaymentScreen"
                   component={CardPaymentScreen}
                 />
