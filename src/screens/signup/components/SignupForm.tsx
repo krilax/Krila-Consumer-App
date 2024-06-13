@@ -20,16 +20,15 @@ import AuthLayover from './AuthLayover';
 import {RootStackParamList} from '@src/routes';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
-interface SignupFormProps {
-  navigation: StackNavigationProp<RootStackParamList>;
-}
-
-function SignupForm({navigation}: SignupFormProps) {
+function SignupForm() {
+  const navigation = useNavigation();
   const canvasRef: any = useRef(null);
   const [canvasSize, setCanvasSize] = useState({width: 0, height: 0});
 
   const onNavigate = (route: keyof RootStackParamList) => {
+    // @ts-ignore
     navigation.navigate(route);
   };
 

@@ -14,7 +14,7 @@ import React from 'react';
 import TripIcon from '@assets/images/app/trip_icon.svg';
 import FilterIcon from '@assets/images/app/filter_icon.svg';
 import Icon from 'react-native-vector-icons/FontAwesome6';
-import {Rating, AirbnbRating} from 'react-native-ratings';
+import {Rating} from 'react-native-ratings';
 
 function FlightSmartSearchResultScreen() {
   return (

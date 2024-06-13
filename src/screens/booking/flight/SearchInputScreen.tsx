@@ -1,6 +1,7 @@
 import {WINDOW_WIDTH} from '@constants/reusable';
-import {Tabs, TabsTabList} from '@gluestack-ui/themed';
+import {StackNavigationProp} from '@react-navigation/stack';
 import {GradientButton, SearchAdSpot, TabBar} from '@src/components';
+import {RootStackParamList} from '@src/routes';
 import {
   Box,
   Button,
@@ -9,13 +10,17 @@ import {
   Flex,
   HStack,
   Pressable,
+  ScrollView,
   Text,
   VStack,
 } from 'native-base';
 import {useState} from 'react';
-import {ScrollView} from 'react-native-gesture-handler';
 
-function SearchInputScreen() {
+interface SearchInputScreenProps {
+  navigation: StackNavigationProp<RootStackParamList>;
+}
+
+function SearchInputScreen({navigation}: SearchInputScreenProps) {
   const tabs = [
     {label: 'Round Trip', content: 'round-trip'},
     {label: 'One-way', content: 'one-way'},
@@ -24,13 +29,17 @@ function SearchInputScreen() {
 
   const [selectedTab, setSelectedTab] = useState(0);
 
+  const onSearchFlight = async () => {
+    navigation.navigate('SearchResultScreen');
+  };
+
   return (
     <VStack w={'full'} flex={1}>
       <Flex flex={1}>
-        <SearchAdSpot />
         <ScrollView
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}>
+          <SearchAdSpot />
           <Flex
             flex={1}
             justifyContent={'flex-start'}
@@ -262,11 +271,13 @@ function SearchInputScreen() {
                 </Box>
               )}
 
-              <Box mt={{md: '36px', base: '22px'}}>
+              <Box
+                mt={{md: '36px', base: '22px'}}
+                mb={{base: '32px', md: '0px'}}>
                 <GradientButton
                   title="Search Flights"
                   colors={['#03045E', '#0608C4']}
-                  onPress={function () {}}
+                  onPress={() => onSearchFlight()}
                 />
               </Box>
             </VStack>

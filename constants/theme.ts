@@ -45,6 +45,7 @@ export const nativeBaseTheme = extendTheme({
       2: '#425166',
     },
     customGreen: '#00FF00',
+    danger: '#FF4000',
   },
   config: {
     initialColorMode: 'dark',

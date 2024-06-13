@@ -54,7 +54,7 @@ function SearchResultScreen() {
     },
   ];
 
-  const duplicatedFlightSearchResults = Array.from({length: 50}, () => ({
+  const duplicatedFlightSearchResults = Array.from({length: 10}, () => ({
     ...flightSearchResults[0],
     routeInfo: {
       ...flightSearchResults[0].routeInfo,
@@ -67,11 +67,7 @@ function SearchResultScreen() {
   }));
 
   return (
-    <Flex
-      flex={'1'}
-      px={{md: '57px', base: '27px'}}
-      mb={'1px'}
-      justifyContent={'flex-start'}>
+    <Flex flex={'1'} mb={'1px'} justifyContent={'flex-start'}>
       <ScrollView
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}>
@@ -79,130 +75,132 @@ function SearchResultScreen() {
           title={'Search Flights'}
           description={'Let’s start your trip'}
         />
+        <Box px={{md: '57px', base: '27px'}}>
+          {duplicatedFlightSearchResults.map(({routeInfo}, index) => (
+            <Box
+              key={index}
+              py={{md: '37px', base: '26px'}}
+              pb={{md: '20px'}}
+              minH={{md: '257px', base: '177px'}}
+              px={{md: '30px', base: '18px'}}
+              background={'white'}
+              mt={{md: '31px'}}
+              borderColor={'#E6E8E9'}
+              borderRadius={{md: '25px', base: '10px'}}
+              mb={{md: '30px', base: '13px'}}>
+              <HStack
+                w={'full'}
+                alignItems={'center'}
+                justifyContent={'space-between'}>
+                <VStack>
+                  <Text
+                    color={'primary.1'}
+                    fontFamily={'Spartan-Medium'}
+                    fontSize={{md: '20px', base: '14px'}}>
+                    {routeInfo.departure.airportCode}
+                  </Text>
+                  <Text
+                    color={'primary.1'}
+                    fontSize={{md: '12px', base: '8px'}}
+                    fontFamily={'Poppins-Regular'}>
+                    {routeInfo.departure.airportName}
+                  </Text>
+                </VStack>
+                <VStack justifyContent={'center'} alignItems={'center'}>
+                  <Box
+                    style={{
+                      transform: deviceType === 'tablet' ? '0.9' : '0.7',
+                    }}>
+                    {/* <TripIcon /> */}
+                  </Box>
+                  <Text
+                    mt={{md: '6px'}}
+                    color={'primary.1'}
+                    fontSize={{md: '12px', base: '9px'}}
+                    fontFamily={'Poppins-Medium'}>
+                    23:00 hours
+                  </Text>
+                </VStack>
+                <VStack alignItems={'flex-end'}>
+                  <Text
+                    color={'primary.1'}
+                    fontFamily={'Spartan-Medium'}
+                    fontSize={{md: '20px', base: '14px'}}>
+                    {routeInfo.departure.airportCode}
+                  </Text>
+                  <Text
+                    color={'primary.1'}
+                    fontSize={{md: '12px', base: '7px'}}
+                    fontFamily={'Poppins-Regular'}>
+                    {routeInfo.departure.airportName}
+                  </Text>
+                </VStack>
+              </HStack>
+              <HStack
+                mt={{md: '26px', base: '10px'}}
+                justifyContent={'space-between'}>
+                <VStack>
+                  <Text
+                    color={'primary.1'}
+                    fontFamily={'Poppins-Medium'}
+                    fontSize={{md: '16px', base: '12px'}}>
+                    8:00AM
+                  </Text>
+                  <Text
+                    color={'primary.1'}
+                    fontSize={'12px'}
+                    fontFamily={'Poppins-Regular'}>
+                    May 17,2024
+                  </Text>
+                </VStack>
 
-        {duplicatedFlightSearchResults.map(({routeInfo}, index) => (
-          <Box
-            key={index}
-            py={{md: '37px', base: '26px'}}
-            pb={{md: '20px'}}
-            minH={{md: '257px', base: '177px'}}
-            px={{md: '30px', base: '18px'}}
-            background={'white'}
-            mt={{md: '31px'}}
-            borderColor={'#E6E8E9'}
-            borderRadius={{md: '25px', base: '10px'}}
-            mb={{md: '30px', base: '13px'}}>
-            <HStack
-              w={'full'}
-              alignItems={'center'}
-              justifyContent={'space-between'}>
-              <VStack>
-                <Text
-                  color={'primary.1'}
-                  fontFamily={'Spartan-Medium'}
-                  fontSize={{md: '20px', base: '14px'}}>
-                  {routeInfo.departure.airportCode}
-                </Text>
-                <Text
-                  color={'primary.1'}
-                  fontSize={{md: '12px', base: '8px'}}
-                  fontFamily={'Poppins-Regular'}>
-                  {routeInfo.departure.airportName}
-                </Text>
-              </VStack>
-              <VStack justifyContent={'center'} alignItems={'center'}>
-                <Box
-                  style={{transform: deviceType === 'tablet' ? '0.9' : '0.7'}}>
-                  {/* <TripIcon /> */}
+                <VStack alignItems={'flex-end'}>
+                  <Text
+                    color={'primary.1'}
+                    fontFamily={'Poppins-Medium'}
+                    fontSize={{md: '16px', base: '12px'}}>
+                    8:00AM
+                  </Text>
+                  <Text
+                    color={'primary.1'}
+                    fontSize={'12px'}
+                    fontFamily={'Poppins-Regular'}>
+                    May 17,2024
+                  </Text>
+                </VStack>
+              </HStack>
+              <Divider mt={{md: '17px', base: '23px'}} background={'#d9d9d9'} />
+              <HStack
+                mt={{md: '26px', base: '10px'}}
+                justifyContent={'space-between'}>
+                <Box>
+                  <HStack alignItems={'center'} space={{md: '2', base: '0'}}>
+                    <Avatar
+                      source={{
+                        uri: 'https://dwglogo.com/wp-content/uploads/2016/03/Arabian-oryx_Qatar-Airways.png',
+                      }}
+                      size={deviceType === 'tablet' ? 'md' : 'sm'}
+                      background={'white'}
+                    />
+                    <VStack>
+                      <Box>
+                        <Text
+                          color={'secondary.2'}
+                          fontFamily={'Poppins-Medium'}
+                          fontSize={{base: '10px', md: '14px'}}>
+                          Qatar Airways
+                        </Text>
+                        <Text
+                          color={'secondary.1'}
+                          fontSize={{md: '12px', base: '10px'}}>
+                          1 Stop
+                        </Text>
+                      </Box>
+                    </VStack>
+                  </HStack>
                 </Box>
-                <Text
-                  mt={{md: '6px'}}
-                  color={'primary.1'}
-                  fontSize={{md: '12px', base: '9px'}}
-                  fontFamily={'Poppins-Medium'}>
-                  23:00 hours
-                </Text>
-              </VStack>
-              <VStack alignItems={'flex-end'}>
-                <Text
-                  color={'primary.1'}
-                  fontFamily={'Spartan-Medium'}
-                  fontSize={{md: '20px', base: '14px'}}>
-                  {routeInfo.departure.airportCode}
-                </Text>
-                <Text
-                  color={'primary.1'}
-                  fontSize={{md: '12px', base: '7px'}}
-                  fontFamily={'Poppins-Regular'}>
-                  {routeInfo.departure.airportName}
-                </Text>
-              </VStack>
-            </HStack>
-            <HStack
-              mt={{md: '26px', base: '10px'}}
-              justifyContent={'space-between'}>
-              <VStack>
-                <Text
-                  color={'primary.1'}
-                  fontFamily={'Poppins-Medium'}
-                  fontSize={{md: '16px', base: '12px'}}>
-                  8:00AM
-                </Text>
-                <Text
-                  color={'primary.1'}
-                  fontSize={'12px'}
-                  fontFamily={'Poppins-Regular'}>
-                  May 17,2024
-                </Text>
-              </VStack>
-
-              <VStack alignItems={'flex-end'}>
-                <Text
-                  color={'primary.1'}
-                  fontFamily={'Poppins-Medium'}
-                  fontSize={{md: '16px', base: '12px'}}>
-                  8:00AM
-                </Text>
-                <Text
-                  color={'primary.1'}
-                  fontSize={'12px'}
-                  fontFamily={'Poppins-Regular'}>
-                  May 17,2024
-                </Text>
-              </VStack>
-            </HStack>
-            <Divider mt={{md: '17px', base: '23px'}} background={'#d9d9d9'} />
-            <HStack
-              mt={{md: '26px', base: '10px'}}
-              justifyContent={'space-between'}>
-              <Box>
-                <HStack alignItems={'center'} space={{md: '2', base: '0'}}>
-                  <Avatar
-                    source={{
-                      uri: 'https://dwglogo.com/wp-content/uploads/2016/03/Arabian-oryx_Qatar-Airways.png',
-                    }}
-                    size={deviceType === 'tablet' ? 'md' : 'sm'}
-                    background={'white'}
-                  />
-                  <VStack>
-                    <Box>
-                      <Text
-                        color={'secondary.2'}
-                        fontFamily={'Poppins-Medium'}
-                        fontSize={{base: '10px', md: '14px'}}>
-                        Qatar Airways
-                      </Text>
-                      <Text
-                        color={'secondary.1'}
-                        fontSize={{md: '12px', base: '10px'}}>
-                        1 Stop
-                      </Text>
-                    </Box>
-                  </VStack>
-                </HStack>
-              </Box>
-              <HStack space={'6px'} alignItems={'center'}>
-                {/* <HStack alignItems={'center'}>
+                <HStack space={'6px'} alignItems={'center'}>
+                  {/* <HStack alignItems={'center'}>
                   <Avatar
                     size={deviceType === 'tablet' ? 'md' : 'sm'}
                     source={require('@assets/images/app/krila_logo_icon.png')}
@@ -217,20 +215,21 @@ function SearchResultScreen() {
                     500,000
                   </Text>
                 </HStack> */}
-                <Text
-                  color={'primary.1'}
-                  fontSize={{md: '20px', base: '16px'}}
-                  fontFamily={'Spartan-SemiBold'}>
-                  $2,057.75
-                </Text>
+                  <Text
+                    color={'primary.1'}
+                    fontSize={{md: '20px', base: '16px'}}
+                    fontFamily={'Spartan-SemiBold'}>
+                    $2,057.75
+                  </Text>
+                </HStack>
               </HStack>
-            </HStack>
-          </Box>
-        ))}
+            </Box>
+          ))}
+        </Box>
       </ScrollView>
       <TabBar />
     </Flex>
   );
 }
 
-export default SearchResultScreen;
+export default React.memo(SearchResultScreen);

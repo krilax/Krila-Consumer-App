@@ -6,21 +6,10 @@ function SearchAdSpot() {
   const adHeight = WINDOW_HEIGHT * 0.18;
   const [activeButton, setActiveButton] = useState(0);
 
-  // const getButtonStyle = (index: number) => {
-  //   if (index === activeButton) {
-  //     return {
-  //       height: '45px',
-  //     };
-  //   }
-  //   return {
-  //     height: '40px',
-  //   };
-  // };
-
   return (
     <Flex w="full" height={adHeight} justifyContent={'flex-start'}>
       <Flex w={'full'} h={'full'} flex={'1'} bg={'yellow.100'}>
-        {/* <Image
+        <Image
           alt="Advertise here"
           source={require('@assets/images/app/SearchAdSpotCover.png')}
           width={'100%'}
@@ -28,7 +17,7 @@ function SearchAdSpot() {
           style={{
             objectFit: 'fill',
           }}
-        /> */}
+        />
       </Flex>
       <Flex
         position={'absolute'}
@@ -49,7 +38,7 @@ function SearchAdSpot() {
                 flex={1}
                 mx={0}
                 // h={getButtonStyle(index).height}
-                borderRadius={'0px'}
+                // borderRadius={'10px'}
                 bg={activeButton === index ? 'white' : 'primary.1'}>
                 <Text
                   color={activeButton === index ? 'primary.1' : 'white'}
@@ -62,13 +51,13 @@ function SearchAdSpot() {
           </HStack>
         </Flex>
         <Flex flex={1} justifyContent={'flex-start'} alignItems={'flex-end'}>
-          <Text>Notificaiton Icon</Text>
+          {/* <Text>Notificaiton Icon</Text> */}
           <Text
             textAlign={'right'}
             color={'#03045E'}
             fontFamily={'Spartan-Bold'}
-            marginTop={{md: '23px'}}
-            fontSize={{md: '28px', base: '10px'}}>
+            marginTop={{base: '5px'}}
+            fontSize={{md: '20px', base: '10px'}}>
             Reach Targeted Travelers. Advertise Here
           </Text>
           <Text

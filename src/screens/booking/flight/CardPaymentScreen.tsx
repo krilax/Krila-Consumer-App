@@ -1,12 +1,5 @@
 import {nativeBaseTheme} from '@constants/theme';
-import {
-  Button,
-  ButtonGroup,
-  ButtonIcon,
-  ButtonText,
-  Image,
-} from '@gluestack-ui/themed';
-import {FormTextInput, GradientButton, TabBar} from '@src/components';
+import {FormTextInput, GradientButton, MiniHeader} from '@src/components';
 import {
   Box,
   Checkbox,
@@ -15,9 +8,10 @@ import {
   ScrollView,
   Text,
   VStack,
-  Button as NativeBaseButton,
+  Button,
   Select,
   CheckIcon,
+  Image,
 } from 'native-base';
 import React, {useState} from 'react';
 import {Pressable} from 'react-native';
@@ -30,22 +24,19 @@ function CardPaymentScreen() {
     {label: 'Cryptocurrency', content: 'one-way'},
   ];
 
-  const [selectedTab, setSelectedTab] = useState(0);
+  const [selectedTab, setSelectedTab] = useState(1);
 
   return (
     <Flex flex={'1'}>
-      <ScrollView px={{md: '57px'}} mb={'1px'} borderWidth={'1px'}>
-        <Box
-          h={{md: '166px'}}
-          w={'full'}
-          bg={'black'}
-          borderRadius={'2xl'}
-          mt={{md: '51px'}}
-        />
+      <ScrollView
+        mb={'1px'}
+        borderWidth={'1px'}
+        px={{md: '57px', base: '27px'}}>
+        <MiniHeader title={'Payment'} description={'Let’s start your trip'} />
 
         <Box
           mt={{md: '45px'}}
-          pb={{md: '56px'}}
+          pb={{md: '56px', base: '25px'}}
           bg={'white'}
           w={'full'}
           borderRadius={{md: '10px'}}
@@ -58,26 +49,35 @@ function CardPaymentScreen() {
             shadowRadius: 46,
             elevation: 5,
           }}
-          px={{md: '34px'}}
-          pt={{md: '24px'}}>
-          <Text color={'primary.1'}>Payment Method</Text>
-          <Text color={'#616161'} mt={'12px'}>
+          px={{md: '34px', base: '22px'}}
+          pt={{md: '24px', base: '22px'}}>
+          <Text
+            color={'primary.1'}
+            fontFamily={'Spartan-Medium'}
+            fontSize={{base: '12px', md: '20px'}}>
+            Payment Method
+          </Text>
+          <Text
+            color={'#616161'}
+            mt={'12px'}
+            fontFamily={'Poppins-Regular'}
+            fontSize={{base: '10px', md: '16px'}}>
             Select a payment method
           </Text>
 
           <HStack
             mt={'29px'}
-            space={{md: '32px'}}
-            justifyContent="center"
-            width={{md: '180px'}}
-            mb={{md: '32px'}}>
+            space={{md: '32px', base: '23px'}}
+            justifyContent={{base: 'flex-start', md: 'center'}}
+            width={{md: '180px', base: 'full'}}
+            mb={{md: '32px', base: '15.77px'}}>
             {tabs.map((tab, index) => (
               <Pressable
                 key={index}
                 onPress={() => setSelectedTab(index)}
                 alignItems="center"
                 justifyContent="center"
-                borderBottomWidth={selectedTab === index ? 2 : 1}
+                borderBottomWidth={selectedTab === index ? 2 : 0}
                 borderBottomColor={
                   selectedTab === index ? 'primary.1' : 'gray.300'
                 }
@@ -88,7 +88,7 @@ function CardPaymentScreen() {
                     selectedTab === index ? 'Poppins-Bold' : 'Poppins-Regular'
                   }
                   color={'primary.1'}
-                  fontSize={{md: '14px'}}>
+                  fontSize={{base: '14px'}}>
                   {tab.label}
                 </Text>
               </Pressable>
@@ -96,7 +96,7 @@ function CardPaymentScreen() {
           </HStack>
 
           {!selectedTab ? (
-            <VStack w={'full'} space={{md: '23px'}}>
+            <VStack w={'full'} space={{md: '23px', base: '12px'}}>
               <FormTextInput
                 formTitle="Card Number"
                 placeholder={'xxxx xxxx xxxx xxxx'}
@@ -109,18 +109,16 @@ function CardPaymentScreen() {
                 width={'100%'}
               />
 
+              <FormTextInput
+                formTitle="Expiration Date"
+                placeholder="Placeholder"
+                width="100%"
+              />
+
               <HStack
                 justifyContent={'space-between'}
                 alignItems={'center'}
-                space={'41px'}>
-                <Box flex={'1'}>
-                  <FormTextInput
-                    formTitle="Expiration Date"
-                    placeholder="Placeholder"
-                    width="100%"
-                  />
-                </Box>
-
+                space={{md: '41px', base: '21px'}}>
                 <Box flex={'1'}>
                   <HStack space={'27px'} alignItems={'center'}>
                     <Box flex={'1'}>
@@ -142,11 +140,12 @@ function CardPaymentScreen() {
               </HStack>
 
               <Checkbox
+                mt={'22px'}
                 value="test"
                 isChecked={false}
                 accessibilityLabel="Check this box">
                 <Text
-                  fontSize="lg"
+                  fontSize={{base: '8px', md: '16px'}}
                   ml={2}
                   fontFamily={'Poppins-Regular'}
                   fontStyle={'16px'}
@@ -158,79 +157,70 @@ function CardPaymentScreen() {
           ) : (
             <VStack w={'full'}>
               <Box>
-                <ButtonGroup>
+                <HStack space={4} mb={{base: '21px', md: '23px'}}>
                   <Button
-                    bg="#"
-                    gap={'$4'}
-                    style={{
-                      borderRadius: 5,
-                      backgroundColor: '#F3C31B',
-                      shadowColor: '#000',
-                      shadowOffset: {width: 2, height: 4},
-                      shadowOpacity: 0.2,
-                      shadowRadius: 46,
-                      elevation: 10,
-                    }}>
-                    <ButtonIcon>
-                      <ButtonIcon>
-                        <Image
-                          source={require('@assets/images/app/binance.png')}
-                          style={{width: 24, height: 24}}
-                          alt="BP"
-                        />
-                      </ButtonIcon>
-                    </ButtonIcon>
-                    <ButtonText>Binance Pay</ButtonText>
+                    bg="#F3C31B"
+                    size={'xs'}
+                    _pressed={{bg: '#f3c31b'}}
+                    rounded="md"
+                    shadow={3}
+                    _text={{
+                      color: 'black',
+                    }}
+                    leftIcon={
+                      <Image
+                        source={require('@assets/images/app/binance.png')}
+                        alt="BP"
+                        size={4}
+                      />
+                    }>
+                    Binance Pay
                   </Button>
 
                   <Button
-                    bg="white"
-                    gap={16}
-                    style={{
-                      borderRadius: 5,
-                      backgroundColor: '#FFF',
-                      shadowColor: '#000',
-                      shadowOffset: {width: 2, height: 4},
-                      shadowOpacity: 0.2,
-                      shadowRadius: 46,
-                      elevation: 10,
+                    bg="#fff"
+                    size="xs"
+                    rounded="md"
+                    shadow={4}
+                    _pressed={{
+                      bg: 'white',
                     }}
-                    alignItems="center">
-                    <ButtonIcon>
+                    _text={{
+                      color: 'black',
+                    }}
+                    leftIcon={
                       <Image
                         source={{
                           uri: 'https://play-lh.googleusercontent.com/8aXTeaP1Sm29QPQ1IWacpgBRMpyCQLlVtA5QQ0DhN30d-R0fCdrCHlbQUZvdg2bJGvQ=s96-rw',
                         }}
-                        style={{width: 24, height: 24}}
-                        alt="C"
+                        alt="BP"
+                        size={3}
                       />
-                    </ButtonIcon>
-                    <ButtonText color={nativeBaseTheme.colors.primary[1]}>
-                      Crypto.com
-                    </ButtonText>
+                    }>
+                    Crypto.com
                   </Button>
-                </ButtonGroup>
+                </HStack>
 
                 <Checkbox
-                  mt={{md: '27px'}}
+                  mt={{md: '27px', base: '22px'}}
+                  size={'sm'}
                   value="test"
                   isChecked={false}
                   accessibilityLabel="Check this box">
                   <Text
-                    fontSize="lg"
+                    fontSize={{md: '16px', base: '12px'}}
                     ml={2}
                     fontFamily={'Poppins-Regular'}
-                    fontStyle={'16px'}
                     color={'primary.1'}>
                     External Wallet
                   </Text>
                 </Checkbox>
 
-                <NativeBaseButton
+                <Button
                   bg="white"
-                  mt={{md: '28px'}}
-                  py={{md: '23px'}}
-                  px={{md: '18px'}}
+                  mt={{md: '28px', base: '8px'}}
+                  py={{md: '23px', base: '15px'}}
+                  px={{base: '16px'}}
                   style={{
                     borderRadius: 5,
                     backgroundColor: '#FFF',
@@ -243,7 +233,9 @@ function CardPaymentScreen() {
                   }}
                   alignItems="center"
                   justifyContent="flex-start">
-                  <HStack alignItems={'center'} space={{md: '29px'}}>
+                  <HStack
+                    alignItems={'center'}
+                    space={{md: '29px', base: '10px'}}>
                     <Box style={{width: 24, height: 24}}>
                       <WalletIcon height={'100%'} width={'100%'} />
                     </Box>
@@ -251,27 +243,27 @@ function CardPaymentScreen() {
                       Select a wallet
                     </Text>
                   </HStack>
-                </NativeBaseButton>
+                </Button>
 
                 <Checkbox
-                  my={{md: '28px'}}
+                  mt={{md: '27px', base: '22px'}}
+                  mb={{base: '7px'}}
                   value="test"
                   isChecked={false}
                   accessibilityLabel="Check this box">
                   <Text
-                    fontSize="lg"
+                    fontSize={{md: '16px', base: '12px'}}
                     ml={2}
                     fontFamily={'Poppins-Regular'}
-                    fontStyle={'16px'}
                     color={'primary.1'}>
                     Cryptocurrency
                   </Text>
                 </Checkbox>
 
-                <NativeBaseButton
+                <Button
                   bg="white"
-                  py={{md: '23px'}}
-                  px={{md: '18px'}}
+                  py={{md: '23px', base: '15px'}}
+                  px={{base: '16px'}}
                   style={{
                     borderRadius: 5,
                     backgroundColor: '#FFF',
@@ -284,26 +276,29 @@ function CardPaymentScreen() {
                   }}
                   alignItems="center"
                   justifyContent="flex-start">
-                  <HStack alignItems={'center'} space={{md: '29px'}}>
+                  <HStack
+                    alignItems={'center'}
+                    space={{md: '29px', base: '10px'}}>
                     <Box style={{width: 24, height: 24}}>
                       <WalletIcon height={'100%'} width={'100%'} />
                     </Box>
                     <Text color={'primary.1'} fontFamily={'Poppins-Regular'}>
-                      Select a wallet
+                      Select Crypto
                     </Text>
                   </HStack>
-                </NativeBaseButton>
+                </Button>
 
-                <Box mt={{md: '17px'}}>
+                <Box mt={{md: '17px', base: '14px'}}>
                   <Select
-                    minWidth="200"
                     accessibilityLabel="Select Network"
+                    borderColor={'secondary.1'}
+                    borderRadius={'10px'}
                     placeholder="Select Network"
-                    px={{md: '16px'}}
-                    py={{md: '12px'}}
+                    px={{base: '16px'}}
+                    py={{base: '12px'}}
                     _selectedItem={{
                       bg: 'teal.600',
-                      endIcon: <CheckIcon size="5" />,
+                      endIcon: <CheckIcon size="3" />,
                     }}
                     mt={1}
                     // onValueChange={itemValue => setService(itemValue)}
@@ -320,24 +315,24 @@ function CardPaymentScreen() {
                 </Box>
 
                 <Checkbox
-                  my={{md: '28px'}}
+                  mt={{md: '27px', base: '22px'}}
                   value="test"
                   isChecked={false}
                   accessibilityLabel="Check this box">
                   <Text
-                    fontSize="lg"
+                    fontSize={{md: '16px', base: '10px'}}
                     ml={2}
                     fontFamily={'Poppins-Regular'}
-                    fontStyle={'16px'}
                     color={'primary.1'}>
                     Reward Points
                   </Text>
                 </Checkbox>
 
-                <NativeBaseButton
+                <Button
                   bg="white"
-                  py={{md: '23px'}}
-                  px={{md: '18px'}}
+                  mt={{md: '28px', base: '8px'}}
+                  py={{md: '23px', base: '15px'}}
+                  px={{md: '18px', base: '8px'}}
                   style={{
                     borderRadius: 5,
                     backgroundColor: '#FFF',
@@ -350,15 +345,17 @@ function CardPaymentScreen() {
                   }}
                   alignItems="center"
                   justifyContent="flex-start">
-                  <HStack alignItems={'center'} space={{md: '29px'}}>
+                  <HStack
+                    alignItems={'center'}
+                    space={{md: '29px', base: '10px'}}>
                     <Box style={{width: 24, height: 24}}>
                       <RewardPoint height={'100%'} width={'100%'} />
                     </Box>
                     <Text color={'primary.1'} fontFamily={'Poppins-Regular'}>
-                      Select a reward points
+                      Select a wallet
                     </Text>
                   </HStack>
-                </NativeBaseButton>
+                </Button>
               </Box>
             </VStack>
           )}
@@ -367,40 +364,58 @@ function CardPaymentScreen() {
             w={'full'}
             justifyContent={'flex-end'}
             alignItems={'center'}
-            mt={{md: '139px'}}
-            space={{md: '71px'}}>
+            mt={{md: '139px', base: '66px'}}
+            space={{md: '26px', base: '20px'}}>
             <Text
               color={'primary.1'}
-              fontFamily={'Poppins-Medium'}
-              fontSize={'18px'}>
+              fontFamily={'Poppins-Bold'}
+              fontSize={{md: '18px', base: '10px'}}>
               TOTAL
             </Text>
-            <Text
-              color="primary.1"
-              fontSize={'16px'}
-              fontFamily={'Poppins-Regular'}>
-              $ 1,045.84
-            </Text>
+
             <HStack alignItems={'center'} space={'7px'}>
               <Text color={'primary.1'} fontSize={'12px'}>
                 KC
               </Text>
-              <Text color={'primary.1'} fontSize={{md: '20px'}}>
+              <Text
+                color={'primary.1'}
+                fontFamily={'Spartan-SemiBold'}
+                fontSize={{md: '20px', base: '12px'}}>
                 6,680
               </Text>
             </HStack>
+
+            <Text
+              color="primary.1"
+              // fontSize={'16px'}
+              fontSize={{base: '16px', md: '20px'}}
+              fontFamily={'Poppins-Bold'}>
+              $ 1,045.84
+            </Text>
           </HStack>
         </Box>
 
-        <Box mt={{md: '36px'}} mb={{md: '51px'}}>
-          <GradientButton
-            title="Confirm and Pay"
-            colors={['#03045E', '#0608C4']}
-            onPress={function () {}}
-          />
-        </Box>
+        <HStack
+          mt={{md: '36px', base: '41px'}}
+          mb={{md: '51px', base: '42px'}}
+          space={{md: '22px', base: '26px'}}>
+          <Flex flex={'1'}>
+            <GradientButton
+              title="Cancel"
+              colors={['#fff', '#fff']}
+              onPress={function () {}}
+              textColor={nativeBaseTheme.colors.danger}
+            />
+          </Flex>
+          <Flex flex={'1'}>
+            <GradientButton
+              title="Confirm and Pay"
+              colors={['#03045E', '#0608C4']}
+              onPress={function () {}}
+            />
+          </Flex>
+        </HStack>
       </ScrollView>
-      <TabBar />
     </Flex>
   );
 }
