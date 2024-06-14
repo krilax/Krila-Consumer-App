@@ -672,10 +672,10 @@ function FlightSelectSeatScreen({navigation}: FlightSelectSeatScreenProps) {
           mt={{md: '36px', base: '28px'}}>
           <Flex mb={{base: '51px'}} flex={1}>
             <GradientButton
-              title="Proceed To Payment"
+              title="Continue"
               colors={['#03045E', '#0608C4']}
               onPress={function () {
-                onNavigate('CardPaymentScreen');
+                onNavigate('BookingDetailsScreen');
               }}
             />
           </Flex>

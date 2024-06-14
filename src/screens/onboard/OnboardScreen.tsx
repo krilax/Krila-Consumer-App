@@ -2,7 +2,11 @@ import React, {Suspense, useEffect} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '@src/routes';
 import {Box, Flex, HStack, Text, View} from 'native-base';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -14,7 +18,7 @@ import Animated, {
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@constants/reusable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {LoadingScreen} from '@src/components';
+import WelcomeLoadingScreen from '@src/components/loadingScreens/WelcomeLoadingScreen';
 
 const TravelReimaginedScreen = React.lazy(
   () => import('./components/TravelReimaginedScreen'),
@@ -68,9 +72,9 @@ const onboardData: OnboardDataInterface[] = [
   },
 ];
 
-const AUTO_SWITCH_INTERVAL = 10000;
+const AUTO_SWITCH_INTERVAL = 20000;
 const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
-  const index = useSharedValue(1);
+  const index = useSharedValue(0);
   const isGestureActive = useSharedValue(false);
   const shouldAutoSwitch = useSharedValue(true);
   const translationX = useSharedValue(0);
@@ -159,7 +163,7 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
   );
 
   const onNavigate = (route: keyof RootStackParamList) => {
-    navigation.navigate(route);
+    navigation.replace(route);
   };
 
   const markOnboardingComplete = async () => {
@@ -177,7 +181,7 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
   }, []);
 
   return (
-    <Suspense fallback={<LoadingScreen />}>
+    <Suspense fallback={<WelcomeLoadingScreen />}>
       <View style={styles.container}>
         <GestureDetector {...{gesture}}>
           <Animated.View style={StyleSheet.absoluteFill}>
@@ -241,14 +245,14 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
               bottom={'0'}
               justifyContent={'flex-end'}
               alignItems={'flex-end'}>
-              <TouchableOpacity onPress={markOnboardingComplete}>
+              <TouchableWithoutFeedback onPress={markOnboardingComplete}>
                 <Text
                   color={'black'}
                   fontFamily={'Poppins-SemiBold'}
                   fontSize={{md: '20px', base: '14px'}}>
                   Skip
                 </Text>
-              </TouchableOpacity>
+              </TouchableWithoutFeedback>
             </Flex>
           </HStack>
         </Box>

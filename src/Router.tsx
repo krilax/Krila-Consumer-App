@@ -10,14 +10,14 @@ import {
   SearchResultScreen,
 } from '@src/screens/booking/flight';
 import {
+  BookingDetailsScreen,
   EmailLoginScreen,
+  FlightPassengerInfoScreen,
   OnboardScreen,
   ResetPasswordScreen,
   SignupScreen,
   SplashScreen,
 } from '@src/screens';
-import BookingDetailsScreen from '@src/screens/booking/flight/BookingDetailScreen';
-import FlightPassengerInfoScreen from '@src/screens/booking/flight/FlightPassengerInfoScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -29,7 +29,7 @@ function Router({isOnboardingCompleted}: RouterProps) {
   return (
     <Stack.Navigator
       initialRouteName={
-        !isOnboardingCompleted ? 'SplashScreen' : 'SearchInputScreen'
+        !isOnboardingCompleted ? 'SplashScreen' : 'OnboardScreen'
       }
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="SplashScreen" component={SplashScreen} />

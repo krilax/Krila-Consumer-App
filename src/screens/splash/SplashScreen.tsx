@@ -1,12 +1,6 @@
 import React, {useEffect} from 'react';
-import {Flex, Text, View} from 'native-base';
-import {
-  Canvas,
-  ImageSVG,
-  Group,
-  fitbox,
-  rect,
-} from '@shopify/react-native-skia';
+import {Flex, Text} from 'native-base';
+
 import {Dimensions} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '@src/routes';
@@ -22,8 +16,6 @@ const {width, height} = Dimensions.get('window');
 
 const SplashScreen: React.FC<SplashScreenProps> = ({navigation}) => {
   const deviceType = useDeviceType();
-  // const src = rect(0, 0, splashKrilaSvg.width(), splashKrilaSvg.height());
-  // const dst = rect(0, 0, width, height);
 
   useEffect(() => {
     setTimeout(() => {
