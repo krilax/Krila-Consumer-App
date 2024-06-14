@@ -1,11 +1,6 @@
 import {WINDOW_WIDTH} from '@constants/reusable';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {
-  CuratingLoadingScreen,
-  GradientButton,
-  SearchAdSpot,
-  TabBar,
-} from '@src/components';
+import {CuratingLoadingScreen} from '@src/components';
 import {RootStackParamList} from '@src/routes';
 import {
   Box,
@@ -17,7 +12,13 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import {Suspense, useState} from 'react';
+import {Suspense, lazy, useState} from 'react';
+
+const GradientButton = lazy(() => import('@src/components/GradientButton'));
+const SearchAdSpot = lazy(
+  () => import('@src/components/advertising/SearchAdSpot'),
+);
+const TabBar = lazy(() => import('@src/components/TabBar'));
 
 interface SearchInputScreenProps {
   navigation: StackNavigationProp<RootStackParamList>;
@@ -27,9 +28,7 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
   const tabs = [
     {label: 'Round Trip', content: 'round-trip'},
     {label: 'One-way', content: 'one-way'},
-    {label: 'Mutil-city', content: 'multi'},
   ];
-
   const [selectedTab, setSelectedTab] = useState(0);
 
   const onSearchFlight = async () => {
@@ -54,9 +53,9 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                 pb={{md: '33px', base: '10px'}}>
                 <HStack
                   w={'full'}
-                  space={{md: '69px', base: '37px'}}
-                  justifyContent="center"
-                  width={{md: WINDOW_WIDTH * 0.57, base: WINDOW_WIDTH * 0.7}}>
+                  space={{md: '10px', base: '5px'}}
+                  justifyContent="flex-start"
+                  width={{md: WINDOW_WIDTH * 0.4, base: WINDOW_WIDTH * 0.4}}>
                   {tabs.map((tab, index) => (
                     <Pressable
                       key={index}
@@ -212,7 +211,7 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                       </Box>
                     </Box>
                   </>
-                ) : (
+                ) : tabs[selectedTab].content === 'one-way' ? (
                   <Box
                     mt={{md: '42px', base: '27px'}}
                     bg="white"
@@ -275,6 +274,8 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                       </Text>
                     </Box>
                   </Box>
+                ) : (
+                  tabs[selectedTab].content === 'multi' && null
                 )}
 
                 <Box

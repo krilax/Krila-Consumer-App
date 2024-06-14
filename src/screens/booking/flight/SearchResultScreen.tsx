@@ -1,4 +1,3 @@
-import {LoadingScreen} from '@src/components';
 import {
   Avatar,
   Box,
@@ -12,9 +11,9 @@ import {
 import React, {Suspense} from 'react';
 import {useDeviceType} from '@src/components/hooks';
 import {RootStackParamList} from '@src/routes';
-import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {TouchableWithoutFeedback} from 'react-native';
+import {Spinner} from '@gluestack-ui/themed-native-base';
 
 const MiniHeader = React.lazy(() => import('@src/components/MiniHeader'));
 const TabBar = React.lazy(() => import('@src/components/TabBar'));
@@ -79,17 +78,17 @@ function SearchResultScreen({navigation}: SearchResultScreenProps) {
   }));
 
   return (
-    <Suspense fallback={<LoadingScreen />}>
-      <Flex flex={'1'} mb={'1px'} justifyContent={'flex-start'}>
-        <ScrollView
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          px={{md: '57px', base: '27px'}}>
-          <MiniHeader
-            title={'Search Flights'}
-            description={'Let’s start your trip'}
-          />
-          <Box>
+    <Flex flex={'1'} mb={'1px'} justifyContent={'flex-start'}>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        px={{md: '57px', base: '27px'}}>
+        <MiniHeader
+          title={'Search Flights'}
+          description={'Let’s start your trip'}
+        />
+        <Box>
+          <Suspense fallback={<Spinner size={'sm'} />}>
             {duplicatedFlightSearchResults.map(({routeInfo}, index) => (
               <TouchableWithoutFeedback
                 key={index}
@@ -248,11 +247,11 @@ function SearchResultScreen({navigation}: SearchResultScreenProps) {
                 </Box>
               </TouchableWithoutFeedback>
             ))}
-          </Box>
-        </ScrollView>
-        <TabBar />
-      </Flex>
-    </Suspense>
+          </Suspense>
+        </Box>
+      </ScrollView>
+      <TabBar />
+    </Flex>
   );
 }
 

@@ -1,6 +1,5 @@
 import {WINDOW_WIDTH} from '@constants/reusable';
-import {nativeBaseTheme} from '@constants/theme';
-import {PixelRatio, Dimensions} from 'react-native';
+import {PixelRatio} from 'react-native';
 
 export const BORDER_RADIUS = 65;
 export interface IconProps {
@@ -15,8 +14,3 @@ export const SEGMENT = PixelRatio.roundToNearestPixel(
 );
 
 export const ICON_SIZE = SEGMENT - horizontalPadding;
-
-export const Colors = {
-  primary: nativeBaseTheme.colors.primary[1],
-  border: 'red',
-};

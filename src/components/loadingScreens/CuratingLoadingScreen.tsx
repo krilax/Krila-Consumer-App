@@ -2,7 +2,7 @@ import {WINDOW_HEIGHT} from '@constants/reusable';
 import {Box, Flex, Image, Text, View} from 'native-base';
 import React from 'react';
 
-function LoadingScreen() {
+function CuratingLoadingScreen() {
   return (
     <View
       flex={'1'}
@@ -56,4 +56,4 @@ function LoadingScreen() {
   );
 }
 
-export default LoadingScreen;
+export default CuratingLoadingScreen;

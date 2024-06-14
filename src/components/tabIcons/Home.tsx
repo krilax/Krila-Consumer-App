@@ -1,4 +1,4 @@
-import {Colors, IconProps} from '@src/helpers/constants';
+import {IconProps} from '@src/helpers/constants';
 import * as React from 'react';
 import Svg, {Path} from 'react-native-svg';
 import {useDeviceType} from '../hooks';

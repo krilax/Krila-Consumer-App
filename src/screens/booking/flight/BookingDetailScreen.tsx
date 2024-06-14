@@ -1,24 +1,33 @@
-import React, {Suspense} from 'react';
+import React, {Suspense, lazy} from 'react';
 import {WINDOW_WIDTH} from '@constants/reusable';
 import {Avatar, Box, Flex, HStack, Text, VStack, ScrollView} from 'native-base';
+import {RootStackParamList} from '@src/routes';
+import {StackNavigationProp} from '@react-navigation/stack';
 
-const GradientButton = React.lazy(
-  () => import('@src/components/GradientButton'),
+const GradientButton = lazy(() => import('@src/components/GradientButton'));
+const TabBar = lazy(() => import('@src/components/TabBar'));
+const MiniHeader = lazy(() => import('@src/components/MiniHeader'));
+const ContactDetail = lazy(() => import('./components/ContactDetail'));
+const MasterCardIcon = lazy(() => import('@assets/images/app/mastercard.svg'));
+const VisaIcon = lazy(() => import('@assets/images/app/Visa.svg'));
+const BitcoinIcon = lazy(() => import('@assets/images/app/bitcoin.svg'));
+const KrilaLogoIcon = lazy(() => import('@assets/images/app/krila.svg'));
+const TripIcon = lazy(() => import('@assets/images/app/trip_icon.svg'));
+const CuratingLoadingScreen = lazy(
+  () => import('@src/components/loadingScreens/CuratingLoadingScreen'),
 );
-const TabBar = React.lazy(() => import('@src/components/TabBar'));
-const MiniHeader = React.lazy(() => import('@src/components/MiniHeader'));
-const ContactDetail = React.lazy(() => import('./components/ContactDetail'));
-const MasterCardIcon = React.lazy(
-  () => import('@assets/images/app/mastercard.svg'),
-);
-const VisaIcon = React.lazy(() => import('@assets/images/app/Visa.svg'));
-const BitcoinIcon = React.lazy(() => import('@assets/images/app/bitcoin.svg'));
-const KrilaLogoIcon = React.lazy(() => import('@assets/images/app/krila.svg'));
-const TripIcon = React.lazy(() => import('@assets/images/app/trip_icon.svg'));
 
-function BookingDetailsScreen() {
+interface BookingDetailsScreenProps {
+  navigation: StackNavigationProp<RootStackParamList>;
+}
+
+function BookingDetailsScreen({navigation}: BookingDetailsScreenProps) {
+  const onNavigate = (route: keyof RootStackParamList) => {
+    navigation.navigate(route);
+  };
+
   return (
-    <Suspense>
+    <Suspense fallback={<CuratingLoadingScreen />}>
       <Flex flex={'1'} background={'#EFEFEF'}>
         <ScrollView
           px={{md: '57px', base: '27px'}}
@@ -281,7 +290,9 @@ function BookingDetailsScreen() {
             <GradientButton
               title="Proceed To Payment"
               colors={['#03045E', '#0608C4']}
-              onPress={function () {}}
+              onPress={function () {
+                onNavigate('CardPaymentScreen');
+              }}
             />
           </Box>
         </ScrollView>

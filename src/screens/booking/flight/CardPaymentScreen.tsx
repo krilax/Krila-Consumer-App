@@ -1,5 +1,4 @@
 import {nativeBaseTheme} from '@constants/theme';
-import {FormTextInput, GradientButton, MiniHeader} from '@src/components';
 import {
   Box,
   Checkbox,
@@ -12,11 +11,16 @@ import {
   Select,
   CheckIcon,
   Image,
+  Pressable,
 } from 'native-base';
-import React, {useState} from 'react';
-import {Pressable} from 'react-native';
+import React, {Suspense, lazy, useState} from 'react';
 import WalletIcon from '@assets/images/app/wallet.svg';
 import RewardPoint from '@assets/images/app/reward.svg';
+import {Spinner} from '@gluestack-ui/themed-native-base';
+
+const FormTextInput = lazy(() => import('@src/components/FormTextInput'));
+const GradientButton = lazy(() => import('@src/components/GradientButton'));
+const MiniHeader = lazy(() => import('@src/components/MiniHeader'));
 
 function CardPaymentScreen() {
   const tabs = [
@@ -24,7 +28,7 @@ function CardPaymentScreen() {
     {label: 'Cryptocurrency', content: 'one-way'},
   ];
 
-  const [selectedTab, setSelectedTab] = useState(1);
+  const [selectedTab, setSelectedTab] = useState(0);
 
   return (
     <Flex flex={'1'}>
@@ -32,7 +36,9 @@ function CardPaymentScreen() {
         mb={'1px'}
         borderWidth={'1px'}
         px={{md: '57px', base: '27px'}}>
-        <MiniHeader title={'Payment'} description={'Let’s start your trip'} />
+        <Suspense fallback={<Spinner />}>
+          <MiniHeader title={'Payment'} description={'Let’s start your trip'} />
+        </Suspense>
 
         <Box
           mt={{md: '45px'}}
@@ -95,270 +101,284 @@ function CardPaymentScreen() {
             ))}
           </HStack>
 
-          {!selectedTab ? (
-            <VStack w={'full'} space={{md: '23px', base: '12px'}}>
-              <FormTextInput
-                formTitle="Card Number"
-                placeholder={'xxxx xxxx xxxx xxxx'}
-                width={'100%'}
-              />
+          <Suspense fallback={<Spinner size={'sm'} />}>
+            {!selectedTab ? (
+              <VStack w={'full'} space={{md: '23px', base: '12px'}}>
+                <FormTextInput
+                  formTitle="Card Number"
+                  placeholder={'xxxx xxxx xxxx xxxx'}
+                  width={'100%'}
+                />
 
-              <FormTextInput
-                formTitle="Card Name"
-                placeholder={'Your fullname'}
-                width={'100%'}
-              />
+                <FormTextInput
+                  formTitle="Card Name"
+                  placeholder={'Your fullname'}
+                  width={'100%'}
+                />
 
-              <FormTextInput
-                formTitle="Expiration Date"
-                placeholder="Placeholder"
-                width="100%"
-              />
+                <FormTextInput
+                  formTitle="Expiration Date"
+                  placeholder="Placeholder"
+                  width="100%"
+                />
 
-              <HStack
-                justifyContent={'space-between'}
-                alignItems={'center'}
-                space={{md: '41px', base: '21px'}}>
-                <Box flex={'1'}>
-                  <HStack space={'27px'} alignItems={'center'}>
-                    <Box flex={'1'}>
-                      <FormTextInput
-                        formTitle="CVV"
-                        placeholder="123"
-                        width="100%"
-                      />
-                    </Box>
-                    <Box flex={'1'}>
-                      <FormTextInput
-                        formTitle="PIN"
-                        placeholder="****"
-                        width="100%"
-                      />
-                    </Box>
-                  </HStack>
-                </Box>
-              </HStack>
-
-              <Checkbox
-                mt={'22px'}
-                value="test"
-                isChecked={false}
-                accessibilityLabel="Check this box">
-                <Text
-                  fontSize={{base: '8px', md: '16px'}}
-                  ml={2}
-                  fontFamily={'Poppins-Regular'}
-                  fontStyle={'16px'}
-                  color={'primary.1'}>
-                  Add card to account
-                </Text>
-              </Checkbox>
-            </VStack>
-          ) : (
-            <VStack w={'full'}>
-              <Box>
-                <HStack space={4} mb={{base: '21px', md: '23px'}}>
-                  <Button
-                    bg="#F3C31B"
-                    size={'xs'}
-                    _pressed={{bg: '#f3c31b'}}
-                    rounded="md"
-                    shadow={3}
-                    _text={{
-                      color: 'black',
-                    }}
-                    leftIcon={
-                      <Image
-                        source={require('@assets/images/app/binance.png')}
-                        alt="BP"
-                        size={4}
-                      />
-                    }>
-                    Binance Pay
-                  </Button>
-
-                  <Button
-                    bg="#fff"
-                    size="xs"
-                    rounded="md"
-                    shadow={4}
-                    _pressed={{
-                      bg: 'white',
-                    }}
-                    _text={{
-                      color: 'black',
-                    }}
-                    leftIcon={
-                      <Image
-                        source={{
-                          uri: 'https://play-lh.googleusercontent.com/8aXTeaP1Sm29QPQ1IWacpgBRMpyCQLlVtA5QQ0DhN30d-R0fCdrCHlbQUZvdg2bJGvQ=s96-rw',
-                        }}
-                        alt="BP"
-                        size={3}
-                      />
-                    }>
-                    Crypto.com
-                  </Button>
+                <HStack
+                  justifyContent={'space-between'}
+                  alignItems={'center'}
+                  space={{md: '41px', base: '21px'}}>
+                  <Box flex={'1'}>
+                    <HStack space={'27px'} alignItems={'center'}>
+                      <Box flex={'1'}>
+                        <FormTextInput
+                          formTitle="CVV"
+                          placeholder="123"
+                          width="100%"
+                        />
+                      </Box>
+                      <Box flex={'1'}>
+                        <FormTextInput
+                          formTitle="PIN"
+                          placeholder="****"
+                          width="100%"
+                        />
+                      </Box>
+                    </HStack>
+                  </Box>
                 </HStack>
 
                 <Checkbox
-                  mt={{md: '27px', base: '22px'}}
-                  size={'sm'}
+                  mt={'22px'}
                   value="test"
                   isChecked={false}
                   accessibilityLabel="Check this box">
                   <Text
-                    fontSize={{md: '16px', base: '12px'}}
+                    fontSize={{base: '8px', md: '16px'}}
                     ml={2}
                     fontFamily={'Poppins-Regular'}
+                    fontStyle={'16px'}
                     color={'primary.1'}>
-                    External Wallet
+                    Add card to account
                   </Text>
                 </Checkbox>
+              </VStack>
+            ) : (
+              <VStack w={'full'}>
+                <Box>
+                  <HStack space={4} mb={{base: '21px', md: '23px'}}>
+                    <Button
+                      bg="#F3C31B"
+                      size={'xs'}
+                      _pressed={{bg: '#f3c31b'}}
+                      rounded="md"
+                      shadow={3}
+                      _text={{
+                        color: 'black',
+                      }}
+                      leftIcon={
+                        <Image
+                          source={require('@assets/images/app/binance.png')}
+                          alt="BP"
+                          size={4}
+                        />
+                      }>
+                      Binance Pay
+                    </Button>
 
-                <Button
-                  bg="white"
-                  mt={{md: '28px', base: '8px'}}
-                  py={{md: '23px', base: '15px'}}
-                  px={{base: '16px'}}
-                  style={{
-                    borderRadius: 5,
-                    backgroundColor: '#FFF',
-                    shadowColor: '#000',
-                    shadowOffset: {width: 2, height: 4},
-                    shadowOpacity: 0.2,
-                    shadowRadius: 46,
-                    elevation: 10,
-                    flexDirection: 'row',
-                  }}
-                  alignItems="center"
-                  justifyContent="flex-start">
-                  <HStack
-                    alignItems={'center'}
-                    space={{md: '29px', base: '10px'}}>
-                    <Box style={{width: 24, height: 24}}>
-                      <WalletIcon height={'100%'} width={'100%'} />
-                    </Box>
-                    <Text color={'primary.1'} fontFamily={'Poppins-Regular'}>
-                      Select a wallet
-                    </Text>
+                    <Button
+                      bg="#fff"
+                      size="xs"
+                      rounded="md"
+                      shadow={4}
+                      _pressed={{
+                        bg: 'white',
+                      }}
+                      _text={{
+                        color: 'black',
+                      }}
+                      leftIcon={
+                        <Image
+                          source={{
+                            uri: 'https://play-lh.googleusercontent.com/8aXTeaP1Sm29QPQ1IWacpgBRMpyCQLlVtA5QQ0DhN30d-R0fCdrCHlbQUZvdg2bJGvQ=s96-rw',
+                          }}
+                          alt="BP"
+                          size={3}
+                        />
+                      }>
+                      Crypto.com
+                    </Button>
                   </HStack>
-                </Button>
 
-                <Checkbox
-                  mt={{md: '27px', base: '22px'}}
-                  mb={{base: '7px'}}
-                  value="test"
-                  isChecked={false}
-                  accessibilityLabel="Check this box">
-                  <Text
-                    fontSize={{md: '16px', base: '12px'}}
-                    ml={2}
-                    fontFamily={'Poppins-Regular'}
-                    color={'primary.1'}>
-                    Cryptocurrency
-                  </Text>
-                </Checkbox>
-
-                <Button
-                  bg="white"
-                  py={{md: '23px', base: '15px'}}
-                  px={{base: '16px'}}
-                  style={{
-                    borderRadius: 5,
-                    backgroundColor: '#FFF',
-                    shadowColor: '#000',
-                    shadowOffset: {width: 2, height: 4},
-                    shadowOpacity: 0.2,
-                    shadowRadius: 46,
-                    elevation: 10,
-                    flexDirection: 'row',
-                  }}
-                  alignItems="center"
-                  justifyContent="flex-start">
-                  <HStack
-                    alignItems={'center'}
-                    space={{md: '29px', base: '10px'}}>
-                    <Box style={{width: 24, height: 24}}>
-                      <WalletIcon height={'100%'} width={'100%'} />
-                    </Box>
-                    <Text color={'primary.1'} fontFamily={'Poppins-Regular'}>
-                      Select Crypto
+                  <Checkbox
+                    mt={{md: '27px', base: '22px'}}
+                    size={'sm'}
+                    value="test"
+                    isChecked={false}
+                    accessibilityLabel="Check this box">
+                    <Text
+                      fontSize={{md: '16px', base: '12px'}}
+                      ml={2}
+                      fontFamily={'Poppins-Regular'}
+                      color={'primary.1'}>
+                      External Wallet
                     </Text>
-                  </HStack>
-                </Button>
+                  </Checkbox>
 
-                <Box mt={{md: '17px', base: '14px'}}>
-                  <Select
-                    accessibilityLabel="Select Network"
-                    borderColor={'secondary.1'}
-                    borderRadius={'10px'}
-                    placeholder="Select Network"
+                  <Button
+                    bg="white"
+                    mt={{md: '28px', base: '8px'}}
+                    py={{md: '23px', base: '15px'}}
                     px={{base: '16px'}}
-                    py={{base: '12px'}}
-                    _selectedItem={{
-                      bg: 'teal.600',
-                      endIcon: <CheckIcon size="3" />,
+                    style={{
+                      borderRadius: 5,
+                      backgroundColor: '#FFF',
+                      shadowColor: '#000',
+                      shadowOffset: {width: 2, height: 4},
+                      shadowOpacity: 0.2,
+                      shadowRadius: 46,
+                      elevation: 10,
+                      flexDirection: 'row',
                     }}
-                    mt={1}
-                    // onValueChange={itemValue => setService(itemValue)}
-                  >
-                    <Select.Item label="UX Research" value="ux" />
-                    <Select.Item label="Web Development" value="web" />
-                    <Select.Item
-                      label="Cross Platform Development"
-                      value="cross"
-                    />
-                    <Select.Item label="UI Designing" value="ui" />
-                    <Select.Item label="Backend Development" value="backend" />
-                  </Select>
-                </Box>
+                    alignItems="center"
+                    justifyContent="flex-start">
+                    <HStack
+                      alignItems={'center'}
+                      space={{md: '29px', base: '10px'}}>
+                      <Box style={{width: 24, height: 24}}>
+                        <WalletIcon height={'100%'} width={'100%'} />
+                      </Box>
+                      <Text
+                        color={'primary.1'}
+                        fontFamily={'Poppins-Regular'}
+                        fontSize={{base: '10px', md: '16px'}}>
+                        Select a wallet
+                      </Text>
+                    </HStack>
+                  </Button>
 
-                <Checkbox
-                  mt={{md: '27px', base: '22px'}}
-                  value="test"
-                  isChecked={false}
-                  accessibilityLabel="Check this box">
-                  <Text
-                    fontSize={{md: '16px', base: '10px'}}
-                    ml={2}
-                    fontFamily={'Poppins-Regular'}
-                    color={'primary.1'}>
-                    Reward Points
-                  </Text>
-                </Checkbox>
-
-                <Button
-                  bg="white"
-                  mt={{md: '28px', base: '8px'}}
-                  py={{md: '23px', base: '15px'}}
-                  px={{md: '18px', base: '8px'}}
-                  style={{
-                    borderRadius: 5,
-                    backgroundColor: '#FFF',
-                    shadowColor: '#000',
-                    shadowOffset: {width: 2, height: 4},
-                    shadowOpacity: 0.2,
-                    shadowRadius: 46,
-                    elevation: 10,
-                    flexDirection: 'row',
-                  }}
-                  alignItems="center"
-                  justifyContent="flex-start">
-                  <HStack
-                    alignItems={'center'}
-                    space={{md: '29px', base: '10px'}}>
-                    <Box style={{width: 24, height: 24}}>
-                      <RewardPoint height={'100%'} width={'100%'} />
-                    </Box>
-                    <Text color={'primary.1'} fontFamily={'Poppins-Regular'}>
-                      Select a wallet
+                  <Checkbox
+                    mt={{md: '27px', base: '22px'}}
+                    mb={{base: '7px'}}
+                    value="test"
+                    isChecked={false}
+                    accessibilityLabel="Check this box">
+                    <Text
+                      fontSize={{md: '16px', base: '12px'}}
+                      ml={2}
+                      fontFamily={'Poppins-Regular'}
+                      color={'primary.1'}>
+                      Cryptocurrency
                     </Text>
-                  </HStack>
-                </Button>
-              </Box>
-            </VStack>
-          )}
+                  </Checkbox>
+
+                  <Button
+                    bg="white"
+                    py={{md: '23px', base: '15px'}}
+                    px={{base: '16px'}}
+                    style={{
+                      borderRadius: 5,
+                      backgroundColor: '#FFF',
+                      shadowColor: '#000',
+                      shadowOffset: {width: 2, height: 4},
+                      shadowOpacity: 0.2,
+                      shadowRadius: 46,
+                      elevation: 10,
+                      flexDirection: 'row',
+                    }}
+                    alignItems="center"
+                    justifyContent="flex-start">
+                    <HStack
+                      alignItems={'center'}
+                      space={{md: '29px', base: '10px'}}>
+                      <Box style={{width: 24, height: 24}}>
+                        <WalletIcon height={'100%'} width={'100%'} />
+                      </Box>
+                      <Text
+                        color={'primary.1'}
+                        fontFamily={'Poppins-Regular'}
+                        fontSize={{base: '10px', md: '16px'}}>
+                        Select Crypto
+                      </Text>
+                    </HStack>
+                  </Button>
+
+                  <Box mt={{md: '17px', base: '14px'}}>
+                    <Select
+                      accessibilityLabel="Select Network"
+                      borderColor={'secondary.1'}
+                      borderRadius={'10px'}
+                      placeholder="Select Network"
+                      px={{base: '16px'}}
+                      py={{base: '12px'}}
+                      _selectedItem={{
+                        bg: 'teal.600',
+                        endIcon: <CheckIcon size="3" />,
+                      }}
+                      mt={1}
+                      // onValueChange={itemValue => setService(itemValue)}
+                    >
+                      <Select.Item label="UX Research" value="ux" />
+                      <Select.Item label="Web Development" value="web" />
+                      <Select.Item
+                        label="Cross Platform Development"
+                        value="cross"
+                      />
+                      <Select.Item label="UI Designing" value="ui" />
+                      <Select.Item
+                        label="Backend Development"
+                        value="backend"
+                      />
+                    </Select>
+                  </Box>
+
+                  <Checkbox
+                    mt={{md: '27px', base: '22px'}}
+                    value="test"
+                    isChecked={false}
+                    accessibilityLabel="Check this box">
+                    <Text
+                      fontSize={{md: '16px', base: '10px'}}
+                      ml={2}
+                      fontFamily={'Poppins-Regular'}
+                      color={'primary.1'}>
+                      Reward Points
+                    </Text>
+                  </Checkbox>
+
+                  <Button
+                    bg="white"
+                    mt={{md: '28px', base: '8px'}}
+                    py={{md: '23px', base: '15px'}}
+                    px={{md: '18px', base: '8px'}}
+                    style={{
+                      borderRadius: 5,
+                      backgroundColor: '#FFF',
+                      shadowColor: '#000',
+                      shadowOffset: {width: 2, height: 4},
+                      shadowOpacity: 0.2,
+                      shadowRadius: 46,
+                      elevation: 10,
+                      flexDirection: 'row',
+                    }}
+                    alignItems="center"
+                    justifyContent="flex-start">
+                    <HStack
+                      alignItems={'center'}
+                      space={{md: '29px', base: '10px'}}>
+                      <Box style={{width: 24, height: 24}}>
+                        <RewardPoint height={'100%'} width={'100%'} />
+                      </Box>
+                      <Text
+                        color={'primary.1'}
+                        fontFamily={'Poppins-Regular'}
+                        fontSize={{base: '10px', md: '16px'}}>
+                        Select a wallet
+                      </Text>
+                    </HStack>
+                  </Button>
+                </Box>
+              </VStack>
+            )}
+          </Suspense>
 
           <HStack
             w={'full'}
@@ -387,7 +407,6 @@ function CardPaymentScreen() {
 
             <Text
               color="primary.1"
-              // fontSize={'16px'}
               fontSize={{base: '16px', md: '20px'}}
               fontFamily={'Poppins-Bold'}>
               $ 1,045.84
@@ -395,26 +414,28 @@ function CardPaymentScreen() {
           </HStack>
         </Box>
 
-        <HStack
-          mt={{md: '36px', base: '41px'}}
-          mb={{md: '51px', base: '42px'}}
-          space={{md: '22px', base: '26px'}}>
-          <Flex flex={'1'}>
-            <GradientButton
-              title="Cancel"
-              colors={['#fff', '#fff']}
-              onPress={function () {}}
-              textColor={nativeBaseTheme.colors.danger}
-            />
-          </Flex>
-          <Flex flex={'1'}>
-            <GradientButton
-              title="Confirm and Pay"
-              colors={['#03045E', '#0608C4']}
-              onPress={function () {}}
-            />
-          </Flex>
-        </HStack>
+        <Suspense fallback={<Spinner size={'sm'} />}>
+          <HStack
+            mt={{md: '36px', base: '41px'}}
+            mb={{md: '51px', base: '42px'}}
+            space={{md: '22px', base: '26px'}}>
+            <Flex flex={'1'}>
+              <GradientButton
+                title="Cancel"
+                colors={['#fff', '#fff']}
+                onPress={function () {}}
+                textColor={nativeBaseTheme.colors.danger}
+              />
+            </Flex>
+            <Flex flex={'1'}>
+              <GradientButton
+                title="Confirm and Pay"
+                colors={['#03045E', '#0608C4']}
+                onPress={function () {}}
+              />
+            </Flex>
+          </HStack>
+        </Suspense>
       </ScrollView>
     </Flex>
   );
