@@ -1,11 +1,14 @@
 import {WINDOW_WIDTH} from '@constants/reusable';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {GradientButton, SearchAdSpot, TabBar} from '@src/components';
+import {
+  GradientButton,
+  LoadingScreen,
+  SearchAdSpot,
+  TabBar,
+} from '@src/components';
 import {RootStackParamList} from '@src/routes';
 import {
   Box,
-  Button,
-  Center,
   Divider,
   Flex,
   HStack,
@@ -14,7 +17,7 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import {useState} from 'react';
+import {Suspense, useState} from 'react';
 
 interface SearchInputScreenProps {
   navigation: StackNavigationProp<RootStackParamList>;
@@ -34,53 +37,182 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
   };
 
   return (
-    <VStack w={'full'} flex={1}>
-      <Flex flex={1}>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}>
-          <SearchAdSpot />
-          <Flex
-            flex={1}
-            justifyContent={'flex-start'}
-            backgroundColor={'#FBFBFB'}>
-            <VStack
-              mt={{md: '49px', base: '22px'}}
-              px={{md: '39px', base: '27px'}}
-              pb={{md: '33px', base: '10px'}}>
-              <HStack
-                w={'full'}
-                space={{md: '69px', base: '37px'}}
-                justifyContent="center"
-                width={{md: WINDOW_WIDTH * 0.57, base: WINDOW_WIDTH * 0.7}}>
-                {tabs.map((tab, index) => (
-                  <Pressable
-                    key={index}
-                    flex={1}
-                    onPress={() => setSelectedTab(index)}
-                    bgColor={'#FBFBFB'}
-                    alignItems="center"
-                    justifyContent="center"
-                    borderBottomWidth={selectedTab === index ? 2 : 0}
-                    borderBottomColor={
-                      selectedTab === index ? 'primary.1' : 'gray.300'
-                    }
-                    bg={selectedTab === index ? 'primary.100' : 'white'}
-                    backgroundColor={'white'}
-                    py={'7px'}>
-                    <Text
-                      fontFamily={
-                        selectedTab === index ? 'Poppins-Bold' : 'Poppins-Bold'
+    <Suspense fallback={<LoadingScreen />}>
+      <VStack w={'full'} flex={1}>
+        <Flex flex={1}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}>
+            <SearchAdSpot />
+            <Flex
+              flex={1}
+              justifyContent={'flex-start'}
+              backgroundColor={'#FBFBFB'}>
+              <VStack
+                mt={{md: '49px', base: '22px'}}
+                px={{md: '39px', base: '27px'}}
+                pb={{md: '33px', base: '10px'}}>
+                <HStack
+                  w={'full'}
+                  space={{md: '69px', base: '37px'}}
+                  justifyContent="center"
+                  width={{md: WINDOW_WIDTH * 0.57, base: WINDOW_WIDTH * 0.7}}>
+                  {tabs.map((tab, index) => (
+                    <Pressable
+                      key={index}
+                      flex={1}
+                      onPress={() => setSelectedTab(index)}
+                      bgColor={'#FBFBFB'}
+                      alignItems="center"
+                      justifyContent="center"
+                      borderBottomWidth={selectedTab === index ? 2 : 0}
+                      borderBottomColor={
+                        selectedTab === index ? 'primary.1' : 'gray.300'
                       }
-                      color={'primary.1'}
-                      fontSize={{md: '14px', base: '10px'}}>
-                      {tab.label}
-                    </Text>
-                  </Pressable>
-                ))}
-              </HStack>
-              {tabs[selectedTab].content === 'round-trip' ? (
-                <>
+                      bg={selectedTab === index ? 'primary.100' : 'white'}
+                      backgroundColor={'white'}
+                      py={'7px'}>
+                      <Text
+                        fontFamily={
+                          selectedTab === index
+                            ? 'Poppins-Bold'
+                            : 'Poppins-Bold'
+                        }
+                        color={'primary.1'}
+                        fontSize={{md: '14px', base: '10px'}}>
+                        {tab.label}
+                      </Text>
+                    </Pressable>
+                  ))}
+                </HStack>
+                {tabs[selectedTab].content === 'round-trip' ? (
+                  <>
+                    <Box
+                      mt={{md: '42px', base: '27px'}}
+                      bg="white"
+                      py={{md: '19px', base: '20px'}}
+                      px={{md: '30px', base: '23px'}}
+                      borderRadius={'17px'}
+                      rounded="lg"
+                      shadow="2"
+                      style={{
+                        shadowColor: '#000',
+                        shadowOffset: {width: 2, height: 4},
+                        shadowOpacity: 0.2,
+                        shadowRadius: 23,
+                        elevation: 4,
+                      }}>
+                      <Box w="100%">
+                        <Text
+                          fontSize={{md: '14px', base: '10px'}}
+                          fontFamily={'Poppins-Regular'}
+                          mb={{base: '7px'}}
+                          color={'#7D8093'}>
+                          From
+                        </Text>
+                        <Text
+                          mb={{base: '2px'}}
+                          color={'primary.1'}
+                          fontFamily={'Spartan-Regular'}
+                          fontSize={{md: '24px', base: '14px'}}>
+                          Doha Doh
+                        </Text>
+                        <Text
+                          color="#7D8093"
+                          fontFamily={'Poppins-Regular'}
+                          fontSize={{md: '12px', base: '10px'}}>
+                          Hamad International Airport
+                        </Text>
+                        <Divider
+                          my={{md: '13px', base: '21px'}}
+                          backgroundColor={'rgba(217, 217, 217, 0.75);'}
+                        />
+                        <Text
+                          fontSize={{md: '14px', base: '10px'}}
+                          fontFamily={'Poppins-Regular'}
+                          mb={{base: '7px'}}
+                          color={'#7D8093'}>
+                          To
+                        </Text>
+                        <Text
+                          color={'primary.1'}
+                          fontSize={{md: '24px', base: '14px'}}
+                          fontFamily={'Spartan-Regular'}
+                          mb={{base: '2px'}}>
+                          Lagos LOS
+                        </Text>
+                        <Text
+                          color="#7D8093"
+                          fontFamily={'Poppins-Regular'}
+                          fontSize={{md: '12px', base: '10px'}}>
+                          Hamad International Airport
+                        </Text>
+                      </Box>
+                    </Box>
+                    <Box
+                      mt={{md: '42px', base: '27px'}}
+                      bg="white"
+                      py={{md: '19px', base: '20px'}}
+                      px={{md: '30px', base: '23px'}}
+                      borderRadius={'17px'}
+                      rounded="lg"
+                      shadow="2"
+                      style={{
+                        shadowColor: '#000',
+                        shadowOffset: {width: 2, height: 4},
+                        shadowOpacity: 0.2,
+                        shadowRadius: 23,
+                        elevation: 4,
+                      }}>
+                      <Box w="100%">
+                        <Text
+                          fontSize={{md: '14px', base: '10px'}}
+                          fontFamily={'Poppins-Regular'}
+                          mb={{base: '7px'}}
+                          color={'#7D8093'}>
+                          From
+                        </Text>
+                        <Text
+                          mb={{base: '2px'}}
+                          color={'primary.1'}
+                          fontFamily={'Spartan-Regular'}
+                          fontSize={{md: '24px', base: '14px'}}>
+                          Doha Doh
+                        </Text>
+                        <Text
+                          color="#7D8093"
+                          fontFamily={'Poppins-Regular'}
+                          fontSize={{md: '12px', base: '10px'}}>
+                          Hamad International Airport
+                        </Text>
+                        <Divider
+                          my={{md: '13px', base: '21px'}}
+                          backgroundColor={'rgba(217, 217, 217, 0.75);'}
+                        />
+                        <Text
+                          fontSize={{md: '14px', base: '10px'}}
+                          fontFamily={'Poppins-Regular'}
+                          mb={{base: '7px'}}
+                          color={'#7D8093'}>
+                          To
+                        </Text>
+                        <Text
+                          color={'primary.1'}
+                          fontSize={{md: '24px', base: '14px'}}
+                          fontFamily={'Spartan-Regular'}
+                          mb={{base: '2px'}}>
+                          Lagos LOS
+                        </Text>
+                        <Text
+                          color="#7D8093"
+                          fontFamily={'Poppins-Regular'}
+                          fontSize={{md: '12px', base: '10px'}}>
+                          Hamad International Airport
+                        </Text>
+                      </Box>
+                    </Box>
+                  </>
+                ) : (
                   <Box
                     mt={{md: '42px', base: '27px'}}
                     bg="white"
@@ -143,145 +275,19 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                       </Text>
                     </Box>
                   </Box>
-                  <Box
-                    mt={{md: '42px', base: '27px'}}
-                    bg="white"
-                    py={{md: '19px', base: '20px'}}
-                    px={{md: '30px', base: '23px'}}
-                    borderRadius={'17px'}
-                    rounded="lg"
-                    shadow="2"
-                    style={{
-                      shadowColor: '#000',
-                      shadowOffset: {width: 2, height: 4},
-                      shadowOpacity: 0.2,
-                      shadowRadius: 23,
-                      elevation: 4,
-                    }}>
-                    <Box w="100%">
-                      <Text
-                        fontSize={{md: '14px', base: '10px'}}
-                        fontFamily={'Poppins-Regular'}
-                        mb={{base: '7px'}}
-                        color={'#7D8093'}>
-                        From
-                      </Text>
-                      <Text
-                        mb={{base: '2px'}}
-                        color={'primary.1'}
-                        fontFamily={'Spartan-Regular'}
-                        fontSize={{md: '24px', base: '14px'}}>
-                        Doha Doh
-                      </Text>
-                      <Text
-                        color="#7D8093"
-                        fontFamily={'Poppins-Regular'}
-                        fontSize={{md: '12px', base: '10px'}}>
-                        Hamad International Airport
-                      </Text>
-                      <Divider
-                        my={{md: '13px', base: '21px'}}
-                        backgroundColor={'rgba(217, 217, 217, 0.75);'}
-                      />
-                      <Text
-                        fontSize={{md: '14px', base: '10px'}}
-                        fontFamily={'Poppins-Regular'}
-                        mb={{base: '7px'}}
-                        color={'#7D8093'}>
-                        To
-                      </Text>
-                      <Text
-                        color={'primary.1'}
-                        fontSize={{md: '24px', base: '14px'}}
-                        fontFamily={'Spartan-Regular'}
-                        mb={{base: '2px'}}>
-                        Lagos LOS
-                      </Text>
-                      <Text
-                        color="#7D8093"
-                        fontFamily={'Poppins-Regular'}
-                        fontSize={{md: '12px', base: '10px'}}>
-                        Hamad International Airport
-                      </Text>
-                    </Box>
-                  </Box>
-                </>
-              ) : (
-                <Box
-                  mt={{md: '42px', base: '27px'}}
-                  bg="white"
-                  py={{md: '19px', base: '20px'}}
-                  px={{md: '30px', base: '23px'}}
-                  borderRadius={'17px'}
-                  rounded="lg"
-                  shadow="2"
-                  style={{
-                    shadowColor: '#000',
-                    shadowOffset: {width: 2, height: 4},
-                    shadowOpacity: 0.2,
-                    shadowRadius: 23,
-                    elevation: 4,
-                  }}>
-                  <Box w="100%">
-                    <Text
-                      fontSize={{md: '14px', base: '10px'}}
-                      fontFamily={'Poppins-Regular'}
-                      mb={{base: '7px'}}
-                      color={'#7D8093'}>
-                      From
-                    </Text>
-                    <Text
-                      mb={{base: '2px'}}
-                      color={'primary.1'}
-                      fontFamily={'Spartan-Regular'}
-                      fontSize={{md: '24px', base: '14px'}}>
-                      Doha Doh
-                    </Text>
-                    <Text
-                      color="#7D8093"
-                      fontFamily={'Poppins-Regular'}
-                      fontSize={{md: '12px', base: '10px'}}>
-                      Hamad International Airport
-                    </Text>
-                    <Divider
-                      my={{md: '13px', base: '21px'}}
-                      backgroundColor={'rgba(217, 217, 217, 0.75);'}
-                    />
-                    <Text
-                      fontSize={{md: '14px', base: '10px'}}
-                      fontFamily={'Poppins-Regular'}
-                      mb={{base: '7px'}}
-                      color={'#7D8093'}>
-                      To
-                    </Text>
-                    <Text
-                      color={'primary.1'}
-                      fontSize={{md: '24px', base: '14px'}}
-                      fontFamily={'Spartan-Regular'}
-                      mb={{base: '2px'}}>
-                      Lagos LOS
-                    </Text>
-                    <Text
-                      color="#7D8093"
-                      fontFamily={'Poppins-Regular'}
-                      fontSize={{md: '12px', base: '10px'}}>
-                      Hamad International Airport
-                    </Text>
-                  </Box>
-                </Box>
-              )}
+                )}
 
-              <Box
-                mt={{md: '36px', base: '22px'}}
-                mb={{base: '32px', md: '0px'}}>
-                <GradientButton
-                  title="Search Flights"
-                  colors={['#03045E', '#0608C4']}
-                  onPress={() => onSearchFlight()}
-                />
-              </Box>
-            </VStack>
-            {/* <Box py={{md: '36px', base: '27px'}} backgroundColor={'#F3F3F3'}>
+                <Box
+                  mt={{md: '36px', base: '22px'}}
+                  mb={{base: '32px', md: '0px'}}>
+                  <GradientButton
+                    title="Search Flights"
+                    colors={['#03045E', '#0608C4']}
+                    onPress={() => onSearchFlight()}
+                  />
+                </Box>
+              </VStack>
+              {/* <Box py={{md: '36px', base: '27px'}} backgroundColor={'#F3F3F3'}>
               <HStack
                 justifyContent={'space-between'}
                 px={{md: '91px', base: '27px'}}>
@@ -314,11 +320,12 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                 ))}
               </HStack>
             </Box> */}
-          </Flex>
-        </ScrollView>
-      </Flex>
-      <TabBar />
-    </VStack>
+            </Flex>
+          </ScrollView>
+        </Flex>
+        <TabBar />
+      </VStack>
+    </Suspense>
   );
 }
 

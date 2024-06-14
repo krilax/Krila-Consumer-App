@@ -1,4 +1,4 @@
-import {Dimensions, Platform} from 'react-native';
+import {Dimensions, PixelRatio, Platform} from 'react-native';
 import {RFPercentage} from 'react-native-responsive-fontsize';
 
 const {width, height} = Dimensions.get('window');
@@ -17,4 +17,11 @@ export const responsiveFontSize = (fontSize: number) => {
     return Math.round(newSize) - 2;
   }
   return Math.round(newSize);
+};
+
+const scale = (size: number) => (width / 375) * size;
+
+export const normalize = (size: number) => {
+  const newSize = scale(size);
+  return Math.round(PixelRatio.roundToNearestPixel(newSize));
 };

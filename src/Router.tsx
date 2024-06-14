@@ -5,9 +5,9 @@ import PhoneLoginScreen from '@src/screens/login/PhoneLoginScreen';
 import {
   BoardingPassengerScreen,
   CardPaymentScreen,
+  FlightSelectSeatScreen,
   SearchInputScreen,
   SearchResultScreen,
-  SelectSeatScreen,
 } from '@src/screens/booking/flight';
 import {
   EmailLoginScreen,
@@ -30,7 +30,7 @@ function Router({isOnboardingCompleted}: RouterProps) {
   return (
     <Stack.Navigator
       initialRouteName={
-        !isOnboardingCompleted ? 'SplashScreen' : 'SearchInputScreen'
+        !isOnboardingCompleted ? 'SplashScreen' : 'FlightSelectSeatScreen'
       }
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
@@ -45,6 +45,10 @@ function Router({isOnboardingCompleted}: RouterProps) {
       <Stack.Screen name="SearchInputScreen" component={SearchInputScreen} />
       <Stack.Screen name="SearchResultScreen" component={SearchResultScreen} />
       <Stack.Screen
+        name="FlightSelectSeatScreen"
+        component={FlightSelectSeatScreen}
+      />
+      <Stack.Screen
         name="BookingDetailsScreen"
         component={BookingDetailsScreen}
       />
@@ -58,10 +62,6 @@ function Router({isOnboardingCompleted}: RouterProps) {
         component={BoardingPassengerScreen}
       />
       {/*   <Stack.Screen
-    name="SelectSeatScreen"
-    component={SelectSeatScreen}
-  />
-  <Stack.Screen
     name="FlightSmartSearchResultScreen"
     component={FlightSmartSearchResultScreen}
   /> */}

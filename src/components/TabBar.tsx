@@ -46,10 +46,9 @@ function TabBar() {
             ]}
             key={index}>
             <Tab
-              index={0}
+              index={index}
               iconName={name}
               onPress={() => {}}
-              children={undefined}
               transition={undefined}>
               {icon}
             </Tab>

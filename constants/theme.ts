@@ -43,6 +43,7 @@ export const nativeBaseTheme = extendTheme({
     secondary: {
       1: '#7D8093',
       2: '#425166',
+      3: '#D9D9D9',
     },
     customGreen: '#00FF00',
     danger: '#FF4000',
