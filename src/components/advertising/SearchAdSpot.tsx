@@ -1,5 +1,5 @@
 import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@constants/reusable';
-import {Box, Button, Flex, HStack, Image, Text} from 'native-base';
+import {Button, Flex, HStack, Image, Text} from 'native-base';
 import React, {useState} from 'react';
 
 function SearchAdSpot() {

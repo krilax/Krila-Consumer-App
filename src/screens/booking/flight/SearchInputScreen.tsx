@@ -287,7 +287,19 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                   />
                 </Box>
               </VStack>
-              {/* <Box py={{md: '36px', base: '27px'}} backgroundColor={'#F3F3F3'}>
+            </Flex>
+          </ScrollView>
+        </Flex>
+        <TabBar />
+      </VStack>
+    </Suspense>
+  );
+}
+
+export default SearchInputScreen;
+
+{
+  /* <Box py={{md: '36px', base: '27px'}} backgroundColor={'#F3F3F3'}>
               <HStack
                 justifyContent={'space-between'}
                 px={{md: '91px', base: '27px'}}>
@@ -319,14 +331,5 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                   </VStack>
                 ))}
               </HStack>
-            </Box> */}
-            </Flex>
-          </ScrollView>
-        </Flex>
-        <TabBar />
-      </VStack>
-    </Suspense>
-  );
+            </Box> */
 }
-
-export default SearchInputScreen;
