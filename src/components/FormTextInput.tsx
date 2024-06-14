@@ -2,8 +2,6 @@ import {Box, Icon, Input, InputGroup, Text} from 'native-base';
 import React, {useState} from 'react';
 import {useForm, Controller} from 'react-hook-form';
 import {StyleSheet} from 'react-native';
-import {RFPercentage} from 'react-native-responsive-fontsize';
-import MaterialIcons from '@react-native-vector-icons/material-icons';
 
 interface FormTextInputProps {
   formTitle?: string;

@@ -1,4 +1,3 @@
-import {nativeBaseTheme} from '@constants/theme';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {GradientButton, MiniHeader} from '@src/components';
 import {useDeviceType} from '@src/components/hooks';
@@ -13,7 +12,6 @@ import {
   Stack,
   Center,
   VStack,
-  Box,
 } from 'native-base';
 
 interface FlightSelectSeatScreenProps {
@@ -672,14 +670,6 @@ function FlightSelectSeatScreen({navigation}: FlightSelectSeatScreenProps) {
         <HStack
           space={deviceType === 'mobile' ? '26px' : '23px'}
           mt={{md: '36px', base: '28px'}}>
-          {/* <Flex mb={{base: '51px'}} flex={1}>
-            <GradientButton
-              title="Proceed To Payment"
-              colors={['#FFE53C', '#FFE53C']}
-              onPress={function () {}}
-              textColor={nativeBaseTheme.colors.primary[1]}
-            />
-          </Flex> */}
           <Flex mb={{base: '51px'}} flex={1}>
             <GradientButton
               title="Proceed To Payment"

@@ -11,7 +11,6 @@ import {
 } from '@src/screens/booking/flight';
 import {
   EmailLoginScreen,
-  FlightSmartSearchResultScreen,
   OnboardScreen,
   ResetPasswordScreen,
   SignupScreen,
@@ -61,10 +60,6 @@ function Router({isOnboardingCompleted}: RouterProps) {
         name="BoardingPassScreen"
         component={BoardingPassengerScreen}
       />
-      {/*   <Stack.Screen
-    name="FlightSmartSearchResultScreen"
-    component={FlightSmartSearchResultScreen}
-  /> */}
     </Stack.Navigator>
   );
 }
