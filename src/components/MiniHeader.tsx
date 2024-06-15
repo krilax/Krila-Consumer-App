@@ -1,4 +1,4 @@
-import {Box, Flex, Image, Text} from 'native-base';
+import {Box, Flex, Image, Text, VStack} from 'native-base';
 import React from 'react';
 
 interface MiniHeaderProps {
@@ -23,7 +23,8 @@ function MiniHeader({title, description}: MiniHeaderProps) {
         borderRadius="2xl"
         style={{objectFit: 'fill'}}
       />
-      <Flex
+      <VStack
+        space={2}
         position="absolute"
         top="0"
         left="0"
@@ -45,7 +46,7 @@ function MiniHeader({title, description}: MiniHeaderProps) {
           fontFamily={'Poppins-Regular'}>
           {description}
         </Text>
-      </Flex>
+      </VStack>
     </Box>
   );
 }

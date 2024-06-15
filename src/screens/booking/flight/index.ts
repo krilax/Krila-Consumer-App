@@ -1,5 +1,4 @@
-import BoardingPassengerScreen from './BoardingPassengerScreen';
-import BookingUserInfo from './BookingUserInfoScreen';
+import FlightBoardingPassengerScreen from './FlightBoardingPassengerScreen';
 import CardPaymentScreen from './CardPaymentScreen';
 import FlightSelectSeatScreen from './FlightSelectSeatScreen';
 import SearchInputScreen from './SearchInputScreen';
@@ -9,7 +8,6 @@ export {
   SearchInputScreen,
   SearchResultScreen,
   CardPaymentScreen,
-  BookingUserInfo,
   FlightSelectSeatScreen,
-  BoardingPassengerScreen,
+  FlightBoardingPassengerScreen,
 };

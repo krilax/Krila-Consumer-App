@@ -3,8 +3,8 @@ import React from 'react';
 import {RootStackParamList} from './routes';
 import PhoneLoginScreen from '@src/screens/login/PhoneLoginScreen';
 import {
-  BoardingPassengerScreen,
   CardPaymentScreen,
+  FlightBoardingPassengerScreen,
   FlightSelectSeatScreen,
   SearchInputScreen,
   SearchResultScreen,
@@ -29,7 +29,7 @@ function Router({isOnboardingCompleted}: RouterProps) {
   return (
     <Stack.Navigator
       initialRouteName={
-        !isOnboardingCompleted ? 'SplashScreen' : 'OnboardScreen'
+        !isOnboardingCompleted ? 'SplashScreen' : 'BoardingPassScreen'
       }
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
@@ -58,7 +58,7 @@ function Router({isOnboardingCompleted}: RouterProps) {
       <Stack.Screen name="CardPaymentScreen" component={CardPaymentScreen} />
       <Stack.Screen
         name="BoardingPassScreen"
-        component={BoardingPassengerScreen}
+        component={FlightBoardingPassengerScreen}
       />
     </Stack.Navigator>
   );
