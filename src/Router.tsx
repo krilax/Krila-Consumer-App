@@ -29,7 +29,7 @@ function Router({isOnboardingCompleted}: RouterProps) {
   return (
     <Stack.Navigator
       initialRouteName={
-        !isOnboardingCompleted ? 'SplashScreen' : 'BoardingPassScreen'
+        !isOnboardingCompleted ? 'SplashScreen' : 'OnboardScreen'
       }
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="SplashScreen" component={SplashScreen} />

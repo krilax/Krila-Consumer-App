@@ -155,7 +155,6 @@ function CardPaymentScreen() {
                     fontSize={{base: '8px', md: '16px'}}
                     ml={2}
                     fontFamily={'Poppins-Regular'}
-                    fontStyle={'16px'}
                     color={'primary.1'}>
                     Add card to account
                   </Text>

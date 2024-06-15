@@ -250,35 +250,39 @@ function BookingDetailsScreen({navigation}: BookingDetailsScreenProps) {
                 <HStack justifyContent={'space-between'} alignItems={'center'}>
                   <Text
                     color={'primary.1'}
-                    fontSize={'14px'}
+                    fontSize={{base: '12px', md: '14px'}}
                     fontFamily={'Poppins-Regular'}>
                     1 Passenger
                   </Text>
-                  <Text color={'primary.1'} fontSize={'12px'}>
+                  <Text
+                    color={'primary.1'}
+                    fontSize={{base: '12px', md: '14px'}}>
                     $1,0004.67
                   </Text>
                 </HStack>
                 <HStack justifyContent={'space-between'} alignItems={'center'}>
                   <Text
                     color={'primary.1'}
-                    fontSize={'14px'}
+                    fontSize={{base: '12px', md: '14px'}}
                     fontFamily={'Poppins-Regular'}>
                     Tax and Fees
                   </Text>
-                  <Text color={'primary.1'} fontSize={'12px'}>
+                  <Text
+                    color={'primary.1'}
+                    fontSize={{base: '12px', md: '14px'}}>
                     $1,0004.67
                   </Text>
                 </HStack>
                 <HStack justifyContent={'space-between'} alignItems={'center'}>
                   <Text
                     color={'primary.1'}
-                    fontSize={'14px'}
+                    fontSize={{base: '12px', md: '14px'}}
                     fontFamily={'Poppins-Bold'}>
                     Total
                   </Text>
                   <Text
                     color={'primary.1'}
-                    fontSize={'12px'}
+                    fontSize={{base: '12px', md: '14px'}}
                     fontFamily={'Spartan-Bold'}>
                     $1,0004.67
                   </Text>
