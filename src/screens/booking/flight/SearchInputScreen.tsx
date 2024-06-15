@@ -125,8 +125,8 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                             flex={'1'}
                           />
                           <Box
-                            width={'50px'}
-                            height={'50px'}
+                            width={{base: '30px', md: '50px'}}
+                            height={{base: '30px', md: '50px'}}
                             style={{
                               transform: [{scale: 0.7}],
                             }}>

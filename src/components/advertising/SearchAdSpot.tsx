@@ -53,7 +53,7 @@ function SearchAdSpot() {
                     textAlign={'center'}
                     color={activeButton === index ? 'primary.1' : 'white'}
                     fontFamily={{md: 'Spartan-SemiBold'}}
-                    fontSize={{md: '15px', base: '10px'}}
+                    fontSize={{md: '15px', base: '12px'}}
                     px={{base: '10px'}}>
                     {buttonLabel}
                   </Text>
