@@ -104,9 +104,7 @@ function SignupForm() {
             fontSize={{md: '12px', base: '8px'}}
             my={{md: '36px', base: '21px'}}>
             I certify that I am 18 years of age or older, and I agree to the{' '}
-            <Text display={'inline'} color={'primary.1'}>
-              User Agreement
-            </Text>{' '}
+            <Text color={'primary.1'}>User Agreement</Text>{' '}
           </Text>
         </Checkbox>
       </HStack>

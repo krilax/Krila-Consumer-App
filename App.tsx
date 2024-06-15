@@ -7,6 +7,7 @@ import {config, nativeBaseTheme} from '@constants/theme';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {GluestackUIProvider} from '@gluestack-ui/themed-native-base';
 import Router from '@src/Router';
+import {LogBox} from 'react-native';
 
 function App() {
   const [isOnboardingCompleted, setIsOnboardingCompleted] = useState<
@@ -27,6 +28,10 @@ function App() {
       }
     };
     checkOnboardingStatus();
+
+    LogBox.ignoreLogs([
+      'In React 18, SSRProvider is not necessary and is a noop. You can remove it from your app.',
+    ]);
   }, []);
 
   return (
