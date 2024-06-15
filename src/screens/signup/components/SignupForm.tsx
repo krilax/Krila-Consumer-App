@@ -5,20 +5,10 @@ import {
   GradientButton,
 } from '@src/components';
 import SocialLoginButton from '@src/components/auth/SocialLoginButton';
-import {
-  Box,
-  Checkbox,
-  Flex,
-  HStack,
-  Stack,
-  Text,
-  VStack,
-  View,
-} from 'native-base';
+import {Box, Checkbox, HStack, Stack, Text, VStack, View} from 'native-base';
 import React, {useEffect, useRef, useState} from 'react';
 import AuthLayover from './AuthLayover';
 import {RootStackParamList} from '@src/routes';
-import {StackNavigationProp} from '@react-navigation/stack';
 import {TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 

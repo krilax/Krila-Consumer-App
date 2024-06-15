@@ -1,6 +1,6 @@
 import {WINDOW_WIDTH} from '@constants/reusable';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {CuratingLoadingScreen} from '@src/components';
+import NormalLoadingScreen from '@src/components/loadingScreens/NormalLoadingScreen';
 import {RootStackParamList} from '@src/routes';
 import {
   Box,
@@ -36,7 +36,7 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
   };
 
   return (
-    <Suspense fallback={<CuratingLoadingScreen />}>
+    <Suspense fallback={<NormalLoadingScreen />}>
       <VStack w={'full'} flex={1}>
         <Flex flex={1}>
           <ScrollView
