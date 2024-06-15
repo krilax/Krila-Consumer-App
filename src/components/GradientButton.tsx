@@ -1,18 +1,26 @@
-import {isTablet} from '@constants/reusable';
-import {Text} from 'native-base';
+import {Flex, Text} from 'native-base';
 import React from 'react';
 import {TouchableOpacity, ViewStyle} from 'react-native';
 import {TouchableOpacityProps} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
+import {useDeviceType} from './hooks';
 
 interface GradientButtonProps extends TouchableOpacityProps {
   title: string;
   colors: string[];
+  textColor?: string;
   onPress: () => any;
   style?: ViewStyle;
 }
 
-const GradientButton = ({onPress, title, colors}: GradientButtonProps) => {
+const GradientButton = ({
+  onPress,
+  title,
+  colors,
+  textColor,
+}: GradientButtonProps) => {
+  const deviceType = useDeviceType();
+
   return (
     <TouchableOpacity onPress={onPress} style={{borderRadius: 10}}>
       <LinearGradient
@@ -21,18 +29,21 @@ const GradientButton = ({onPress, title, colors}: GradientButtonProps) => {
         colors={colors}
         style={[
           {
-            paddingVertical: isTablet ? 18.5 : 10.5,
             alignItems: 'center',
-            borderRadius: 10,
+            borderRadius: deviceType === 'tablet' ? 10 : 5,
           },
         ]}>
-        <Text
-          style={{color: 'white', fontWeight: 'bold'}}
-          fontFamily={'Poppins-Regular'}
-          fontSize={{md: '14px'}}
-          fontWeight={'bold'}>
-          {title}
-        </Text>
+        <Flex
+          height={{md: '58px', base: '40px'}}
+          alignItems={'center'}
+          justifyContent={'center'}>
+          <Text
+            color={textColor ? textColor : 'white'}
+            fontFamily={'Poppins-Medium'}
+            fontSize={{md: '14px', base: '10px'}}>
+            {title}
+          </Text>
+        </Flex>
       </LinearGradient>
     </TouchableOpacity>
   );

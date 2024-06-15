@@ -2,8 +2,6 @@ import {Box, Icon, Input, InputGroup, Text} from 'native-base';
 import React, {useState} from 'react';
 import {useForm, Controller} from 'react-hook-form';
 import {StyleSheet} from 'react-native';
-import {RFPercentage} from 'react-native-responsive-fontsize';
-import MaterialIcons from '@react-native-vector-icons/material-icons';
 
 interface FormTextInputProps {
   formTitle?: string;
@@ -26,8 +24,7 @@ function FormTextInput({formTitle, placeholder, width}: FormTextInputProps) {
       {formTitle && (
         <Text
           color={'secondary.1'}
-          fontSize={'15px'}
-          fontWeight={'normal'}
+          fontSize={{md: '15px', base: '10px'}}
           fontFamily={'Spartan-Regular'}
           mb={'2'}>
           {formTitle}
@@ -59,14 +56,15 @@ function FormTextInput({formTitle, placeholder, width}: FormTextInputProps) {
                 borderColor: '#C4C4C4',
                 borderWidth: 1,
               }}
+              minH={{md: '58px', base: '41px'}}
               onChangeText={onChange}
               value={value}
               placeholder={placeholder}
               borderRadius={'8'}
               color="primary.1"
-              fontSize={'15px'}
+              fontSize={{md: '15px', base: '10px'}}
               fontFamily={'Spartan-Regular'}
-              padding={'1rem'}
+              px={{md: '16px', base: '28px'}}
               borderWidth={'0.5'}
               borderColor={'#C4C4C4'}
               backgroundColor={'white'}
@@ -84,8 +82,6 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     height: '100%',
-    minHeight: 58,
-    fontSize: 15,
   },
   errorText: {
     color: 'red',

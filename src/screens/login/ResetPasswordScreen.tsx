@@ -31,7 +31,7 @@ function ResetPasswordScreen() {
   }, [canvasRef.current]);
 
   return (
-    <View flex={'1'} bg={'white'} px={{md: '59px'}}>
+    <View flex={'1'} bg={'white'} px={{md: '59px', base: '27px'}}>
       <AuthLayover
         canvasRef={canvasRef}
         setCanvasSize={setCanvasSize}
@@ -39,7 +39,7 @@ function ResetPasswordScreen() {
         detail="Enter New Password"
       />
 
-      <Stack w="full" px={{md: '34px'}} mt={{md: '59px'}}>
+      <Stack w="full" px={{md: '34px'}} mt={{md: '59px', base: '49px'}}>
         <Box mb="22px">
           <FormTextInput
             width="100%"
@@ -65,12 +65,15 @@ function ResetPasswordScreen() {
         <Text
           color={'primary.1'}
           fontFamily={'Poppins-Medium'}
-          fontSize={{md: '15px'}}>
+          fontSize={{md: '15px', base: '10px'}}>
           Forgot password?
         </Text>
       </Flex>
 
-      <VStack px={{md: '34px'}} space={{md: '31px'}} mt={{md: '167px'}}>
+      <VStack
+        px={{md: '34px'}}
+        space={{md: '31px'}}
+        mt={{md: '167px', base: '158px'}}>
         <GradientButton
           onPress={() => null}
           title="Reset"

@@ -2,7 +2,6 @@ import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@constants/reusable';
 import {View} from 'native-base';
 import React, {useCallback} from 'react';
 import {StyleSheet} from 'react-native';
-import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -11,6 +10,7 @@ import SignupForm from './components/SignupForm';
 import SignupPinForm from '../authentication/OTPin';
 import {RootStackParamList} from '@src/routes';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {useNavigation} from '@react-navigation/native';
 
 interface SignupScreenProps {
   message: string;
@@ -19,13 +19,13 @@ interface SignupScreenProps {
   navigation: StackNavigationProp<RootStackParamList>;
 }
 
-function SignupScreen({navigation}: SignupScreenProps) {
+function SignupScreen() {
   const onSwitch = useCallback((step: string) => {}, []);
+  const navigation = useNavigation();
 
   const index = useSharedValue(0);
   const velocityX = useSharedValue(0);
   const translationX = useSharedValue(0);
-
   const Screens = [SignupForm, SignupPinForm];
 
   const animatedStyles = useAnimatedStyle(() => ({
@@ -39,10 +39,9 @@ function SignupScreen({navigation}: SignupScreenProps) {
           {Screens.map((Screen, index) => (
             <Animated.View key={index} style={[styles.slide, animatedStyles]}>
               <Screen
-                message={''}
-                user={''}
+                message={'A 4 digit code was sent to your email address'}
+                user={'sam@thelle.io'}
                 authType={'phone'}
-                navigation={navigation}
               />
             </Animated.View>
           ))}

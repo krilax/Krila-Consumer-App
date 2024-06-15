@@ -5,8 +5,11 @@ import AppleIcon from './AppleIcon';
 import FacebookIcon from './FacebookIcon';
 import GoogleIcon from './GoogleIcon';
 import PhoneIcon from './PhoneIcon';
+import {useDeviceType} from '../hooks';
 
 function SocialLoginButton() {
+  const deviceType = useDeviceType();
+
   const socials = [
     {name: 'apple', Icon: AppleIcon},
     {name: 'facebook', Icon: FacebookIcon},
@@ -16,9 +19,13 @@ function SocialLoginButton() {
 
   return (
     <Animated.View>
-      <HStack space={'40px'} justifyContent={'center'}>
+      <HStack space={{md: '40px', base: '7px'}} justifyContent={'center'}>
         {socials.map(({Icon}, index) => (
-          <Box key={index} style={{transform: 'scale(0.8)'}}>
+          <Box
+            key={index}
+            style={{
+              transform: deviceType === 'tablet' ? 'scale(0.8)' : 'scale(0.4)',
+            }}>
             <Icon />
           </Box>
         ))}

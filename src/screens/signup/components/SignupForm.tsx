@@ -20,16 +20,15 @@ import AuthLayover from './AuthLayover';
 import {RootStackParamList} from '@src/routes';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
-interface SignupFormProps {
-  navigation: StackNavigationProp<RootStackParamList>;
-}
-
-function SignupForm({navigation}: SignupFormProps) {
+function SignupForm() {
+  const navigation = useNavigation();
   const canvasRef: any = useRef(null);
   const [canvasSize, setCanvasSize] = useState({width: 0, height: 0});
 
   const onNavigate = (route: keyof RootStackParamList) => {
+    // @ts-ignore
     navigation.navigate(route);
   };
 
@@ -51,19 +50,19 @@ function SignupForm({navigation}: SignupFormProps) {
   }, [canvasRef.current]);
 
   return (
-    <View flex={'1'} bg={'white'} px={{md: '59px'}}>
+    <View flex={'1'} bg={'white'} px={{md: '59px', base: '27px'}}>
       <AuthLayover
         canvasRef={canvasRef}
         setCanvasSize={setCanvasSize}
         title="Sign Up"
         detail="Sign up to strt expoloring the world today!"
       />
-      <Flex my={{md: '30px'}} justifyContent={'center'} alignItems={'center'}>
-        {/* <Text color={'primary.1'} fontWeight={'extraBlack'}>
+      {/* <Flex my={{md: '30px'}} justifyContent={'center'} alignItems={'center'}>
+      <Text color={'primary.1'} fontWeight={'extraBlack'} display={'none'}>
           Scrolls
-        </Text> */}
-      </Flex>
-      <Stack w="full" px={{md: '34px'}}>
+        </Text>
+      </Flex>  */}
+      <Stack w="full" px={{md: '34px'}} mt={{base: '22px', md: '17.5px'}}>
         <Box mb="22px">
           <FormTextInput
             formTitle="Name"
@@ -89,7 +88,10 @@ function SignupForm({navigation}: SignupFormProps) {
         </Box>
       </Stack>
 
-      <HStack alignItems={'center'} px={{md: '34px'}}>
+      <HStack
+        alignItems={'center'}
+        px={{md: '34px', base: '0px'}}
+        mt={{base: '39px', md: '0px'}}>
         <Checkbox
           alignItems={'center'}
           value={'dadfasdf'}
@@ -98,10 +100,9 @@ function SignupForm({navigation}: SignupFormProps) {
           <Text
             fontFamily={'Poppins-Regular'}
             ml={2}
-            fontWeight={'600'}
             color={'#7D8093'}
-            fontSize={{md: '12px'}}
-            my={{md: '36px'}}>
+            fontSize={{md: '12px', base: '8px'}}
+            my={{md: '36px', base: '21px'}}>
             I certify that I am 18 years of age or older, and I agree to the{' '}
             <Text display={'inline'} color={'primary.1'}>
               User Agreement
@@ -110,7 +111,7 @@ function SignupForm({navigation}: SignupFormProps) {
         </Checkbox>
       </HStack>
 
-      <VStack px={{md: '34px'}} space={{md: '31px'}}>
+      <VStack px={{md: '34px', base: '0px'}} space={{md: '31px', base: '21px'}}>
         <GradientButton
           onPress={() => null}
           title="Get Started"
@@ -120,27 +121,36 @@ function SignupForm({navigation}: SignupFormProps) {
           text="Connect a wallet"
           style={{
             background: 'white',
-            height: {md: '58px'},
+            height: {md: '58px', base: '40px'},
             borderRadius: '10px',
             borderWidth: '1.1px',
             borderColor: 'primary.1',
           }}
-          textStyle={{color: 'primary.1', fontSize: {md: '14px'}}}
+          textStyle={{color: 'primary.1', fontSize: {md: '14px', base: '10px'}}}
         />
       </VStack>
 
-      <Box my={'20px'} px={{md: '34px'}}>
+      <Box my={{md: '20px', base: '15px'}} px={{md: '34px'}}>
         <Divider />
       </Box>
 
       <SocialLoginButton />
 
-      <HStack justifyContent="center" alignItems="center" mt={{md: '28px'}}>
-        <Text color="primary.1" fontFamily="Poppins-Regular" fontSize="14px">
+      <HStack
+        justifyContent="center"
+        alignItems="center"
+        mt={{md: '28px', base: '10px'}}>
+        <Text
+          color="primary.1"
+          fontFamily="Poppins-Regular"
+          fontSize={{base: '10px', md: '14px'}}>
           Already have an account?{' '}
         </Text>
         <TouchableOpacity onPress={() => onNavigate('EmailLoginScreen')}>
-          <Text fontFamily="Poppins-SemiBold" color={'primary.1'}>
+          <Text
+            fontFamily="Poppins-SemiBold"
+            color={'primary.1'}
+            fontSize={{base: '10px', md: '14px'}}>
             Login
           </Text>
         </TouchableOpacity>

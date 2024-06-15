@@ -1,20 +1,9 @@
-import {
-  MobileOSType,
-  WINDOW_HEIGHT,
-  WINDOW_WIDTH,
-  isMobile,
-  isTablet,
-} from '@constants/reusable';
+import {WINDOW_HEIGHT, WINDOW_WIDTH, isMobile} from '@constants/reusable';
 import {Box, Flex, Text} from 'native-base';
 import {StyleSheet} from 'react-native';
 import {GradientText} from './TravelReimaginedScreen';
-import {RFPercentage} from 'react-native-responsive-fontsize';
 import ExploreContent from './contentViews/ExploreContent';
-import {useEffect} from 'react';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '@src/routes';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {StackNavigationProp} from '@react-navigation/stack';
+import {useDeviceType} from '@src/components/hooks';
 
 interface ExploreScreenProps {
   metadata: any;
@@ -23,6 +12,8 @@ interface ExploreScreenProps {
 }
 
 function ExploreScreen({metadata, title, detail}: ExploreScreenProps) {
+  const deviceType = useDeviceType();
+
   return (
     <Flex>
       <Flex flex={1} justifyContent={'flex-start'}>
@@ -35,38 +26,31 @@ function ExploreScreen({metadata, title, detail}: ExploreScreenProps) {
             {
               height: WINDOW_HEIGHT,
               justifyContent: 'flex-start',
-              padding: isTablet ? 65 : 30,
             },
-          ]}>
+          ]}
+          padding={deviceType === 'tablet' ? '30px' : '27px'}>
           <Box height={WINDOW_HEIGHT * 0.645} w="full"></Box>
           <Box flex={1} mt={!isMobile ? 42 : 30} px={'0'} w={'full'}>
             <Box>
               <GradientText
                 style={{
                   fontFamily: 'Spartan-Regular',
-                  fontWeight: 'bold',
-                  fontSize:
-                    MobileOSType === 'android' && isTablet
-                      ? RFPercentage(4.2)
-                      : RFPercentage(2),
-                  lineHeight: 55,
+                  fontSize: deviceType === 'mobile' ? 28 : 48,
+                  lineHeight: deviceType === 'mobile' ? 30 : 55,
                   textTransform: 'uppercase',
                 }}>
                 {title}
               </GradientText>
             </Box>
 
-            <Box width={WINDOW_WIDTH * 0.63} mt={'11px'}>
+            <Box
+              width={deviceType === 'tablet' ? WINDOW_WIDTH * 0.63 : '100%'}
+              mt={'11px'}>
               <Text
                 fontFamily={'Poppins-Regular'}
-                fontSize={
-                  MobileOSType === 'android' && isTablet
-                    ? RFPercentage(1.6)
-                    : 10
-                }
-                lineHeight={isTablet ? '32' : '16'}
-                color={'secondary.1'}
-                fontWeight={'400'}>
+                fontSize={{base: '12.5px', md: '16px'}}
+                lineHeight={{md: '32px', base: '24px'}}
+                color={'secondary.1'}>
                 {detail}
               </Text>
             </Box>

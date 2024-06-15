@@ -11,9 +11,9 @@ function Divider() {
         mx={'5px'}
         color={'#425166'}
         fontFamily={'Poppins-Regular'}
-        fontSize={'18px'}>
+        fontSize={{md: '18px', base: '10px'}}>
         {' '}
-        Or
+        Or{' '}
       </Text>
       <View
         style={{flex: 1, height: 1, backgroundColor: 'rgba(3, 4, 94, 0.23)'}}
