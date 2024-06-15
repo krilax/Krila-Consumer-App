@@ -1,6 +1,7 @@
 import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@constants/reusable';
-import {Button, Flex, HStack, Image, Text} from 'native-base';
+import {Box, Button, Flex, HStack, Image, Text} from 'native-base';
 import React, {useState} from 'react';
+import {TouchableWithoutFeedback} from 'react-native';
 
 function SearchAdSpot() {
   const adHeight = WINDOW_HEIGHT * 0.18;
@@ -31,27 +32,37 @@ function SearchAdSpot() {
           w={WINDOW_WIDTH * 0.45}
           justifyContent={'flex-end'}
           alignItems={'flex-start'}>
-          <HStack w="full" justifyContent={'flex-end'} alignItems={'flex-end'}>
-            {['Flights', 'Smart Search'].map((buttonLabel, index) => (
-              <Button
-                key={index}
-                flex={1}
-                mx={0}
-                // h={getButtonStyle(index).height}
-                // borderRadius={'10px'}
-                bg={activeButton === index ? 'white' : 'primary.1'}>
-                <Text
-                  color={activeButton === index ? 'primary.1' : 'white'}
-                  fontFamily={{md: 'Spartan-SemiBold'}}
-                  fontSize={{md: '15px', base: '10px'}}>
-                  {buttonLabel}
-                </Text>
-              </Button>
+          <HStack
+            w="full"
+            justifyContent={'flex-end'}
+            alignItems={'flex-end'}
+            position={'relative'}>
+            {['Flights'].map((buttonLabel, index) => (
+              <TouchableWithoutFeedback>
+                <Box
+                  key={index}
+                  flex={1}
+                  mx={0}
+                  borderTopRightRadius={
+                    activeButton === index ? '20px' : '10px'
+                  }
+                  borderTopLeftRadius={activeButton === 0 ? '10px' : '0px'}
+                  py={activeButton === index ? '10px' : '5px'}
+                  bg={activeButton === index ? 'white' : 'primary.1'}>
+                  <Text
+                    textAlign={'center'}
+                    color={activeButton === index ? 'primary.1' : 'white'}
+                    fontFamily={{md: 'Spartan-SemiBold'}}
+                    fontSize={{md: '15px', base: '10px'}}
+                    px={{base: '10px'}}>
+                    {buttonLabel}
+                  </Text>
+                </Box>
+              </TouchableWithoutFeedback>
             ))}
           </HStack>
         </Flex>
-        <Flex flex={1} justifyContent={'flex-start'} alignItems={'flex-end'}>
-          {/* <Text>Notificaiton Icon</Text> */}
+        {/* <Flex flex={1} justifyContent={'flex-start'} alignItems={'flex-end'}>
           <Text
             textAlign={'right'}
             color={'#03045E'}
@@ -67,7 +78,7 @@ function SearchAdSpot() {
             color={'#616161'}>
             Contact us to place an AD here
           </Text>
-        </Flex>
+        </Flex> */}
       </Flex>
     </Flex>
   );
