@@ -1,5 +1,5 @@
 import {WINDOW_HEIGHT} from '@constants/reusable';
-import {Canvas, Group, Image, Skia, useImage} from '@shopify/react-native-skia';
+import {Skia} from '@shopify/react-native-skia';
 import {useDeviceType} from '@src/components/hooks';
 import {Box} from 'native-base';
 import React, {useRef, useState} from 'react';
@@ -42,10 +42,10 @@ function ExploreContent() {
   fourthCirclePath.addCircle(circleX4, circleY4, radius4);
   const circlePath4 = fourthCirclePath.toSVGString();
 
-  const image1 = useImage(require('@assets/images/exploreImages/1.png'));
-  const image2 = useImage(require('@assets/images/exploreImages/2.png'));
-  const image3 = useImage(require('@assets/images/exploreImages/3.png'));
-  const image4 = useImage(require('@assets/images/exploreImages/1.png'));
+  // const image1 = useImage(require('@assets/images/exploreImages/first.png'));
+  // const image2 = useImage(require('@assets/images/exploreImages/2.png'));
+  // const image3 = useImage(require('@assets/images/exploreImages/3.png'));
+  // const image4 = useImage(require('@assets/images/exploreImages/1.png'));
 
   return (
     <Box
@@ -74,7 +74,7 @@ function ExploreContent() {
             );
           }
         }}>
-        <Canvas style={style.container}>
+        {/* <Canvas style={style.container}>
           <Group>
             <Group clip={circlePath1}>
               <Image
@@ -113,7 +113,7 @@ function ExploreContent() {
                 fit="none"></Image>
             </Group>
           </Group>
-        </Canvas>
+        </Canvas> */}
       </Box>
     </Box>
   );

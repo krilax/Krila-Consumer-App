@@ -5,10 +5,6 @@ import {RFPercentage} from 'react-native-responsive-fontsize';
 import {MobileOSType, isTablet} from '@constants/reusable';
 import {useDeviceType} from '@src/components/hooks';
 import FeatureImageThree from '@assets/images/featuresImages/3.svg';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
 import {responsiveFontSize} from '@src/helpers/utlils';
 
 function FeatureDetail3() {

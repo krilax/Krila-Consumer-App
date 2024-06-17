@@ -1,8 +1,7 @@
-import {Box} from 'native-base';
 import React, {ReactElement, cloneElement} from 'react';
 import {StyleSheet} from 'react-native';
 import Animated from 'react-native-reanimated';
-import {useDeviceType} from './hooks';
+import {useDeviceType} from '../hooks';
 import {nativeBaseTheme} from '@constants/theme';
 const {View} = Animated;
 

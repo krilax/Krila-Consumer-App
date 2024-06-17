@@ -89,7 +89,7 @@ function EmailLoginScreen({navigation}: EmailLoginScreenProps) {
         space={{md: '31px', base: '21px'}}
         mt={{md: '167px', base: responsiveMargin(50)}}>
         <GradientButton
-          onPress={() => onNavigate('SearchInputScreen')}
+          onPress={() => onNavigate('FlightSearchInputScreen')}
           title="Get Started"
           colors={['#03045E', '#050792', '#0608C4']}
         />

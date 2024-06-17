@@ -19,7 +19,7 @@ const GradientButton = lazy(() => import('@src/components/GradientButton'));
 const SearchAdSpot = lazy(
   () => import('@src/components/advertising/SearchAdSpot'),
 );
-const TabBar = lazy(() => import('@src/components/TabBar'));
+const TabBar = lazy(() => import('@src/components/TabBar/TabBar'));
 
 interface SearchInputScreenProps {
   navigation: StackNavigationProp<RootStackParamList>;
@@ -33,7 +33,7 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const onSearchFlight = async () => {
-    navigation.navigate('SearchResultScreen');
+    navigation.navigate('FlightSearchResultScreen');
   };
 
   return (

@@ -183,32 +183,32 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
   return (
     <Suspense fallback={<WelcomeLoadingScreen />}>
       <View style={styles.container}>
-        <GestureDetector {...{gesture}}>
-          <Animated.View style={StyleSheet.absoluteFill}>
-            <Animated.View style={[styles.slides]}>
-              {onboardData.map(
-                ({color, metadata, detail, title, Screen}, idx) => {
-                  return (
-                    <Animated.View
-                      style={[styles.slide, animatedStylesArray[idx]]}
-                      key={idx}>
-                      <Screen
-                        {...{
-                          index: idx,
-                          color,
-                          metadata,
-                          detail,
-                          title,
-                          ...navigation,
-                        }}
-                      />
-                    </Animated.View>
-                  );
-                },
-              )}
-            </Animated.View>
+        {/* <GestureDetector {...{gesture}}> */}
+        <Animated.View style={StyleSheet.absoluteFill}>
+          <Animated.View style={[styles.slides]}>
+            {onboardData.map(
+              ({color, metadata, detail, title, Screen}, idx) => {
+                return (
+                  <Animated.View
+                    style={[styles.slide, animatedStylesArray[idx]]}
+                    key={idx}>
+                    <Screen
+                      {...{
+                        index: idx,
+                        color,
+                        metadata,
+                        detail,
+                        title,
+                        ...navigation,
+                      }}
+                    />
+                  </Animated.View>
+                );
+              },
+            )}
           </Animated.View>
-        </GestureDetector>
+        </Animated.View>
+        {/* </GestureDetector> */}
 
         <Box
           w="full"

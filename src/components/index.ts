@@ -6,7 +6,7 @@ import FormTextInput from './FormTextInput';
 import GradientButton from './GradientButton';
 import CuratingLoadingScreen from './loadingScreens/CuratingLoadingScreen';
 import MiniHeader from './MiniHeader';
-import TabBar from './TabBar';
+import TabBar from './TabBar/TabBar';
 
 export {
   FormTextInput,

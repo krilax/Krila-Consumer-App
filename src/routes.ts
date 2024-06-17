@@ -9,14 +9,14 @@ export type RootStackParamList = {
   OTPScreen: undefined;
   HomeShowScreen: undefined;
   HomeScreen: undefined;
-  SearchInputScreen: undefined;
-  SearchResultScreen: undefined;
   BookingDetailsScreen: undefined;
-  CardPaymentScreen: undefined;
+  PaymentScreen: undefined;
   BoardingPassScreen: undefined;
   BookingUserInfoScreen: undefined;
-  SelectSeatScreen: undefined;
-  FlightSmartSearchResultScreen: undefined;
-  FlightPassengerInfoScreen: undefined;
+
   FlightSelectSeatScreen: undefined;
+  FlightSearchInputScreen: undefined;
+  FlightSearchResultScreen: undefined;
+  FlightPassengerInfoScreen: undefined;
+  FlightSmartSearchResultScreen: undefined;
 };

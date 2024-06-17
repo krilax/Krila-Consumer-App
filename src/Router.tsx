@@ -3,15 +3,15 @@ import React from 'react';
 import {RootStackParamList} from './routes';
 import PhoneLoginScreen from '@src/screens/login/PhoneLoginScreen';
 import {
-  CardPaymentScreen,
   FlightBoardingPassengerScreen,
+  FlightSearchInputScreen,
+  FlightSearchResultScreen,
   FlightSelectSeatScreen,
-  SearchInputScreen,
-  SearchResultScreen,
+  PaymentScreen,
 } from '@src/screens/booking/flight';
 import {
-  BookingDetailsScreen,
   EmailLoginScreen,
+  FlightBookingDetailsScreen,
   FlightPassengerInfoScreen,
   OnboardScreen,
   ResetPasswordScreen,
@@ -29,7 +29,7 @@ function Router({isOnboardingCompleted}: RouterProps) {
   return (
     <Stack.Navigator
       initialRouteName={
-        !isOnboardingCompleted ? 'SplashScreen' : 'EmailLoginScreen'
+        !isOnboardingCompleted ? 'SplashScreen' : 'OnboardScreen'
       }
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
@@ -41,21 +41,27 @@ function Router({isOnboardingCompleted}: RouterProps) {
         component={ResetPasswordScreen}
       />
       <Stack.Screen name="PhoneLoginScreen" component={PhoneLoginScreen} />
-      <Stack.Screen name="SearchInputScreen" component={SearchInputScreen} />
-      <Stack.Screen name="SearchResultScreen" component={SearchResultScreen} />
+      <Stack.Screen
+        name="FlightSearchInputScreen"
+        component={FlightSearchInputScreen}
+      />
+      <Stack.Screen
+        name="FlightSearchResultScreen"
+        component={FlightSearchResultScreen}
+      />
       <Stack.Screen
         name="FlightSelectSeatScreen"
         component={FlightSelectSeatScreen}
       />
       <Stack.Screen
         name="BookingDetailsScreen"
-        component={BookingDetailsScreen}
+        component={FlightBookingDetailsScreen}
       />
       <Stack.Screen
         name="FlightPassengerInfoScreen"
         component={FlightPassengerInfoScreen}
       />
-      <Stack.Screen name="CardPaymentScreen" component={CardPaymentScreen} />
+      <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
       <Stack.Screen
         name="BoardingPassScreen"
         component={FlightBoardingPassengerScreen}
