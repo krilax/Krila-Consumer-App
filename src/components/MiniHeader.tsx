@@ -1,4 +1,4 @@
-import {Box, Flex, Image, Text, VStack} from 'native-base';
+import {Box, Image, Text, VStack} from 'native-base';
 import React from 'react';
 
 interface MiniHeaderProps {
@@ -24,7 +24,6 @@ function MiniHeader({title, description}: MiniHeaderProps) {
         style={{objectFit: 'fill'}}
       />
       <VStack
-        space={2}
         position="absolute"
         top="0"
         left="0"
@@ -32,8 +31,7 @@ function MiniHeader({title, description}: MiniHeaderProps) {
         bottom="0"
         flexDirection="column"
         justifyContent="center"
-        alignItems="center"
-        p="4">
+        alignItems="center">
         <Text
           color="white"
           fontSize={{md: '40', base: '10px'}}

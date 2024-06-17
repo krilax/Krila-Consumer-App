@@ -21,10 +21,7 @@ interface BoardingPassengerScreenProps {
 function BoardingPassengerScreen({navigation}: BoardingPassengerScreenProps) {
   return (
     <Flex flex={'1'} background={'#EFEFEF'}>
-      <ScrollView
-        px={{md: '57px', base: '27px'}}
-        mb={'1px'}
-        borderWidth={'1px'}>
+      <ScrollView px={{md: '57px', base: '27px'}} mb={'1px'}>
         <MiniHeader
           title={'Boarding Pass'}
           description={'Let’s start your trip'}

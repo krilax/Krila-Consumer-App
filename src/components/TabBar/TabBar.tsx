@@ -3,12 +3,12 @@ import {HStack} from 'native-base';
 import {StyleSheet} from 'react-native';
 import Animated from 'react-native-reanimated';
 import Tab from './Tab';
-import Home from './tabIcons/Home';
-import {useDeviceType} from './hooks';
-import Message from './tabIcons/Message';
-import Wallet from './tabIcons/Wallet';
-import Trips from './tabIcons/Trips';
-import User from './tabIcons/User';
+import Home from '../tabIcons/Home';
+import {useDeviceType} from '../hooks';
+import Message from '../tabIcons/Message';
+import Wallet from '../tabIcons/Wallet';
+import Trips from '../tabIcons/Trips';
+import User from '../tabIcons/User';
 
 function TabBar() {
   const deviceType = useDeviceType();

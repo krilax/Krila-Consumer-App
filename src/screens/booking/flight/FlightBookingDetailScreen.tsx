@@ -5,7 +5,7 @@ import {RootStackParamList} from '@src/routes';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 const GradientButton = lazy(() => import('@src/components/GradientButton'));
-const TabBar = lazy(() => import('@src/components/TabBar'));
+const TabBar = lazy(() => import('@src/components/TabBar/TabBar'));
 const MiniHeader = lazy(() => import('@src/components/MiniHeader'));
 const ContactDetail = lazy(() => import('./components/ContactDetail'));
 const MasterCardIcon = lazy(() => import('@assets/images/app/mastercard.svg'));
@@ -21,7 +21,7 @@ interface BookingDetailsScreenProps {
   navigation: StackNavigationProp<RootStackParamList>;
 }
 
-function BookingDetailsScreen({navigation}: BookingDetailsScreenProps) {
+function FlightBookingDetailsScreen({navigation}: BookingDetailsScreenProps) {
   const onNavigate = (route: keyof RootStackParamList) => {
     navigation.navigate(route);
   };
@@ -250,35 +250,39 @@ function BookingDetailsScreen({navigation}: BookingDetailsScreenProps) {
                 <HStack justifyContent={'space-between'} alignItems={'center'}>
                   <Text
                     color={'primary.1'}
-                    fontSize={'14px'}
+                    fontSize={{base: '12px', md: '14px'}}
                     fontFamily={'Poppins-Regular'}>
                     1 Passenger
                   </Text>
-                  <Text color={'primary.1'} fontSize={'12px'}>
+                  <Text
+                    color={'primary.1'}
+                    fontSize={{base: '12px', md: '14px'}}>
                     $1,0004.67
                   </Text>
                 </HStack>
                 <HStack justifyContent={'space-between'} alignItems={'center'}>
                   <Text
                     color={'primary.1'}
-                    fontSize={'14px'}
+                    fontSize={{base: '12px', md: '14px'}}
                     fontFamily={'Poppins-Regular'}>
                     Tax and Fees
                   </Text>
-                  <Text color={'primary.1'} fontSize={'12px'}>
+                  <Text
+                    color={'primary.1'}
+                    fontSize={{base: '12px', md: '14px'}}>
                     $1,0004.67
                   </Text>
                 </HStack>
                 <HStack justifyContent={'space-between'} alignItems={'center'}>
                   <Text
                     color={'primary.1'}
-                    fontSize={'14px'}
+                    fontSize={{base: '12px', md: '14px'}}
                     fontFamily={'Poppins-Bold'}>
                     Total
                   </Text>
                   <Text
                     color={'primary.1'}
-                    fontSize={'12px'}
+                    fontSize={{base: '12px', md: '14px'}}
                     fontFamily={'Spartan-Bold'}>
                     $1,0004.67
                   </Text>
@@ -291,7 +295,7 @@ function BookingDetailsScreen({navigation}: BookingDetailsScreenProps) {
               title="Proceed To Payment"
               colors={['#03045E', '#0608C4']}
               onPress={function () {
-                onNavigate('CardPaymentScreen');
+                onNavigate('PaymentScreen');
               }}
             />
           </Box>
@@ -302,4 +306,4 @@ function BookingDetailsScreen({navigation}: BookingDetailsScreenProps) {
   );
 }
 
-export default BookingDetailsScreen;
+export default FlightBookingDetailsScreen;

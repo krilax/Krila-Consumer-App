@@ -1,6 +1,7 @@
 import {WINDOW_WIDTH} from '@constants/reusable';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {CuratingLoadingScreen} from '@src/components';
+import {Switch} from '@src/components';
+import NormalLoadingScreen from '@src/components/loadingScreens/NormalLoadingScreen';
 import {RootStackParamList} from '@src/routes';
 import {
   Box,
@@ -12,13 +13,13 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import {Suspense, lazy, useState} from 'react';
+import React, {Suspense, lazy, useState} from 'react';
 
 const GradientButton = lazy(() => import('@src/components/GradientButton'));
 const SearchAdSpot = lazy(
   () => import('@src/components/advertising/SearchAdSpot'),
 );
-const TabBar = lazy(() => import('@src/components/TabBar'));
+const TabBar = lazy(() => import('@src/components/TabBar/TabBar'));
 
 interface SearchInputScreenProps {
   navigation: StackNavigationProp<RootStackParamList>;
@@ -32,11 +33,11 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const onSearchFlight = async () => {
-    navigation.navigate('SearchResultScreen');
+    navigation.navigate('FlightSearchResultScreen');
   };
 
   return (
-    <Suspense fallback={<CuratingLoadingScreen />}>
+    <Suspense fallback={<NormalLoadingScreen />}>
       <VStack w={'full'} flex={1}>
         <Flex flex={1}>
           <ScrollView
@@ -46,7 +47,7 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
             <Flex
               flex={1}
               justifyContent={'flex-start'}
-              backgroundColor={'#FBFBFB'}>
+              backgroundColor={'#F7F7F7'}>
               <VStack
                 mt={{md: '49px', base: '22px'}}
                 px={{md: '39px', base: '27px'}}
@@ -61,15 +62,13 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                       key={index}
                       flex={1}
                       onPress={() => setSelectedTab(index)}
-                      bgColor={'#FBFBFB'}
                       alignItems="center"
                       justifyContent="center"
                       borderBottomWidth={selectedTab === index ? 2 : 0}
                       borderBottomColor={
                         selectedTab === index ? 'primary.1' : 'gray.300'
                       }
-                      bg={selectedTab === index ? 'primary.100' : 'white'}
-                      backgroundColor={'white'}
+                      bg={'#f7f7f7'}
                       py={'7px'}>
                       <Text
                         fontFamily={
@@ -91,11 +90,9 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                       bg="white"
                       py={{md: '19px', base: '20px'}}
                       px={{md: '30px', base: '23px'}}
-                      borderRadius={'17px'}
-                      rounded="lg"
-                      shadow="2"
+                      borderRadius={{base: '20px', md: '20px'}}
                       style={{
-                        shadowColor: '#000',
+                        shadowColor: 'rgba(0, 0, 0, 0.20)',
                         shadowOffset: {width: 2, height: 4},
                         shadowOpacity: 0.2,
                         shadowRadius: 23,
@@ -122,10 +119,20 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                           fontSize={{md: '12px', base: '10px'}}>
                           Hamad International Airport
                         </Text>
-                        <Divider
-                          my={{md: '13px', base: '21px'}}
-                          backgroundColor={'rgba(217, 217, 217, 0.75);'}
-                        />
+                        <HStack alignItems={'center'}>
+                          <Divider
+                            backgroundColor={'rgba(217, 217, 217, 0.75);'}
+                            flex={'1'}
+                          />
+                          <Box
+                            width={{base: '30px', md: '50px'}}
+                            height={{base: '30px', md: '50px'}}
+                            style={{
+                              transform: [{scale: 0.7}],
+                            }}>
+                            <Switch width="100%" height="100%" />
+                          </Box>
+                        </HStack>
                         <Text
                           fontSize={{md: '14px', base: '10px'}}
                           fontFamily={'Poppins-Regular'}
@@ -153,61 +160,113 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                       bg="white"
                       py={{md: '19px', base: '20px'}}
                       px={{md: '30px', base: '23px'}}
-                      borderRadius={'17px'}
-                      rounded="lg"
-                      shadow="2"
+                      borderRadius={{base: '20px', md: '20px'}}
                       style={{
-                        shadowColor: '#000',
+                        shadowColor: 'rgba(0, 0, 0, 0.20)',
                         shadowOffset: {width: 2, height: 4},
                         shadowOpacity: 0.2,
                         shadowRadius: 23,
                         elevation: 4,
                       }}>
                       <Box w="100%">
-                        <Text
-                          fontSize={{md: '14px', base: '10px'}}
-                          fontFamily={'Poppins-Regular'}
-                          mb={{base: '7px'}}
-                          color={'#7D8093'}>
-                          From
-                        </Text>
-                        <Text
-                          mb={{base: '2px'}}
-                          color={'primary.1'}
-                          fontFamily={'Spartan-Regular'}
-                          fontSize={{md: '24px', base: '14px'}}>
-                          Doha Doh
-                        </Text>
-                        <Text
-                          color="#7D8093"
-                          fontFamily={'Poppins-Regular'}
-                          fontSize={{md: '12px', base: '10px'}}>
-                          Hamad International Airport
-                        </Text>
+                        <HStack
+                          justifyContent={'space-between'}
+                          alignContent={'center'}>
+                          <VStack>
+                            <Text
+                              fontSize={{md: '14px', base: '10px'}}
+                              fontFamily={'Poppins-Regular'}
+                              mb={{base: '7px'}}
+                              color={'#7D8093'}>
+                              Departure
+                            </Text>
+                            <Text
+                              mb={{base: '2px'}}
+                              color={'primary.1'}
+                              fontFamily={'Spartan-Regular'}
+                              fontSize={{md: '24px', base: '14px'}}>
+                              May 17, 2024
+                            </Text>
+                            <Text
+                              color="#7D8093"
+                              fontFamily={'Poppins-Regular'}
+                              fontSize={{md: '12px', base: '10px'}}>
+                              Friday
+                            </Text>
+                          </VStack>
+
+                          <VStack alignItems={'flex-end'}>
+                            <Text
+                              fontSize={{md: '14px', base: '10px'}}
+                              fontFamily={'Poppins-Regular'}
+                              mb={{base: '7px'}}
+                              color={'#7D8093'}>
+                              Return
+                            </Text>
+                            <Text
+                              mb={{base: '2px'}}
+                              color={'primary.1'}
+                              fontFamily={'Spartan-Regular'}
+                              fontSize={{md: '24px', base: '14px'}}>
+                              May 17, 2024
+                            </Text>
+                            <Text
+                              color="#7D8093"
+                              fontFamily={'Poppins-Regular'}
+                              fontSize={{md: '12px', base: '10px'}}>
+                              Friday
+                            </Text>
+                          </VStack>
+                        </HStack>
+
                         <Divider
                           my={{md: '13px', base: '21px'}}
                           backgroundColor={'rgba(217, 217, 217, 0.75);'}
                         />
-                        <Text
-                          fontSize={{md: '14px', base: '10px'}}
-                          fontFamily={'Poppins-Regular'}
-                          mb={{base: '7px'}}
-                          color={'#7D8093'}>
-                          To
-                        </Text>
-                        <Text
-                          color={'primary.1'}
-                          fontSize={{md: '24px', base: '14px'}}
-                          fontFamily={'Spartan-Regular'}
-                          mb={{base: '2px'}}>
-                          Lagos LOS
-                        </Text>
-                        <Text
-                          color="#7D8093"
-                          fontFamily={'Poppins-Regular'}
-                          fontSize={{md: '12px', base: '10px'}}>
-                          Hamad International Airport
-                        </Text>
+
+                        <HStack
+                          justifyContent={'space-between'}
+                          alignItems={'center'}>
+                          <VStack>
+                            <Text
+                              fontSize={{md: '14px', base: '10px'}}
+                              fontFamily={'Poppins-Regular'}
+                              mb={{base: '7px'}}
+                              color={'#7D8093'}>
+                              Passengers
+                            </Text>
+                            <Text
+                              color={'primary.1'}
+                              fontSize={{md: '24px', base: '14px'}}
+                              fontFamily={'Spartan-Regular'}
+                              mb={{base: '2px'}}>
+                              1 Passenger
+                            </Text>
+                            <Text
+                              color="#7D8093"
+                              fontFamily={'Poppins-Regular'}
+                              fontSize={{md: '12px', base: '10px'}}>
+                              1 Adult
+                            </Text>
+                          </VStack>
+
+                          <VStack alignItems={'flex-end'}>
+                            <Text
+                              fontSize={{md: '14px', base: '10px'}}
+                              fontFamily={'Poppins-Regular'}
+                              mb={{base: '7px'}}
+                              color={'#7D8093'}>
+                              Ticket Class
+                            </Text>
+                            <Text
+                              color={'primary.1'}
+                              fontSize={{md: '24px', base: '14px'}}
+                              fontFamily={'Spartan-Regular'}
+                              mb={{base: '2px'}}>
+                              Economy
+                            </Text>
+                          </VStack>
+                        </HStack>
                       </Box>
                     </Box>
                   </>
@@ -218,10 +277,8 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                     py={{md: '19px', base: '20px'}}
                     px={{md: '30px', base: '23px'}}
                     borderRadius={'17px'}
-                    rounded="lg"
-                    shadow="2"
                     style={{
-                      shadowColor: '#000',
+                      shadowColor: 'rgba(0, 0, 0, 0.20)',
                       shadowOffset: {width: 2, height: 4},
                       shadowOpacity: 0.2,
                       shadowRadius: 23,
@@ -297,7 +354,7 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
   );
 }
 
-export default SearchInputScreen;
+export default React.memo(SearchInputScreen);
 
 {
   /* <Box py={{md: '36px', base: '27px'}} backgroundColor={'#F3F3F3'}>

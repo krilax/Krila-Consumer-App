@@ -22,7 +22,7 @@ const FormTextInput = lazy(() => import('@src/components/FormTextInput'));
 const GradientButton = lazy(() => import('@src/components/GradientButton'));
 const MiniHeader = lazy(() => import('@src/components/MiniHeader'));
 
-function CardPaymentScreen() {
+function PaymentScreen() {
   const tabs = [
     {label: 'Card', content: 'round-trip'},
     {label: 'Cryptocurrency', content: 'one-way'},
@@ -155,7 +155,6 @@ function CardPaymentScreen() {
                     fontSize={{base: '8px', md: '16px'}}
                     ml={2}
                     fontFamily={'Poppins-Regular'}
-                    fontStyle={'16px'}
                     color={'primary.1'}>
                     Add card to account
                   </Text>
@@ -441,4 +440,4 @@ function CardPaymentScreen() {
   );
 }
 
-export default CardPaymentScreen;
+export default PaymentScreen;

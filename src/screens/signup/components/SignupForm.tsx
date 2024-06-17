@@ -5,20 +5,10 @@ import {
   GradientButton,
 } from '@src/components';
 import SocialLoginButton from '@src/components/auth/SocialLoginButton';
-import {
-  Box,
-  Checkbox,
-  Flex,
-  HStack,
-  Stack,
-  Text,
-  VStack,
-  View,
-} from 'native-base';
+import {Box, Checkbox, HStack, Stack, Text, VStack, View} from 'native-base';
 import React, {useEffect, useRef, useState} from 'react';
 import AuthLayover from './AuthLayover';
 import {RootStackParamList} from '@src/routes';
-import {StackNavigationProp} from '@react-navigation/stack';
 import {TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
@@ -104,9 +94,7 @@ function SignupForm() {
             fontSize={{md: '12px', base: '8px'}}
             my={{md: '36px', base: '21px'}}>
             I certify that I am 18 years of age or older, and I agree to the{' '}
-            <Text display={'inline'} color={'primary.1'}>
-              User Agreement
-            </Text>{' '}
+            <Text color={'primary.1'}>User Agreement</Text>{' '}
           </Text>
         </Checkbox>
       </HStack>

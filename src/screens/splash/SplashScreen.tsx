@@ -19,11 +19,9 @@ const SplashScreen: React.FC<SplashScreenProps> = ({navigation}) => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('OnboardScreen');
+      navigation.navigate('EmailLoginScreen');
     }, 500);
   }, []);
-
-  console.log(deviceType);
 
   return (
     <Flex

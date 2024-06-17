@@ -1,17 +1,10 @@
-import {
-  MobileOSType,
-  WINDOW_HEIGHT,
-  WINDOW_WIDTH,
-  isMobile,
-  isTablet,
-} from 'constants/reusable';
+import {WINDOW_HEIGHT, WINDOW_WIDTH} from 'constants/reusable';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Box, Flex, Text, View} from 'native-base';
 import TravelContent from './contentViews/TravelContent';
 import LinearGradient from 'react-native-linear-gradient';
 import MaskedView from '@react-native-masked-view/masked-view';
-import {RFPercentage} from 'react-native-responsive-fontsize';
 import {useDeviceType} from '@src/components/hooks';
 import {responsiveFontSize} from '@src/helpers/utlils';
 

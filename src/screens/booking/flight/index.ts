@@ -1,13 +1,13 @@
 import FlightBoardingPassengerScreen from './FlightBoardingPassengerScreen';
-import CardPaymentScreen from './CardPaymentScreen';
+import PaymentScreen from '../../payment/PaymentScreen';
 import FlightSelectSeatScreen from './FlightSelectSeatScreen';
-import SearchInputScreen from './SearchInputScreen';
-import SearchResultScreen from './SearchResultScreen';
+import FlightSearchInputScreen from './FlightSearchInputScreen';
+import FlightSearchResultScreen from './FlightSearchResultScreen';
 
 export {
-  SearchInputScreen,
-  SearchResultScreen,
-  CardPaymentScreen,
+  PaymentScreen,
   FlightSelectSeatScreen,
+  FlightSearchInputScreen,
+  FlightSearchResultScreen,
   FlightBoardingPassengerScreen,
 };

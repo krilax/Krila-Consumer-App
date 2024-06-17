@@ -16,7 +16,7 @@ import {TouchableWithoutFeedback} from 'react-native';
 import {Spinner} from '@gluestack-ui/themed-native-base';
 
 const MiniHeader = React.lazy(() => import('@src/components/MiniHeader'));
-const TabBar = React.lazy(() => import('@src/components/TabBar'));
+const TabBar = React.lazy(() => import('@src/components/TabBar/TabBar'));
 
 interface SearchResultScreenProps {
   navigation: StackNavigationProp<RootStackParamList>;
