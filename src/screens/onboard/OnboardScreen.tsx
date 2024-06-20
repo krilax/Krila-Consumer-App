@@ -73,6 +73,7 @@ const onboardData: OnboardDataInterface[] = [
 ];
 
 const AUTO_SWITCH_INTERVAL = 20000;
+
 const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
   const index = useSharedValue(0);
   const isGestureActive = useSharedValue(false);
@@ -107,6 +108,7 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
 
       const newTranslationX =
         Math.round(translationX.value / WINDOW_WIDTH) * WINDOW_WIDTH;
+
       translationX.value = withTiming(newTranslationX, {
         duration: 200,
         easing: Easing.linear,

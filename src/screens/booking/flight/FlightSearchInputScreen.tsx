@@ -13,8 +13,14 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import React, {Suspense, lazy, useState} from 'react';
+import React, {Suspense, lazy, useCallback, useState} from 'react';
+import {TouchableNativeFeedback} from 'react-native';
+import DepartureSelect from './components/DepartureSelect';
 
+const FlightDestinationSelection = lazy(
+  () => import('./components/FlightDestinationSelection'),
+);
+const ReturnSelect = lazy(() => import('./components/ReturnSelect'));
 const GradientButton = lazy(() => import('@src/components/GradientButton'));
 const SearchAdSpot = lazy(
   () => import('@src/components/advertising/SearchAdSpot'),
@@ -25,20 +31,35 @@ interface SearchInputScreenProps {
   navigation: StackNavigationProp<RootStackParamList>;
 }
 
-function SearchInputScreen({navigation}: SearchInputScreenProps) {
-  const tabs = [
-    {label: 'Round Trip', content: 'round-trip'},
-    {label: 'One-way', content: 'one-way'},
-  ];
-  const [selectedTab, setSelectedTab] = useState(0);
+const tabs = [
+  {label: 'Round Trip', content: 'round-trip'},
+  {label: 'One-way', content: 'one-way'},
+];
 
-  const onSearchFlight = async () => {
+function SearchInputScreen({navigation}: SearchInputScreenProps) {
+  const [selectedTab, setSelectedTab] = useState(0);
+  const [destinationSelectionState, setDestinationSelectionState] =
+    useState<boolean>(false);
+
+  const onSearchFlight = useCallback(() => {
     navigation.navigate('FlightSearchResultScreen');
-  };
+  }, []);
+
+  const onChangeDeparture = useCallback(() => {
+    setDestinationSelectionState(true);
+  }, []);
+
+  const onChangeReturn = useCallback(() => {
+    setDestinationSelectionState(true);
+  }, []);
 
   return (
     <Suspense fallback={<NormalLoadingScreen />}>
-      <VStack w={'full'} flex={1}>
+      <VStack
+        w={'full'}
+        flex={1}
+        position={'relative'}
+        justifyContent={'flex-end'}>
         <Flex flex={1}>
           <ScrollView
             showsVerticalScrollIndicator={false}
@@ -99,26 +120,9 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                         elevation: 4,
                       }}>
                       <Box w="100%">
-                        <Text
-                          fontSize={{md: '14px', base: '10px'}}
-                          fontFamily={'Poppins-Regular'}
-                          mb={{base: '7px'}}
-                          color={'#7D8093'}>
-                          From
-                        </Text>
-                        <Text
-                          mb={{base: '2px'}}
-                          color={'primary.1'}
-                          fontFamily={'Spartan-Regular'}
-                          fontSize={{md: '24px', base: '14px'}}>
-                          Doha Doh
-                        </Text>
-                        <Text
-                          color="#7D8093"
-                          fontFamily={'Poppins-Regular'}
-                          fontSize={{md: '12px', base: '10px'}}>
-                          Hamad International Airport
-                        </Text>
+                        <DepartureSelect
+                          onChangeDeparture={onChangeDeparture}
+                        />
                         <HStack alignItems={'center'}>
                           <Divider
                             backgroundColor={'rgba(217, 217, 217, 0.75);'}
@@ -133,26 +137,8 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                             <Switch width="100%" height="100%" />
                           </Box>
                         </HStack>
-                        <Text
-                          fontSize={{md: '14px', base: '10px'}}
-                          fontFamily={'Poppins-Regular'}
-                          mb={{base: '7px'}}
-                          color={'#7D8093'}>
-                          To
-                        </Text>
-                        <Text
-                          color={'primary.1'}
-                          fontSize={{md: '24px', base: '14px'}}
-                          fontFamily={'Spartan-Regular'}
-                          mb={{base: '2px'}}>
-                          Lagos LOS
-                        </Text>
-                        <Text
-                          color="#7D8093"
-                          fontFamily={'Poppins-Regular'}
-                          fontSize={{md: '12px', base: '10px'}}>
-                          Hamad International Airport
-                        </Text>
+
+                        <ReturnSelect onChangeReturn={onChangeReturn} />
                       </Box>
                     </Box>
                     <Box
@@ -172,28 +158,35 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                         <HStack
                           justifyContent={'space-between'}
                           alignContent={'center'}>
-                          <VStack>
-                            <Text
-                              fontSize={{md: '14px', base: '10px'}}
-                              fontFamily={'Poppins-Regular'}
-                              mb={{base: '7px'}}
-                              color={'#7D8093'}>
-                              Departure
-                            </Text>
-                            <Text
-                              mb={{base: '2px'}}
-                              color={'primary.1'}
-                              fontFamily={'Spartan-Regular'}
-                              fontSize={{md: '24px', base: '14px'}}>
-                              May 17, 2024
-                            </Text>
-                            <Text
-                              color="#7D8093"
-                              fontFamily={'Poppins-Regular'}
-                              fontSize={{md: '12px', base: '10px'}}>
-                              Friday
-                            </Text>
-                          </VStack>
+                          <TouchableNativeFeedback
+                            onPress={() => console.log('Button Pressed!')}
+                            background={TouchableNativeFeedback.Ripple(
+                              'rgba(0, 0, 0, 0.2)',
+                              false,
+                            )}>
+                            <VStack>
+                              <Text
+                                fontSize={{md: '14px', base: '10px'}}
+                                fontFamily={'Poppins-Regular'}
+                                mb={{base: '7px'}}
+                                color={'#7D8093'}>
+                                Departure
+                              </Text>
+                              <Text
+                                mb={{base: '2px'}}
+                                color={'primary.1'}
+                                fontFamily={'Spartan-Regular'}
+                                fontSize={{md: '24px', base: '14px'}}>
+                                May 17, 2024
+                              </Text>
+                              <Text
+                                color="#7D8093"
+                                fontFamily={'Poppins-Regular'}
+                                fontSize={{md: '12px', base: '10px'}}>
+                                Friday
+                              </Text>
+                            </VStack>
+                          </TouchableNativeFeedback>
 
                           <VStack alignItems={'flex-end'}>
                             <Text
@@ -249,7 +242,6 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                               1 Adult
                             </Text>
                           </VStack>
-
                           <VStack alignItems={'flex-end'}>
                             <Text
                               fontSize={{md: '14px', base: '10px'}}
@@ -285,50 +277,68 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                       elevation: 4,
                     }}>
                     <Box w="100%">
-                      <Text
-                        fontSize={{md: '14px', base: '10px'}}
-                        fontFamily={'Poppins-Regular'}
-                        mb={{base: '7px'}}
-                        color={'#7D8093'}>
-                        From
-                      </Text>
-                      <Text
-                        mb={{base: '2px'}}
-                        color={'primary.1'}
-                        fontFamily={'Spartan-Regular'}
-                        fontSize={{md: '24px', base: '14px'}}>
-                        Doha Doh
-                      </Text>
-                      <Text
-                        color="#7D8093"
-                        fontFamily={'Poppins-Regular'}
-                        fontSize={{md: '12px', base: '10px'}}>
-                        Hamad International Airport
-                      </Text>
+                      <TouchableNativeFeedback
+                        onPress={() => console.log('Button Pressed!')}
+                        background={TouchableNativeFeedback.Ripple(
+                          'rgba(0, 0, 0, 0.2)',
+                          false,
+                        )}>
+                        <VStack>
+                          <Text
+                            fontSize={{md: '14px', base: '10px'}}
+                            fontFamily={'Poppins-Regular'}
+                            mb={{base: '7px'}}
+                            color={'#7D8093'}>
+                            From
+                          </Text>
+                          <Text
+                            mb={{base: '2px'}}
+                            color={'primary.1'}
+                            fontFamily={'Spartan-Regular'}
+                            fontSize={{md: '24px', base: '14px'}}>
+                            Doha Doh
+                          </Text>
+                          <Text
+                            color="#7D8093"
+                            fontFamily={'Poppins-Regular'}
+                            fontSize={{md: '12px', base: '10px'}}>
+                            Hamad International Airport
+                          </Text>
+                        </VStack>
+                      </TouchableNativeFeedback>
                       <Divider
                         my={{md: '13px', base: '21px'}}
                         backgroundColor={'rgba(217, 217, 217, 0.75);'}
                       />
-                      <Text
-                        fontSize={{md: '14px', base: '10px'}}
-                        fontFamily={'Poppins-Regular'}
-                        mb={{base: '7px'}}
-                        color={'#7D8093'}>
-                        To
-                      </Text>
-                      <Text
-                        color={'primary.1'}
-                        fontSize={{md: '24px', base: '14px'}}
-                        fontFamily={'Spartan-Regular'}
-                        mb={{base: '2px'}}>
-                        Lagos LOS
-                      </Text>
-                      <Text
-                        color="#7D8093"
-                        fontFamily={'Poppins-Regular'}
-                        fontSize={{md: '12px', base: '10px'}}>
-                        Hamad International Airport
-                      </Text>
+                      <TouchableNativeFeedback
+                        onPress={() => console.log('Button Pressed!')}
+                        background={TouchableNativeFeedback.Ripple(
+                          'rgba(0, 0, 0, 0.2)',
+                          false,
+                        )}>
+                        <VStack>
+                          <Text
+                            fontSize={{md: '14px', base: '10px'}}
+                            fontFamily={'Poppins-Regular'}
+                            mb={{base: '7px'}}
+                            color={'#7D8093'}>
+                            To
+                          </Text>
+                          <Text
+                            color={'primary.1'}
+                            fontSize={{md: '24px', base: '14px'}}
+                            fontFamily={'Spartan-Regular'}
+                            mb={{base: '2px'}}>
+                            Lagos LOS
+                          </Text>
+                          <Text
+                            color="#7D8093"
+                            fontFamily={'Poppins-Regular'}
+                            fontSize={{md: '12px', base: '10px'}}>
+                            Hamad International Airport
+                          </Text>
+                        </VStack>
+                      </TouchableNativeFeedback>
                     </Box>
                   </Box>
                 ) : (
@@ -349,6 +359,10 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
           </ScrollView>
         </Flex>
         <TabBar />
+        <FlightDestinationSelection
+          destinationSelectionState={destinationSelectionState}
+          setDestinationSelectionState={setDestinationSelectionState}
+        />
       </VStack>
     </Suspense>
   );
