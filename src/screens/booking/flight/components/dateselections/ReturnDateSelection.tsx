@@ -1,5 +1,5 @@
 import {WINDOW_HEIGHT} from '@constants/reusable';
-import {Box, Flex, Input, View} from 'native-base';
+import {Box, Flex, Input, Text, View} from 'native-base';
 import Animated, {
   Easing,
   runOnJS,
@@ -21,15 +21,15 @@ import {
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import {nativeBaseTheme} from '@constants/theme';
 
-interface FlightDestinationSelectionProps {
-  destinationSelectionState: boolean;
-  setDestinationSelectionState: Dispatch<SetStateAction<boolean>>;
+interface ReturnDateSelectionProps {
+  returnDateSelectionState: boolean;
+  setReturnDateSelectionState: Dispatch<SetStateAction<boolean>>;
 }
 
-const FlightDestinationSelection = ({
-  destinationSelectionState,
-  setDestinationSelectionState,
-}: FlightDestinationSelectionProps) => {
+const ReturnDateSelection = ({
+  returnDateSelectionState,
+  setReturnDateSelectionState,
+}: ReturnDateSelectionProps) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const translateY = useSharedValue(WINDOW_HEIGHT);
@@ -81,7 +81,7 @@ const FlightDestinationSelection = ({
             easing: Easing.linear,
           },
           () => {
-            runOnJS(setDestinationSelectionState)(false);
+            runOnJS(setReturnDateSelectionState)(false);
           },
         );
       } else {
@@ -93,10 +93,10 @@ const FlightDestinationSelection = ({
     });
 
   useEffect(() => {
-    if (destinationSelectionState) {
+    if (returnDateSelectionState) {
       translateY.value = withTiming(WINDOW_HEIGHT * 0.3, {duration: 300});
     }
-  }, [destinationSelectionState]);
+  }, [returnDateSelectionState]);
 
   return (
     <Animated.View style={[styles.container, animatedStyle]}>
@@ -111,46 +111,9 @@ const FlightDestinationSelection = ({
             <Box h={'1'} w={'20%'} bg={'secondary.1'} borderRadius={'10px'} />
           </Flex>
         </GestureDetector>
-        <Box
-          px={'27px'}
-          borderBottomWidth={0.5}
-          borderBottomColor={'secondary.1'}>
-          <Input
-            onChangeText={searchUpdated}
-            placeholder="Enter your departure city"
-            borderWidth={'0'}
-            color={'primary.1'}
-            py={'16px'}
-            _focus={{borderWidth: 0}}
-            style={styles.input}
-          />
+        <Box px={'27px'}>
+          <Text color={'primary.1'}>Return Date</Text>
         </Box>
-        {isLoading ? (
-          <View style={styles.loadingContainer}>
-            <ActivityIndicator size="large" color="primary.1" />
-          </View>
-        ) : (
-          <>
-            {/* <ScrollView style={styles.scrollView}>
-            {filteredDestinations.map(destination => (
-              <TouchableOpacity key={destination.id} style={styles.item}>
-                <View>
-                  <Text style={styles.countryText}>{destination.country}</Text>
-                  <View style={styles.detailsContainer}>
-                    <Text style={styles.iataCodeText}>
-                      {destination.airportCode.iataCode}
-                    </Text>
-                    <Text style={styles.dotText}>.</Text>
-                    <Text style={styles.airportNameText}>
-                      {destination.airportCode.name}
-                    </Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            ))}
-          </ScrollView> */}
-          </>
-        )}
       </Flex>
     </Animated.View>
   );
@@ -229,4 +192,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FlightDestinationSelection;
+export default ReturnDateSelection;
