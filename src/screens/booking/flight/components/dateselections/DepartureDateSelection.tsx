@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Calendar} from 'react-native-calendars';
 import Animated, {
   Easing,
@@ -39,7 +39,7 @@ const DepartureDateSelection = React.memo(
         const clampedTranslationY = Math.min(
           Math.max(
             prevTranslationY.value + event.translationY,
-            WINDOW_HEIGHT * 0.3,
+            WINDOW_HEIGHT * 0.4,
           ),
           WINDOW_HEIGHT,
         );
@@ -58,7 +58,7 @@ const DepartureDateSelection = React.memo(
             },
           );
         } else {
-          translateY.value = withTiming(WINDOW_HEIGHT * 0.3, {
+          translateY.value = withTiming(WINDOW_HEIGHT * 0.4, {
             duration: 200,
             easing: Easing.linear,
           });

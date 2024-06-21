@@ -20,6 +20,7 @@ import {
 } from 'react';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import {nativeBaseTheme} from '@constants/theme';
+import {Calendar} from 'react-native-calendars';
 
 interface ReturnDateSelectionProps {
   returnDateSelectionState: boolean;
@@ -57,6 +58,31 @@ const ReturnDateSelection = ({
     setIsLoading(false);
   }, []);
 
+  const getDisabledDatesBeforeToday = useCallback(() => {
+    const disabledDates: {[key: string]: {disabled: boolean}} = {};
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+
+    for (let m = 1; m < month; m++) {
+      const daysInMonth = new Date(year, m, 0).getDate();
+      for (let d = 1; d <= daysInMonth; d++) {
+        const date = `${year}-${m < 10 ? '0' + m : m}-${d < 10 ? '0' + d : d}`;
+        disabledDates[date] = {disabled: true};
+      }
+    }
+
+    for (let d = 1; d < day; d++) {
+      const date = `${year}-${month < 10 ? '0' + month : month}-${
+        d < 10 ? '0' + d : d
+      }`;
+      disabledDates[date] = {disabled: true};
+    }
+
+    return disabledDates;
+  }, []);
+
   const gesture = Gesture.Pan()
     .minDistance(1)
     .onStart(() => {
@@ -66,7 +92,7 @@ const ReturnDateSelection = ({
       const clampedTranslationY = Math.min(
         Math.max(
           prevTranslationY.value + event.translationY,
-          WINDOW_HEIGHT * 0.3,
+          WINDOW_HEIGHT * 0.4,
         ),
         WINDOW_HEIGHT,
       );
@@ -85,7 +111,7 @@ const ReturnDateSelection = ({
           },
         );
       } else {
-        translateY.value = withTiming(WINDOW_HEIGHT * 0.3, {
+        translateY.value = withTiming(WINDOW_HEIGHT * 0.4, {
           duration: 200,
           easing: Easing.linear,
         });
@@ -100,19 +126,79 @@ const ReturnDateSelection = ({
 
   return (
     <Animated.View style={[styles.container, animatedStyle]}>
-      <Flex flex={'1'}>
+      <Flex flex={1}>
         <GestureDetector {...{gesture}}>
           <Flex
-            py={'10px'}
-            w={'100%'}
-            bg={'white'}
-            alignItems={'center'}
-            justifyContent={'center'}>
-            <Box h={'1'} w={'20%'} bg={'secondary.1'} borderRadius={'10px'} />
+            py="10px"
+            w="100%"
+            bg="white"
+            alignItems="center"
+            justifyContent="center">
+            <Box h="1" w="20%" bg="secondary.1" borderRadius="10px" />
           </Flex>
         </GestureDetector>
-        <Box px={'27px'}>
-          <Text color={'primary.1'}>Return Date</Text>
+        <Box px="27px">
+          <Text
+            color="primary.1"
+            textAlign="center"
+            mt={{base: '20px'}}
+            mb={{base: '13px'}}
+            fontFamily="Poppins-Regular"
+            fontSize={{base: '16px'}}>
+            Travel Dates
+          </Text>
+          <Box pb="20px" borderBottomWidth="1" borderBottomColor="secondary.1">
+            <Text
+              color="primary.1"
+              fontSize={{base: '12px'}}
+              fontFamily="Spartan-Regular">
+              Select your travel date
+            </Text>
+          </Box>
+          <Box mt={{base: '12px'}}>
+            <Calendar
+              markedDates={{
+                ...getDisabledDatesBeforeToday(),
+              }}
+              theme={{
+                selectedDayTextColor: '#fff',
+                arrowColor: nativeBaseTheme.colors.primary[1],
+                todayBackgroundColor: nativeBaseTheme.colors.primary[1],
+                selectedDayBackgroundColor: nativeBaseTheme.colors.primary[1],
+                todayTextColor: '#fff',
+                textDayFontSize: 11,
+                textMonthFontSize: 11,
+                textDayHeaderFontSize: 11,
+                textDayFontFamily: 'Poppins-Regular',
+                textMonthFontFamily: 'Poppins-Regular',
+                textDayHeaderFontFamily: 'Poppins-Regular',
+                // @ts-ignore
+                'stylesheet.calendar.header': {
+                  monthText: {
+                    fontFamily: 'Poppins-Regular',
+                    fontWeight: 'bold',
+                    textAlign: 'center',
+                    fontSize: 16,
+                    backgroundColor: nativeBaseTheme.colors.primary[1],
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                    paddingLeft: 20,
+                    paddingRight: 20,
+                    borderRadius: 20,
+                    color: '#fff',
+                  },
+                },
+                'stylesheet.calendar.main': {
+                  dayText: {
+                    fontSize: 16,
+                    fontFamily: 'Poppins-Regular',
+                    color: '#2d4150',
+                    textAlign: 'center',
+                  },
+                },
+              }}
+            />
+          </Box>
         </Box>
       </Flex>
     </Animated.View>
@@ -123,7 +209,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    height: WINDOW_HEIGHT * 0.7,
+    height: WINDOW_HEIGHT * 0.6,
     backgroundColor: 'white',
     position: 'absolute',
     width: '100%',
@@ -131,64 +217,6 @@ const styles = StyleSheet.create({
     left: 0,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-  },
-  header: {
-    width: '100%',
-    height: 10,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  headerIndicator: {
-    height: 2,
-    width: '25%',
-    backgroundColor: nativeBaseTheme.colors.secondary[1],
-    borderRadius: 10,
-  },
-  input: {
-    borderWidth: 0,
-    borderBottomColor: '#c4c4c4',
-    fontSize: 15,
-    fontFamily: 'Spartan-Regular',
-    backgroundColor: 'white',
-  },
-  scrollView: {
-    flex: 1,
-    paddingHorizontal: 32,
-    marginTop: 11,
-  },
-  item: {
-    borderBottomWidth: 0.5,
-    borderColor: 'rgba(0,0,0,0.3)',
-    paddingVertical: 10,
-  },
-  countryText: {
-    color: nativeBaseTheme.colors.primary[1],
-    fontSize: 12,
-    fontFamily: 'Poppins-Light',
-  },
-  detailsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 7,
-  },
-  iataCodeText: {
-    color: nativeBaseTheme.colors.primary[1],
-    fontSize: 10,
-    fontFamily: 'Poppins-Medium',
-  },
-  dotText: {
-    fontSize: 10,
-  },
-  airportNameText: {
-    fontSize: 10,
-    fontFamily: 'Poppins-Medium',
-    color: nativeBaseTheme.colors.primary[1],
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 
