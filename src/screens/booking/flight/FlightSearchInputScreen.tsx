@@ -228,91 +228,77 @@ function SearchInputScreen({navigation}: SearchInputScreenProps) {
                 </>
               ) : (
                 <>
-                  {/* {tabs[selectedTab].content === 'one-way' ? (
-                      <Box
-                        mt={{md: '42px', base: '27px'}}
-                        bg="white"
-                        py={{md: '19px', base: '20px'}}
-                        px={{md: '30px', base: '23px'}}
-                        borderRadius={'17px'}
-                        style={{
-                          shadowColor: 'rgba(0, 0, 0, 0.20)',
-                          shadowOffset: {width: 2, height: 4},
-                          shadowOpacity: 0.2,
-                          shadowRadius: 23,
-                          elevation: 4,
-                        }}>
-                        <Box w="100%">
-                          <TouchableNativeFeedback
-                            onPress={() => console.log('Button Pressed!')}
-                            background={TouchableNativeFeedback.Ripple(
-                              'rgba(0, 0, 0, 0.2)',
-                              false,
-                            )}>
-                            <VStack>
-                              <Text
-                                fontSize={{md: '14px', base: '10px'}}
-                                fontFamily={'Poppins-Regular'}
-                                mb={{base: '7px'}}
-                                color={'#7D8093'}>
-                                From
-                              </Text>
-                              <Text
-                                mb={{base: '2px'}}
-                                color={'primary.1'}
-                                fontFamily={'Spartan-Regular'}
-                                fontSize={{md: '24px', base: '14px'}}>
-                                Doha Doh
-                              </Text>
-                              <Text
-                                color="#7D8093"
-                                fontFamily={'Poppins-Regular'}
-                                fontSize={{md: '12px', base: '10px'}}>
-                                Hamad International Airport
-                              </Text>
-                            </VStack>
-                          </TouchableNativeFeedback>
-                          <Divider
-                            my={{md: '13px', base: '21px'}}
-                            backgroundColor={'rgba(217, 217, 217, 0.75);'}
-                          />
-                          <TouchableNativeFeedback
-                            onPress={() => console.log('Button Pressed!')}
-                            background={TouchableNativeFeedback.Ripple(
-                              'rgba(0, 0, 0, 0.2)',
-                              false,
-                            )}>
-                            <VStack>
-                              <Text
-                                fontSize={{md: '14px', base: '10px'}}
-                                fontFamily={'Poppins-Regular'}
-                                mb={{base: '7px'}}
-                                color={'#7D8093'}>
-                                To
-                              </Text>
-                              <Text
-                                color={'primary.1'}
-                                fontSize={{md: '24px', base: '14px'}}
-                                fontFamily={'Spartan-Regular'}
-                                mb={{base: '2px'}}>
-                                Lagos LOS
-                              </Text>
-                              <Text
-                                color="#7D8093"
-                                fontFamily={'Poppins-Regular'}
-                                fontSize={{md: '12px', base: '10px'}}>
-                                Hamad International Airport
-                              </Text>
-                            </VStack>
-                          </TouchableNativeFeedback>
-                        </Box>
+                  {tabs[selectedTab].content === 'one-way' ? (
+                    <Box
+                      mt={{md: '42px', base: '27px'}}
+                      bg="white"
+                      py={{md: '19px', base: '20px'}}
+                      px={{md: '30px', base: '23px'}}
+                      borderRadius={'17px'}
+                      style={{
+                        shadowColor: 'rgba(0, 0, 0, 0.20)',
+                        shadowOffset: {width: 2, height: 4},
+                        shadowOpacity: 0.2,
+                        shadowRadius: 23,
+                        elevation: 4,
+                      }}>
+                      <Box w="100%">
+                        <VStack>
+                          <Text
+                            fontSize={{md: '14px', base: '10px'}}
+                            fontFamily={'Poppins-Regular'}
+                            mb={{base: '7px'}}
+                            color={'#7D8093'}>
+                            From
+                          </Text>
+                          <Text
+                            mb={{base: '2px'}}
+                            color={'primary.1'}
+                            fontFamily={'Spartan-Regular'}
+                            fontSize={{md: '24px', base: '14px'}}>
+                            Doha Doh
+                          </Text>
+                          <Text
+                            color="#7D8093"
+                            fontFamily={'Poppins-Regular'}
+                            fontSize={{md: '12px', base: '10px'}}>
+                            Hamad International Airport
+                          </Text>
+                        </VStack>
+                        <Divider
+                          my={{md: '13px', base: '21px'}}
+                          backgroundColor={'rgba(217, 217, 217, 0.75);'}
+                        />
+
+                        <VStack>
+                          <Text
+                            fontSize={{md: '14px', base: '10px'}}
+                            fontFamily={'Poppins-Regular'}
+                            mb={{base: '7px'}}
+                            color={'#7D8093'}>
+                            To
+                          </Text>
+                          <Text
+                            color={'primary.1'}
+                            fontSize={{md: '24px', base: '14px'}}
+                            fontFamily={'Spartan-Regular'}
+                            mb={{base: '2px'}}>
+                            Lagos LOS
+                          </Text>
+                          <Text
+                            color="#7D8093"
+                            fontFamily={'Poppins-Regular'}
+                            fontSize={{md: '12px', base: '10px'}}>
+                            Hamad International Airport
+                          </Text>
+                        </VStack>
                       </Box>
-                    ) : (
-                      tabs[selectedTab].content === 'multi' && null
-                    )} */}
+                    </Box>
+                  ) : (
+                    tabs[selectedTab].content === 'multi' && null
+                  )}
                 </>
               )}
-
               <Box
                 mt={{md: '36px', base: '22px'}}
                 mb={{base: '32px', md: '0px'}}>
