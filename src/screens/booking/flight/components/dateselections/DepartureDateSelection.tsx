@@ -15,13 +15,13 @@ import {WINDOW_HEIGHT} from '@constants/reusable';
 
 interface DepartureDateSelectionProps {
   departureDateSelectionState: boolean;
-  setDepartureSelectionState: (state: boolean) => void;
+  onChangeDepartureDate: (state: boolean) => void;
 }
 
 const DepartureDateSelection = React.memo(
   ({
     departureDateSelectionState,
-    setDepartureSelectionState,
+    onChangeDepartureDate,
   }: DepartureDateSelectionProps) => {
     const translateY = useSharedValue(WINDOW_HEIGHT);
     const prevTranslationY = useSharedValue(0);
@@ -54,7 +54,7 @@ const DepartureDateSelection = React.memo(
               easing: Easing.linear,
             },
             () => {
-              runOnJS(setDepartureSelectionState)(false);
+              runOnJS(onChangeDepartureDate)(false);
             },
           );
         } else {

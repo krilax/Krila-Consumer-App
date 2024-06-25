@@ -35,7 +35,7 @@ function TravelReimaginedScreen({detail, title}: TravelReimaginedScreenProps) {
       <View
         style={styles.backView}
         padding={deviceType === 'tablet' ? '30px' : '27px'}>
-        <Text>This stays at the back</Text>
+        {/* [x] <Text>This stays at the back</Text> */}
       </View>
       <Flex
         style={[

@@ -1,7 +1,7 @@
 import {faker} from '@faker-js/faker';
 
 const data = [];
-const count = 200;
+const count = 1000;
 
 const range = (n: number) => Array.from(Array(n).keys());
 

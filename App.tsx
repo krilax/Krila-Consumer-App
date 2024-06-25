@@ -6,8 +6,28 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {config, nativeBaseTheme} from '@constants/theme';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {GluestackUIProvider} from '@gluestack-ui/themed-native-base';
-import Router from '@src/Router';
 import {LogBox} from 'react-native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {RootStackParamList} from '@src/routes';
+import {
+  EmailLoginScreen,
+  FlightBookingDetailsScreen,
+  FlightPassengerInfoScreen,
+  OnboardScreen,
+  ResetPasswordScreen,
+  SignupScreen,
+  SplashScreen,
+} from '@src/screens';
+import PhoneLoginScreen from '@src/screens/login/PhoneLoginScreen';
+import {
+  FlightBoardingPassengerScreen,
+  FlightSearchInputScreen,
+  FlightSearchResultScreen,
+  FlightSelectSeatScreen,
+  PaymentScreen,
+} from '@src/screens/booking/flight';
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App() {
   const [isOnboardingCompleted, setIsOnboardingCompleted] = useState<
@@ -40,7 +60,52 @@ function App() {
         <NativeBaseProvider isSSR={false} theme={nativeBaseTheme}>
           <NavigationContainer>
             <SafeAreaProvider>
-              <Router isOnboardingCompleted={isOnboardingCompleted} />
+              <Stack.Navigator
+                initialRouteName={
+                  !isOnboardingCompleted ? 'SplashScreen' : 'EmailLoginScreen'
+                }
+                screenOptions={{headerShown: false}}>
+                <Stack.Screen name="SplashScreen" component={SplashScreen} />
+                <Stack.Screen name="OnboardScreen" component={OnboardScreen} />
+                <Stack.Screen name="SignupScreen" component={SignupScreen} />
+                <Stack.Screen
+                  name="EmailLoginScreen"
+                  component={EmailLoginScreen}
+                />
+                <Stack.Screen
+                  name="ResetPasswordScreen"
+                  component={ResetPasswordScreen}
+                />
+                <Stack.Screen
+                  name="PhoneLoginScreen"
+                  component={PhoneLoginScreen}
+                />
+                <Stack.Screen
+                  name="FlightSearchInputScreen"
+                  component={FlightSearchInputScreen}
+                />
+                <Stack.Screen
+                  name="FlightSearchResultScreen"
+                  component={FlightSearchResultScreen}
+                />
+                <Stack.Screen
+                  name="FlightSelectSeatScreen"
+                  component={FlightSelectSeatScreen}
+                />
+                <Stack.Screen
+                  name="BookingDetailsScreen"
+                  component={FlightBookingDetailsScreen}
+                />
+                <Stack.Screen
+                  name="FlightPassengerInfoScreen"
+                  component={FlightPassengerInfoScreen}
+                />
+                <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
+                <Stack.Screen
+                  name="BoardingPassScreen"
+                  component={FlightBoardingPassengerScreen}
+                />
+              </Stack.Navigator>
             </SafeAreaProvider>
           </NavigationContainer>
         </NativeBaseProvider>

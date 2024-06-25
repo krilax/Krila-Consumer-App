@@ -1,5 +1,5 @@
 import {WINDOW_HEIGHT} from '@constants/reusable';
-import {Box, Flex, Input, Text, View} from 'native-base';
+import {Box, Flex, Text} from 'native-base';
 import Animated, {
   Easing,
   runOnJS,
@@ -8,7 +8,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import {createFilter} from 'react-native-search-filter';
-import {ActivityIndicator, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {flightDestinations} from '@src/helpers/mocks/flight_destinations';
 import {
   Dispatch,
@@ -24,12 +24,12 @@ import {Calendar} from 'react-native-calendars';
 
 interface ReturnDateSelectionProps {
   returnDateSelectionState: boolean;
-  setReturnDateSelectionState: Dispatch<SetStateAction<boolean>>;
+  onChangeReturnDate: (state: boolean) => void;
 }
 
 const ReturnDateSelection = ({
   returnDateSelectionState,
-  setReturnDateSelectionState,
+  onChangeReturnDate,
 }: ReturnDateSelectionProps) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -107,7 +107,7 @@ const ReturnDateSelection = ({
             easing: Easing.linear,
           },
           () => {
-            runOnJS(setReturnDateSelectionState)(false);
+            runOnJS(onChangeReturnDate)(false);
           },
         );
       } else {
@@ -120,7 +120,7 @@ const ReturnDateSelection = ({
 
   useEffect(() => {
     if (returnDateSelectionState) {
-      translateY.value = withTiming(WINDOW_HEIGHT * 0.3, {duration: 300});
+      translateY.value = withTiming(WINDOW_HEIGHT * 0.4, {duration: 300});
     }
   }, [returnDateSelectionState]);
 

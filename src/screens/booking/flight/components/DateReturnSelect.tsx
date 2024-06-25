@@ -3,12 +3,12 @@ import React from 'react';
 import {TouchableWithoutFeedback} from 'react-native';
 
 interface DateReturnSelectProps {
-  onChangeReturnDate: () => void;
+  onChangeReturnDate: (state: boolean) => void;
 }
 
 function DateReturnSelect({onChangeReturnDate}: DateReturnSelectProps) {
   return (
-    <TouchableWithoutFeedback onPress={onChangeReturnDate}>
+    <TouchableWithoutFeedback onPress={() => onChangeReturnDate(true)}>
       <VStack alignItems={'flex-end'}>
         <Text
           fontSize={{md: '14px', base: '10px'}}

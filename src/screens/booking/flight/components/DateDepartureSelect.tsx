@@ -3,14 +3,14 @@ import React from 'react';
 import {TouchableWithoutFeedback} from 'react-native';
 
 interface DateDepartureSelectProps {
-  onChangeDepartureDate: () => void;
+  onChangeDepartureDate: (state: boolean) => void;
 }
 
 function DateDepartureSelect({
   onChangeDepartureDate,
 }: DateDepartureSelectProps) {
   return (
-    <TouchableWithoutFeedback onPress={onChangeDepartureDate}>
+    <TouchableWithoutFeedback onPress={() => onChangeDepartureDate(true)}>
       <VStack>
         <Text
           fontSize={{md: '14px', base: '10px'}}
