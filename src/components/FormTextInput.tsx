@@ -7,9 +7,15 @@ interface FormTextInputProps {
   formTitle?: string;
   placeholder: string;
   width: string;
+  style?: any;
 }
 
-function FormTextInput({formTitle, placeholder, width}: FormTextInputProps) {
+function FormTextInput({
+  formTitle,
+  placeholder,
+  width,
+  style,
+}: FormTextInputProps) {
   const {
     control,
     handleSubmit,
@@ -48,10 +54,6 @@ function FormTextInput({formTitle, placeholder, width}: FormTextInputProps) {
                 onBlur();
                 setIsEmailInputFocused(false);
               }}
-              style={[
-                styles.input,
-                {backgroundColor: isNameInputFocused ? 'white' : 'white'},
-              ]}
               _focus={{
                 borderColor: '#C4C4C4',
                 borderWidth: 1,
@@ -68,6 +70,11 @@ function FormTextInput({formTitle, placeholder, width}: FormTextInputProps) {
               borderWidth={'0.5'}
               borderColor={'#C4C4C4'}
               backgroundColor={'white'}
+              style={[
+                styles.input,
+                {backgroundColor: isNameInputFocused ? 'white' : 'white'},
+                {...style},
+              ]}
             />
           </InputGroup>
         )}

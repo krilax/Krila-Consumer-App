@@ -38,27 +38,23 @@ function SearchAdSpot() {
             alignItems={'flex-end'}
             position={'relative'}>
             {['Flights'].map((buttonLabel, index) => (
-              <TouchableWithoutFeedback>
-                <Box
-                  key={index}
-                  flex={1}
-                  mx={0}
-                  borderTopRightRadius={
-                    activeButton === index ? '20px' : '10px'
-                  }
-                  borderTopLeftRadius={activeButton === 0 ? '10px' : '0px'}
-                  py={activeButton === index ? '10px' : '5px'}
-                  bg={activeButton === index ? 'white' : 'primary.1'}>
-                  <Text
-                    textAlign={'center'}
-                    color={activeButton === index ? 'primary.1' : 'white'}
-                    fontFamily={{md: 'Spartan-SemiBold'}}
-                    fontSize={{md: '15px', base: '12px'}}
-                    px={{base: '10px'}}>
-                    {buttonLabel}
-                  </Text>
-                </Box>
-              </TouchableWithoutFeedback>
+              <Box
+                key={index}
+                flex={1}
+                mx={0}
+                borderTopRightRadius={activeButton === index ? '20px' : '10px'}
+                borderTopLeftRadius={activeButton === 0 ? '10px' : '0px'}
+                py={activeButton === index ? '10px' : '5px'}
+                bg={activeButton === index ? 'white' : 'primary.1'}>
+                <Text
+                  textAlign={'center'}
+                  color={activeButton === index ? 'primary.1' : 'white'}
+                  fontFamily={{md: 'Spartan-SemiBold'}}
+                  fontSize={{md: '15px', base: '12px'}}
+                  px={{base: '10px'}}>
+                  {buttonLabel}
+                </Text>
+              </Box>
             ))}
           </HStack>
         </Flex>

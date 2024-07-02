@@ -73,6 +73,7 @@ const onboardData: OnboardDataInterface[] = [
 ];
 
 const AUTO_SWITCH_INTERVAL = 20000;
+
 const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
   const index = useSharedValue(0);
   const isGestureActive = useSharedValue(false);
@@ -107,6 +108,7 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
 
       const newTranslationX =
         Math.round(translationX.value / WINDOW_WIDTH) * WINDOW_WIDTH;
+
       translationX.value = withTiming(newTranslationX, {
         duration: 200,
         easing: Easing.linear,
@@ -183,32 +185,32 @@ const OnboardScreen: React.FC<SplashScreenProps> = ({navigation}) => {
   return (
     <Suspense fallback={<WelcomeLoadingScreen />}>
       <View style={styles.container}>
-        {/* <GestureDetector {...{gesture}}> */}
-        <Animated.View style={StyleSheet.absoluteFill}>
-          <Animated.View style={[styles.slides]}>
-            {onboardData.map(
-              ({color, metadata, detail, title, Screen}, idx) => {
-                return (
-                  <Animated.View
-                    style={[styles.slide, animatedStylesArray[idx]]}
-                    key={idx}>
-                    <Screen
-                      {...{
-                        index: idx,
-                        color,
-                        metadata,
-                        detail,
-                        title,
-                        ...navigation,
-                      }}
-                    />
-                  </Animated.View>
-                );
-              },
-            )}
+        <GestureDetector {...{gesture}}>
+          <Animated.View style={StyleSheet.absoluteFill}>
+            <Animated.View style={[styles.slides]}>
+              {onboardData.map(
+                ({color, metadata, detail, title, Screen}, idx) => {
+                  return (
+                    <Animated.View
+                      style={[styles.slide, animatedStylesArray[idx]]}
+                      key={idx}>
+                      <Screen
+                        {...{
+                          index: idx,
+                          color,
+                          metadata,
+                          detail,
+                          title,
+                          ...navigation,
+                        }}
+                      />
+                    </Animated.View>
+                  );
+                },
+              )}
+            </Animated.View>
           </Animated.View>
-        </Animated.View>
-        {/* </GestureDetector> */}
+        </GestureDetector>
 
         <Box
           w="full"

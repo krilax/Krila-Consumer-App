@@ -29,10 +29,7 @@ function FlightBookingDetailsScreen({navigation}: BookingDetailsScreenProps) {
   return (
     <Suspense fallback={<CuratingLoadingScreen />}>
       <Flex flex={'1'} background={'#EFEFEF'}>
-        <ScrollView
-          px={{md: '57px', base: '27px'}}
-          mb={'1px'}
-          borderWidth={'1px'}>
+        <ScrollView px={{md: '57px', base: '27px'}} mb={'1px'}>
           <MiniHeader title={'Booking'} description={'Let’s start your trip'} />
           <Box
             mt={{md: '45px'}}
